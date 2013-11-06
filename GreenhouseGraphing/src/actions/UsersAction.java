@@ -3,7 +3,6 @@ package actions;
 import java.util.List;
 
 import dao.MangoDAO;
-import models.MailingList;
 import models.User;
 
 public class UsersAction extends DefaultAction{
@@ -23,24 +22,12 @@ public class UsersAction extends DefaultAction{
 	
 	// create a new user
 	public String create(){
-		
-		System.err.println(user.getUsername());
-		System.err.println(user.getPhone());
-		System.err.println(user.getEmail());
-		
 		user.setAdmin("N");
 		user.setDisabled("N");
 		user.setReceiveAlarmEmails(0);
 		user.setReceiveOwnAuditEvents("N");
 		
-//		mangoDao.createUser(user);
-		
-		MailingList list = new MailingList();
-		list.setId(1000);
-		list.setName("somename");
-		list.setXid("lolxid");
-		
-		mangoDao.createMailingList(list);
+		mangoDao.createUser(user);
 		
 		return "success";
 	}

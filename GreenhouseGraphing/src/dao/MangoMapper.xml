@@ -15,12 +15,6 @@
 		<result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents" />
 	</resultMap>
 	
-	<resultMap id="MailingListMap" type="MailingList">
-		<result property="id" column="id" />
-		<result property="xid" column="xid" />
-		<result property="name" column="name" />
-	</resultMap>
-
 	<select id="selectUsers" resultType="User">
 		select * from users
 	</select>
@@ -28,10 +22,6 @@
 	<insert id="createUser" parameterType="map">
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
-	</insert>
-	
-	<insert id="createMailingList" parameterType="MailingList" useGeneratedKeys="true" keyProperty="id">
-		insert into mailinglists values(#{id}, #{xid}, #{name})
 	</insert>
 	
 </mapper>

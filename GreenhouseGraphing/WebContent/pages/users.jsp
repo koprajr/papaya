@@ -4,7 +4,7 @@
 	
 	<p>Add a new user</p>
 	
-	<s:form action="createUser" cssClass="form-inline" method="post">
+	<form action="createUser" class="form-inline" method="post">
 		<div class="form-group">
 			<s:textfield name="user.username" placeholder="Username" cssClass="form-control"/>
 		</div>
@@ -17,8 +17,8 @@
 		<div class="form-group">
 			<s:textfield name="user.password" placeholder="Password" cssClass="form-control"/>
 		</div>
-		<s:submit cssClass="btn btn-primary" value="Create" />
-	</s:form>
+		<button type="submit" class="btn btn-primary">Create</button>
+	</form>
 	
 	<hr />
 	

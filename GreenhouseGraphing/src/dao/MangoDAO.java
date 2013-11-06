@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import models.MailingList;
 import models.User;
 
 import org.apache.ibatis.io.Resources;
@@ -45,18 +44,7 @@ public class MangoDAO {
 		try {
 			session = factory.openSession();
 			session.insert("dao.MangoMapper.createUser", user);
-		} finally {
-			if (session != null){
-				session.close();
-			}
-		}
-	}
-	
-	public void createMailingList(MailingList mailingList){
-		SqlSession session = null;
-		try {
-			session = factory.openSession();
-			session.insert("dao.MangoMapper.createMailingList", mailingList);
+			session.commit();
 		} finally {
 			if (session != null){
 				session.close();

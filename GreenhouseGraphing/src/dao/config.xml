@@ -5,7 +5,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="models.User" alias="User" />
-		<typeAlias type="models.MailingList" alias="MailingList" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
