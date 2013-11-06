@@ -1,0 +1,288 @@
+/* 
+=======================================================
+OVERALL APPLICATION TEXT, BUTTONS, AND COMMON CONTROLS
+======================================================= 
+*/
+a {
+	color: #014838;
+}
+a:hover {
+	color: #000;
+}
+h2 {
+	color: #014838;
+	font-size: 25px;
+}
+.btn-primary {
+	color: #ffffff;
+	background-color: #bdae5b;
+	border-color: #fff;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+	color: #ffffff;
+	background-color: #d1c16b;
+	border-color: #fff;
+}
+.btn-primaryGreen {
+	color: #ffffff;
+	background-color: #014838;
+	border-color: #fff;
+}
+.btn-primaryGreen:hover, .btn-primaryGreen:focus, .btn-primaryGreen:active, .btn-primaryGreen.active, .open .dropdown-toggle.btn-primaryGreen {
+	color: #ffffff;
+	background-color: #26534e;
+	border-color: #fff;
+}
+.page-header {
+	margin: 10px 0px 20px 0px;
+}
+h2 small, .h2 small {
+	font-size: 22px;
+}
+.panel-default {
+	border-color: #014838;
+}
+.panel-default > .panel-heading {
+	color: #014838;
+	border-bottom-width:2px;
+	background-color:#E7E7E7;
+	border-bottom-color:#014838;
+}
+.panel-title {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 20px;
+}
+.panel-title small {
+	font-size: 18px;
+	color: #3d3d3d;
+}
+
+
+/* 
+=======================================================
+NAVIGATION BAR
+=======================================================
+*/
+img.logo {
+	width: 140px;
+}
+.navbar {
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+.navbar-inverse .navbar-toggle {
+border-color: #a5a5a5;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+background-color: #a5a5a5;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+border: none;
+}
+.navbar-collapse .navbar-nav.visible-xs{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+.navbar-collapse .navbar-nav.visible-xs li a { /*change so there are two sets of nav buttons one for moblie and one for tablet and pc*/
+	text-align: center;
+	border: none;
+}
+.navbar-inverse {
+	background-color: #fff;
+	border-radius: 0px;
+	border-top:2px solid #bdae5b;
+	border-bottom:2px solid #bdae5b;
+	border-right:0px solid #bdae5b;
+	border-left:0px solid #bdae5b;
+}
+.container-navbar {
+	border-top:4px solid #a5a5a5;
+	border-bottom:4px solid #a5a5a5;
+}
+.navbar-brand {
+	padding: 5px 0px;
+}
+.navbar-collapse ul {
+	margin-top: 25px;
+}
+.navbar-nav {
+	float: right;
+}
+.navbar-inverse .navbar-nav > li > a {
+	font-size: 18px;
+	color: #014838;
+	border-right: 1px solid #a5a5a5;
+	
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.navbar-inverse .navbar-nav > li.last > a {
+	border-right: 0px;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+	color: #014838;
+	text-decoration: underline;
+}
+.navbar-inverse .navbar-nav > .active > a:hover {
+	color: #014838;
+	background: none;
+	font-weight: bold;
+	text-decoration: none;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus {
+	background: none;
+	color: #014838;
+	font-weight: bold;
+}
+
+
+/* 
+=======================================================
+BREADCRUMBS
+=======================================================
+*/
+.container-breadcrumb {
+	margin-bottom: 15px;
+  	background-color: #E7E7E7;
+}
+.breadcrumb {
+	padding: 8px 8px;
+	margin-bottom: 0px;
+	background-color: #E7E7E7;
+}
+
+/* 
+=======================================================
+LOGIN FORM
+=======================================================
+*/
+form.form-signin {
+	margin: 40px 0;
+}
+
+/* 
+=======================================================
+IMAGE NAVIGATION
+=======================================================
+*/
+img.mainSystemNavImage {
+	margin: 0 auto;
+	display:block;
+}
+
+/* 
+=======================================================
+ADMIN ONLY DISPLAYS
+=======================================================
+*/
+.adminONLYblock {
+	padding: 15px;
+	margin-bottom: 30px;
+	background-color: #eeeeee;
+	border-radius: 6px;
+	border: 1px solid #bdae5b;
+}
+.adminONLYblock.button {
+	/*width: 300px;*/
+	margin: 0 auto;
+	display:block;
+}
+
+/* 
+=======================================================
+REPORTS LIST
+=======================================================
+*/
+.row.reportList{
+	margin-bottom: 40px;
+}
+.row .reportEntry {
+	margin: 5px 0px;
+}
+.reportEntry h4 {
+	display: block;
+}
+button.reportList {
+	padding: 4px 8px;
+}
+button.reportList.btn-primaryGreen {
+	margin-left: 20px;
+}
+.reportEntry .reportButtons {
+	display: initial;
+}
+@media (max-width: 767px) {
+	.reportEntry .reportButtons {
+		display: block;
+		margin: 10px 0px 20px 0px;
+	}
+}
+
+/* 
+=======================================================
+MANUAL INPUT OF DATA
+=======================================================
+*/
+div.input-group.manualInput .input-group-addon:first-child {
+	border: 0px;
+	background-color: transparent;
+	margin-left: 20px;
+}
+.row.manualEnterData input.form-control {
+	width: auto;
+	display: initial;
+	margin-left: 20px;
+	margin-bottom: 5px;
+}
+.row.manualEnterData label {
+	font-size: 16px;
+	font-weight: normal;
+}
+.row.manualEnterData .panel-default {
+	margin: 30px 0px;
+}
+button.manualDataSubmit {
+	margin: 0px auto;
+	display:block;
+}	
+
+@media (max-width: 767px) {
+	.row.manualEnterData .panel-default {
+		margin: 0px;
+	}
+}
+
+/* 
+=======================================================
+TIME PICKER MODAL
+=======================================================
+*/
+.modal-body .modal-footer {
+	margin-bottom:0px;
+	margin-top: 60px;
+	padding: 19px 20px 0px;
+}
+
+/* 
+=======================================================
+FOOTER
+=======================================================
+*/
+footer .developedBY {
+	float:right;
+}
+footer .copyright {
+	float:left;
+}
+@media (max-width: 767px) {
+	footer .developedBY {
+		float: left;
+	}
+	footer p {
+		width: 100%;
+		text-align: center;
+	}
+}

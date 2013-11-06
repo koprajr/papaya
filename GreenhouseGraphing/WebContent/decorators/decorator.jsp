@@ -5,10 +5,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>Greenhouse Graphing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="">
 
+    <title>Clarkson University</title>
+
+    <!-- Bootstrap and Application Specific CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet" />
-	<link href="css/styles.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
 	
 	<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
@@ -17,53 +24,53 @@
 	<d:head />
 </head>
 <body>
-<!-- Fixed top navigation bar -->
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<s:url action="index" var="homeUrl" />
-				<a href="${homeUrl}" class="navbar-brand">Home</a>
-			</div>
-			<div class="navbar-collapse collapse">
-			
-				<ul class="nav navbar-nav">
-					<s:url action="users" var="users"/>
-					<li><a href="${users}">Users</a></li>
-				</ul>
-				
-				<s:if test="%{loggedIn}">
-					<form action="logout" method="post"
-						class="navbar-form navbar-right">
-						<button type="submit" class="btn btn-danger">Log Out</button>
-					</form>
-				</s:if>
-				<s:else>
-					<form action="login" method="post"
-						class="navbar-form navbar-right">
-						<div class="form-group">
-							<input type="text" name="bean.name" placeholder="Username" class="form-control" />
-						</div>
-						<div class="form-group">
-							<input type="password" name="bean.password" placeholder="Password" class="form-control" />
-						</div>
-						<button type="submit" class="btn btn-success">Log In</button>
-					</form>
-				</s:else>
-			</div>
-		</div>
-	</div>
+    <!--NAVIGATION BAR-->
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container-navbar">
+            <div class="container">
 
-	<div class="jumbotron">
-		<div class="container">
-			<h1>Greenhouse Graphing</h1>
-			<p>An extension of Mango providing additional graphing features.</p>
-		</div>
-	</div>
+                <div class="navbar-header">
+                    <s:if test="%{loggedIn}">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="div.navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button
+                    </s:if>
+                    <s:url action="index" var="homeUrl" />
+                    <a class="navbar-brand" href="${homeUrl}"><img class="logo" src="img/logo.jpg"/></a> <!-- Application Logo -->
+                </div><!-- /.navbar-header -->
 
-	<div class="container">
+                <div class="collapse navbar-collapse">
+                    <s:if test="%{loggedIn}">
+                        <ul class="nav navbar-nav hidden-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
+                            <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                            <li><a href="#">Account Settings</a></li>
+                            <li class="last"><a href="#">Logout</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
+                            <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                            <li><a href="#">Account Settings</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </s:if>
+                </div><!-- /.collapse .nav-collapse -->
 
-		<d:body />
+            </div><!-- /.container -->
+        </div><!-- /.container-navbar -->
+    </div><!-- /.navbar .navbar-inverse-->
 
-	</div>
+	<d:body />
+
+    <div class="container container-main">
+        <!--FOOTER-->
+        <hr>
+        <footer>
+            <p class="copyright">&copy; Copyright: Clarkson University</p>
+            <p class="developedBY">Created By: Software Engineering Class of 2014</p>
+        </footer>
+
+    </div><!--/.container .container-main-->
+
 </body>
 </html>
