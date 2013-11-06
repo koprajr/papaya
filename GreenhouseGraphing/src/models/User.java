@@ -2,6 +2,7 @@ package models;
 
 public class User {
 
+	private int id;
 	private String username;
 	private String email;
 	private String phone;
@@ -73,6 +74,14 @@ public class User {
 
 	public void setReceiveOwnAuditEvents(String receiveOwnAuditEvents) {
 		this.receiveOwnAuditEvents = receiveOwnAuditEvents;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

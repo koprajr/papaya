@@ -32,6 +32,12 @@ public class UsersAction extends DefaultAction{
 		return "success";
 	}
 
+	// delete a user
+	public String delete(){
+		mangoDao.deleteUser(user);
+		return "success";
+	}
+	
 	public User getUser(){
 		return user;
 	}

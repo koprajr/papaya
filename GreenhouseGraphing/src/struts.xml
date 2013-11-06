@@ -39,6 +39,12 @@
 			</result>
 		</action>
 		
+		<action name="deleteUser" class="actions.UsersAction" method="delete">
+			<result name="success" type="redirectAction">
+				<param name="actionName">users</param>
+			</result>
+		</action>
+		
 	</package>
 
 </struts>

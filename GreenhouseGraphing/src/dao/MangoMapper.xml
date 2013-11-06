@@ -5,6 +5,7 @@
 <mapper namespace="dao.MangoMapper">
 
 	<resultMap id="UserMap" type="User">
+		<result property="id" column="id" />
 		<result property="username" column="username" />
 		<result property="email" column="email" />
 		<result property="phone" column="phone" />
@@ -19,7 +20,11 @@
 		select * from users
 	</select>
 	
-	<insert id="createUser" parameterType="map">
+	<delete id="deleteUser" parameterType="User">
+		delete from users where id=#{id}
+	</delete>
+	
+	<insert id="createUser" parameterType="User">
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>

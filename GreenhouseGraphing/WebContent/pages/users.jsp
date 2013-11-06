@@ -27,6 +27,7 @@
 	<table class="table">
 		<thead>
 			<tr>
+				<th>Delete</th>
 				<th>Username</th>
 				<th>Password</th>
 				<th>Email</th>
@@ -36,6 +37,12 @@
 		<tbody>
 			<s:iterator value="users" var="u">
 				<tr>
+					<td>
+						<s:url action="deleteUser" var="delete">
+							<s:param name="user.id">${u.id}</s:param>
+						</s:url>
+						<s:a href="%{delete}" cssClass="btn btn-danger btn-xs">Delete</s:a>
+					</td>
 					<td>${u.username}</td>
 					<td>${u.password}</td>
 					<td>${u.email}</td>

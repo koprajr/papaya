@@ -39,6 +39,19 @@ public class MangoDAO {
 		return users;
 	}
 	
+	public void deleteUser(User user){
+		SqlSession session = null;
+		try {
+			session = factory.openSession();
+			session.delete("dao.MangoMapper.deleteUser", user);
+			session.commit();
+		} finally {
+			if (session != null){
+				session.close();
+			}
+		}
+	}
+	
 	public void createUser(User user){
 		SqlSession session = null;
 		try {
