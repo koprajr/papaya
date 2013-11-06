@@ -1,11 +1,10 @@
 package actions;
 
-import java.util.Map;
-
-import models.LoginBean;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import models.LoginBean;
+
+import java.util.Map;
 
 public class LoginAction extends ActionSupport{
 	private LoginBean bean;
@@ -33,6 +32,4 @@ public class LoginAction extends ActionSupport{
 	public void setBean(LoginBean bean) {
 		this.bean = bean;
 	}
-
-	
 }
