@@ -29,6 +29,16 @@
 			</result>
 		</action>
 		
+		<action name="users" class="actions.UsersAction">
+			<result name="success">/pages/users.jsp</result>
+		</action>
+		
+		<action name="createUser" class="actions.UsersAction" method="create">
+			<result name="success" type="redirectAction">
+				<param name="actionName">users</param>
+			</result>
+		</action>
+		
 	</package>
 
 </struts>

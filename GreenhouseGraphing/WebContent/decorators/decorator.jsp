@@ -27,9 +27,8 @@
 			<div class="navbar-collapse collapse">
 			
 				<ul class="nav navbar-nav">
-					<li><a href="#">Reports</a></li>
-					<li><a href="#">Data Entry</a></li>
-					<li><a href="#">Administration</a></li>
+					<s:url action="users" var="users"/>
+					<li><a href="${users}">Users</a></li>
 				</ul>
 				
 				<s:if test="%{loggedIn}">

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.MangoMapper">
+
+	<resultMap id="UserMap" type="User">
+		<result property="username" column="username" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="password" column="password" />
+		<result property="admin" column="admin" />
+		<result property="disabled" column="disabled" />
+		<result property="receiveAlarmEmails" column="receiveAlarmEmails" />
+		<result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents" />
+	</resultMap>
+	
+	<resultMap id="MailingListMap" type="MailingList">
+		<result property="id" column="id" />
+		<result property="xid" column="xid" />
+		<result property="name" column="name" />
+	</resultMap>
+
+	<select id="selectUsers" resultType="User">
+		select * from users
+	</select>
+	
+	<insert id="createUser" parameterType="map">
+		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
+		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
+	</insert>
+	
+	<insert id="createMailingList" parameterType="MailingList" useGeneratedKeys="true" keyProperty="id">
+		insert into mailinglists values(#{id}, #{xid}, #{name})
+	</insert>
+	
+</mapper>

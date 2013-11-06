@@ -1,4 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="row">
-	<h2>You are logged in as <strong>${username}</strong>.</h2>
+	<h2>Session Testing</h2>
+	<p>You are logged in as <strong>${username}</strong>.</p>
+
+	<hr/>
 </div>
