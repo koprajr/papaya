@@ -42,14 +42,15 @@
                                 <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
                             <li><a href="#">Account Settings</a></li>
-                            <li class="last"><a href="#">Logout</a></li>
+                            <s:url action="logout" var="logoutAction" />
+                            <li class="last"><a href="${logoutAction}">Logout</a></li>
                         </ul>
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test="%{admin}">
                                 <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
                             <li><a href="#">Account Settings</a></li>
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="${logoutAction}">Logout</a></li>
                         </ul>
                     </s:if>
                 </div><!-- /.collapse .nav-collapse -->
