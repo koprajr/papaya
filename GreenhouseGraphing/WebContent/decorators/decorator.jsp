@@ -5,12 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="">
-
     <title>Clarkson University</title>
 
     <!-- Bootstrap and Application Specific CSS -->
@@ -25,7 +19,7 @@
 </head>
 <body>
     <!--NAVIGATION BAR-->
-    <div class="navbar navbar-inverse" role="navigation">
+    <div class="navbar navbar-inverse">
         <div class="container-navbar">
             <div class="container">
 
@@ -35,7 +29,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
-                        </button
+                        </button>
                     </s:if>
                     <s:url action="index" var="homeUrl" />
                     <a class="navbar-brand" href="${homeUrl}"><img class="logo" src="img/logo.jpg"/></a> <!-- Application Logo -->
@@ -64,7 +58,7 @@
 
     <div class="container container-main">
         <!--FOOTER-->
-        <hr>
+        <hr/>
         <footer>
             <p class="copyright">&copy; Copyright: Clarkson University</p>
             <p class="developedBY">Created By: Software Engineering Class of 2014</p>
