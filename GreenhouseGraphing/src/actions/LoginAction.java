@@ -22,7 +22,6 @@ public class LoginAction extends ActionSupport{
         mangoDao = new MangoDAO();
     }
 
-
 	public String execute(){
         if (!bean.getName().equals("") && !bean.getPassword().equals("")){
             // grab the session from the action context and add a loggedIn flag and the username
