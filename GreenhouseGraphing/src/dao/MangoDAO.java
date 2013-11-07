@@ -1,15 +1,14 @@
 package dao;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
 import models.User;
-
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 public class MangoDAO {
 	private static final String config = "dao/config.xml";
@@ -38,6 +37,20 @@ public class MangoDAO {
 		}
 		return users;
 	}
+
+    public User getUser(User user){
+        SqlSession session = null;
+        User userFromTable = null;
+        try {
+            session = factory.openSession();
+            userFromTable = session.selectOne("dao.MangoMapper.selectUser", user);
+        } finally {
+            if (session != null){
+                session.close();
+            }
+        }
+        return userFromTable;
+    }
 	
 	public void deleteUser(User user){
 		SqlSession session = null;
