@@ -38,12 +38,16 @@
                 <div class="collapse navbar-collapse">
                     <s:if test="%{loggedIn}">
                         <ul class="nav navbar-nav hidden-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
-                            <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                            <s:if test="%{admin}">
+                                <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                            </s:if>
                             <li><a href="#">Account Settings</a></li>
                             <li class="last"><a href="#">Logout</a></li>
                         </ul>
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
-                            <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                            <s:if test="%{admin}">
+                                <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                            </s:if>
                             <li><a href="#">Account Settings</a></li>
                             <li><a href="#">Logout</a></li>
                         </ul>
