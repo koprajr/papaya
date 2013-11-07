@@ -41,7 +41,10 @@
                             <s:if test="%{admin}">
                                 <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
-                            <li><a href="#">Account Settings</a></li>
+
+                            <s:url action="accountSettings" var="accountSettingsPage" />
+                            <li><a href="${accountSettingsPage}">Account Settings</a></li>
+
                             <s:url action="logout" var="logoutAction" />
                             <li class="last"><a href="${logoutAction}">Logout</a></li>
                         </ul>
@@ -49,7 +52,8 @@
                             <s:if test="%{admin}">
                                 <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
-                            <li><a href="#">Account Settings</a></li>
+
+                            <li><a href="${accountSettingsPage}">Account Settings</a></li>
                             <li><a href="${logoutAction}">Logout</a></li>
                         </ul>
                     </s:if>
