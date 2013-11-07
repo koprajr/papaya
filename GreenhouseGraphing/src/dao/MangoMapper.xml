@@ -27,6 +27,10 @@
 	<delete id="deleteUser" parameterType="User">
 		delete from users where id=#{id}
 	</delete>
+
+    <update id="updateUserPass" parameterType="User">
+        update users set password=#{password} where id=#{id}
+    </update>
 	
 	<insert id="createUser" parameterType="User">
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
