@@ -19,6 +19,10 @@
 	<select id="selectUsers" resultType="User">
 		select * from users
 	</select>
+
+    <select id="selectUser" resultType="User">
+        select * from users where username=#{username}
+    </select>
 	
 	<delete id="deleteUser" parameterType="User">
 		delete from users where id=#{id}

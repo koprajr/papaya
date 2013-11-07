@@ -45,7 +45,11 @@
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             <li><a href="#">Account Settings</a></li>
-                            <li><a href="#">Logout</a></li>
+                            <form action="logout" method="post">
+                                <!-- <li><a href="#">Logout</a></li> -->
+                                <li><button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button></li>
+                            </form>
+
                         </ul>
                     </s:if>
                 </div><!-- /.collapse .nav-collapse -->
