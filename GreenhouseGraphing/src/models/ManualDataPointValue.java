@@ -11,9 +11,9 @@ import java.math.BigInteger;
  */
 public class ManualDataPointValue {
     int id;
-    int manualDataPointId;
+    int manualDataPointId; // The type of manual data.
     int userId; // The user who inserted this data point value.
-    Double pointValue;
+    Double pointValue; // The actual value. eg "5" pounds.
     BigInteger ts;
 
 

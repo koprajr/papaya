@@ -1,12 +1,16 @@
 # IntelliJ Project Files
 *.iml
-.idea
+*.idea
+.idea/
+
+.idea/libraries
 
 # IntelliJ Output
 out/
 
 # External Libraries
 lib/
+out/
 
 *.class
 
