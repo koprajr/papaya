@@ -1,4 +1,4 @@
-package models;
+package core;
 
 /**
  *  This class store the values of all constants pertaining to the
