@@ -1,15 +1,15 @@
 package dao;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
+import models.ManualDataPoint;
 import models.User;
-
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 public class MangoDAO {
 	private static final String config = "dao/config.xml";
@@ -64,5 +64,18 @@ public class MangoDAO {
 			}
 		}
 	}
+
+    public List<ManualDataPoint> getManualDataPoints() {
+        SqlSession session = null;
+        List<ManualDataPoint> manualDataPoints = null;
+        try {
+            session = factory.openSession();
+            manualDataPoints = session.selectList("dao.MangoMapper.selectManualDataPoints");
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return manualDataPoints;
+    }
 	
 }

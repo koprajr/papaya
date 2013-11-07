@@ -1,10 +1,10 @@
 package actions;
 
-import java.util.Map;
-
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
+import java.util.Map;
 
 public class DefaultAction extends ActionSupport{
 

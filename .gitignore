@@ -15,6 +15,10 @@ lib/
 *.war
 *.ear
 
+*.idea
+*.iml
+
+
 *.pydevproject
 .project
 .metadata

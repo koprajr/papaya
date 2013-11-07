@@ -28,5 +28,15 @@
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
+
+    <resultMap id="manualDataPointMap" type="ManualDataPoint">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+
+    <select id="selectManualDataPoints" resultType="ManualDataPoint">
+        select * from manualDataPoints
+    </select>
 	
 </mapper>
