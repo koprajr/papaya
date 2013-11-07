@@ -45,6 +45,8 @@ public class PasswordChangeAction extends ActionSupport {
             String plainText = bean.getNewPass();
             String hash = encrypt(plainText);
 
+            if (hash == null) return "invalid";
+
             tableUser.setPassword(hash);
             mangoDAO.updateUserPass(tableUser);
 
