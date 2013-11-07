@@ -1,14 +1,13 @@
 package actions;
 
-import java.util.Map;
-
-import models.LoginBean;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import models.Login;
+
+import java.util.Map;
 
 public class LoginAction extends ActionSupport{
-	private LoginBean bean;
+	private Login bean;
 	
 	public String execute(){
 		if (!bean.getName().equals("") && !bean.getPassword().equals("")){
@@ -21,11 +20,11 @@ public class LoginAction extends ActionSupport{
 		return "invalid";
 	}
 
-	public LoginBean getBean() {
+	public Login getBean() {
 		return bean;
 	}
 
-	public void setBean(LoginBean bean) {
+	public void setBean(Login bean) {
 		this.bean = bean;
 	}
 

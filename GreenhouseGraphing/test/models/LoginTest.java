@@ -5,13 +5,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LoginBeanTest {
+public class LoginTest {
 
-    private static LoginBean bean;
+    private static Login bean;
 
     @Before
     public void setUp() throws Exception {
-        bean = new LoginBean();
+        bean = new Login();
     }
 
     @After
