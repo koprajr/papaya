@@ -3,10 +3,8 @@
 *.idea
 .idea/
 
-.idea/libraries
 
-# IntelliJ Output
-out/
+
 
 # External Libraries
 lib/
