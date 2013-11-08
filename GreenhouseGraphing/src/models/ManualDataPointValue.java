@@ -9,7 +9,6 @@ import java.math.BigInteger;
  * Time: 2:30 PM
  * Represents an actual point value for manual data. Similar to the pointValues table for sensors.
  *
- *
  */
 public class ManualDataPointValue {
     int id;
