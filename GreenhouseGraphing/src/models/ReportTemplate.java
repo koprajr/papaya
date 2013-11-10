@@ -1,6 +1,6 @@
 package models;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  *  This is a model representation of the 'report_templates' database table
@@ -8,50 +8,50 @@ import java.util.List;
  */
 public class ReportTemplate {
 
-    List<Sensor> individualSensors;
-    List<Equation> equations;
-    List<Object> manualData;
-    List<ChartConfiguration> chartConfigurations;
+    Set<Sensor> individualSensors;
+    Set<Equation> equations;
+    Set<Object> manualData;
+    Set<ChartConfiguration> chartConfigurations;
 
-    public ReportTemplate(List<Sensor> individualSensors,
-                          List<Equation> equations,
-                          List<Object> manualData,
-                          List<ChartConfiguration> chartConfigurations) {
+    public ReportTemplate(Set<Sensor> individualSensors,
+                          Set<Equation> equations,
+                          Set<Object> manualData,
+                          Set<ChartConfiguration> chartConfigurations) {
         this.individualSensors = individualSensors;
         this.equations = equations;
         this.manualData = manualData;
         this.chartConfigurations = chartConfigurations;
     }
 
-    public List<Sensor> getIndividualSensors() {
+    public Set<Sensor> getIndividualSensors() {
         return individualSensors;
     }
 
-    public void setIndividualSensors(List<Sensor> individualSensors) {
+    public void setIndividualSensors(Set<Sensor> individualSensors) {
         this.individualSensors = individualSensors;
     }
 
-    public List<Equation> getEquations() {
+    public Set<Equation> getEquations() {
         return equations;
     }
 
-    public void setEquations(List<Equation> equations) {
+    public void setEquations(Set<Equation> equations) {
         this.equations = equations;
     }
 
-    public List<Object> getManualData() {
+    public Set<Object> getManualData() {
         return manualData;
     }
 
-    public void setManualData(List<Object> manualData) {
+    public void setManualData(Set<Object> manualData) {
         this.manualData = manualData;
     }
 
-    public List<ChartConfiguration> getChartConfigurations() {
+    public Set<ChartConfiguration> getChartConfigurations() {
         return chartConfigurations;
     }
 
-    public void setChartConfigurations(List<ChartConfiguration> chartConfigurations) {
+    public void setChartConfigurations(Set<ChartConfiguration> chartConfigurations) {
         this.chartConfigurations = chartConfigurations;
     }
 }
