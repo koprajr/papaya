@@ -2,7 +2,7 @@
 <%@ taglib prefix="d" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <title>Clarkson University</title>
@@ -55,6 +55,7 @@
 
                             <li><a href="${accountSettingsPage}">Account Settings</a></li>
                             <li><a href="${logoutAction}">Logout</a></li>
+
                         </ul>
                     </s:if>
                 </div><!-- /.collapse .nav-collapse -->

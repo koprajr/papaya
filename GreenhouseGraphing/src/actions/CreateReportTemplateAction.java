@@ -21,7 +21,7 @@ public class CreateReportTemplateAction extends ActionSupport {
     @Override
     public String execute() throws Exception {
         // TODO: Implement the logic for this action.
-        return super.execute();
+        return "success";
     }
 
     public Set<Sensor> getSensors() {
