@@ -27,6 +27,7 @@ public class LoginAction extends ActionSupport{
             // grab the session from the action context and add a loggedIn flag and the username
             User testUser = new User();
             testUser.setUsername(bean.getName());
+            System.out.println(bean.getName());
             User tableUser = mangoDao.getUser(testUser);
 
             if (tableUser == null) return "invalid";
@@ -50,7 +51,7 @@ public class LoginAction extends ActionSupport{
                     } else {
                         session.put("admin", false);
                     }
-
+                    System.out.println(session.get("admin"));
                     return "success";
 
                 }

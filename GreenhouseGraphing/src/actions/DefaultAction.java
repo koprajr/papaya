@@ -10,7 +10,7 @@ public class DefaultAction extends ActionSupport{
 
 	public String execute(){
 		if (getSession().get("loggedIn") == null){
-			return "generic";
+			return "invalid";
 		} else {
 			return Action.SUCCESS;
 		}

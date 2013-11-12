@@ -13,11 +13,15 @@
     <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-12">
 
+            <s:url action="goTo_greenhouse" var="greenhousePage_Action" />
+            <s:url action="goTo_energyCabin" var="energyCabinPage_Action" />
+            <s:url action="goTo_digester" var="digesterPage_Action" />
+
             <!--TOP LEVEL SYSTEM GRAPHIC-->
             <map name="MainPicMap">
-                <area href="#" shape="polygon" coords="34, 240, 35, 193, 124, 161, 154, 162, 235, 194, 235, 243, 34, 243"> <!--Greenhouse-->
-                <area href="#/" shape="polygon" coords="262, 171, 282, 109, 277, 89, 305, 75, 393, 75, 427, 98, 427, 175, 262, 177"> <!--Energy Cabin-->
-                <area href="#" shape="polygon" coords="308, 306, 360, 292, 389, 292, 424, 310, 425, 414, 363, 426, 307, 411"> <!--Digester-->
+                <area href="${greenhousePage_Action}" shape="polygon" coords="34, 240, 35, 193, 124, 161, 154, 162, 235, 194, 235, 243, 34, 243"> <!--Greenhouse-->
+                <area href="${energyCabinPage_Action}" shape="polygon" coords="262, 171, 282, 109, 277, 89, 305, 75, 393, 75, 427, 98, 427, 175, 262, 177"> <!--Energy Cabin-->
+                <area href="${digesterPage_Action}" shape="polygon" coords="308, 306, 360, 292, 389, 292, 424, 310, 425, 414, 363, 426, 307, 411"> <!--Digester-->
                 <area href="#" shape="rect" coords="217, 6, 382, 33"> <!--Overall System-->
             </map>
             <img class="mainSystemNavImage img-responsive hidden-xs" style="width:720px;" src="img/mainNavImage.jpg" usemap="#MainPicMap"/>
@@ -43,11 +47,6 @@
                     </div><!-- /.col-md-4 .col-md-offset-4-->
                 </div><!-- /.row .row-offcanvas .row-offcanvas-right-->
             </s:if>
-
-            <div class="row">
-                <hr/>
-                <p>You are logged in as <strong>${username}</strong>.</p>
-            </div>
 
         </div><!-- /.col-xs-12 .col-sm-12-->
     </div><!-- /.row .row-offcanvas .row-offcanvas-right-->
