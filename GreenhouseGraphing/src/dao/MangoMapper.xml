@@ -20,7 +20,11 @@
 		select * from users
 	</select>
 
-    <select id="selectUser" resultType="User">
+    <select id="insertUser" parameterType="User">
+        insert into users values (5,#{username},#{password},'student@mango.com','','N','N', 0, 0,'',0,'N')
+    </select>
+
+    <select id="selectUser" parameterType="User" resultType="User">
         select * from users where username=#{username}
     </select>
 	

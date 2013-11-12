@@ -44,6 +44,10 @@
 				<param name="actionName">users</param>
 			</result>
 		</action>
+
+        <action name="insertUser" class="actions.InsertUserAction" method="execute">
+            <result name="success">/pages/generic.jsp</result>
+        </action>
 		
 	</package>
 
