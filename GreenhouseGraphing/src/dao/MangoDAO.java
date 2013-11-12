@@ -51,6 +51,32 @@ public class MangoDAO {
         }
         return userFromTable;
     }
+
+    public void insertUser(User user) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertUser", user);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    public void updateUserPass(User user) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.update("dao.MangoMapper.updateUserPass", user);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
 	
 	public void deleteUser(User user){
 		SqlSession session = null;
