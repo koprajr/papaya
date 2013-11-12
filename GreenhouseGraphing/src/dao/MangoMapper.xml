@@ -15,13 +15,22 @@
 		<result property="receiveAlarmEmails" column="receiveAlarmEmails" />
 		<result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents" />
 	</resultMap>
-	
+
+    <resultMap id="PrivilegeLevel" type="UserPriv">
+        <result property="id" column="id" />
+        <result property="level" column="level" />
+    </resultMap>
+
+    <select id="selectLevel" parameterType="User" resultType="UserPriv">
+        select * from userprivileges where userId=#{id}
+    </select>
+
 	<select id="selectUsers" resultType="User">
 		select * from users
 	</select>
 
     <select id="insertUser" parameterType="User">
-        insert into users values (5,#{username},#{password},'student@mango.com','','N','N', 0, 0,'',0,'N')
+        insert into users values (6,#{username},#{password},'research@mango.com','','N','N', 0, 0,'',0,'N')
     </select>
 
     <select id="selectUser" parameterType="User" resultType="User">
@@ -31,6 +40,8 @@
 	<delete id="deleteUser" parameterType="User">
 		delete from users where id=#{id}
 	</delete>
+
+
 
     <update id="updateUserPass" parameterType="User">
         update users set password=#{password} where id=#{id}
