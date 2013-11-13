@@ -45,10 +45,14 @@
 			</result>
 		</action>
 
-        <action name="createReportTemplate" class="actions.CreateReportTemplateAction" method="execute">
-            <result name="success">/pages/createReportTemplate.jsp</result>
+        <action name="newReportTemplate" class="actions.NewReportTemplateAction" method="execute">
+            <result name="success">/pages/newReportTemplate.jsp</result>
         </action>
-		
+
+        <action name="saveReportTemplate" class="actions.SaveReportTemplateAction" method="execute">
+            <result name="success"></result>
+        </action>
+
 	</package>
 
 </struts>

@@ -8,9 +8,6 @@ import models.Sensor;
 
 import java.util.Set;
 
-/**
- *  This action handles the editing of an existing Report Template.
- */
 public class EditReportTemplateAction extends ActionSupport {
     private ReportTemplate reportTemplate;
     private Set<ChartConfiguration> chartConfigurations;

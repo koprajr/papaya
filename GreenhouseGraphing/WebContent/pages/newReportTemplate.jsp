@@ -9,10 +9,6 @@
             padding:       15px;
             margin:        1px;
         }
-        .chart-configuration-remove {
-            float:         right;
-            margin-bottom: 10px;
-        }
     </style>
 </head>
 
@@ -27,7 +23,7 @@
                     <s:iterator value="sensors" var="sensor">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="sensorList[]" value="null"> ${sensor.name}
+                            <input type="checkbox" name="sensorList[]" value="${sensor.name}"> ${sensor.name}
                         </label>
                     </div>
                     </s:iterator>
@@ -36,7 +32,7 @@
                     <s:iterator value="equations" var="equation">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="equationList[]" value="null"> ${equation.name}
+                            <input type="checkbox" name="equationList[]" value="${equation.name}"> ${equation.name}
                         </label>
                     </div>
                     </s:iterator>
@@ -45,7 +41,7 @@
                     <s:iterator value="manualData" var="data">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="manualDataList[]" value="null"> ${data.name}
+                            <input type="checkbox" name="manualDataList[]" value="${data.name}"> ${data.name}
                         </label>
                     </div>
                     </s:iterator>
@@ -54,6 +50,39 @@
                     <h4 style="display: inline;">Consolidated Graphs</h4>
                     <button id="chart-configuration-add" class="btn btn-default" type="button">Add Chart Configuration</button>
                     <hr>
+                    <div class="chart-configuration">
+                        <div class="form-group">
+                            <label for="">Chart Name</label>
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Type of Chart</label>
+                            <select class="form-control">
+                                <option>Line</option>
+                                <option>Bar</option>
+                                <option>Pie</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">X- Label</label>
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Y- Label</label>
+                            <input class="form-control" type="text">
+                        </div>
+                        <label>Include selected data:</label>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="[]" value="null"> Check me out
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="[]" value="null"> Check me out
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -72,13 +101,12 @@
         $('#chart-configuration-add').on('click', (function() {
             $('#chart-configuration-area').append(
                 '<div class="chart-configuration"> \
-                    <button class="btn btn-default btn-xs chart-configuration-remove">&times;</button> \
                     <div class="form-group"> \
-                        <label for="1">Chart Name</label> \
+                        <label for="">Chart Name</label> \
                         <input class="form-control" type="text"> \
                     </div> \
                     <div class="form-group"> \
-                        <label for="2">Type of Chart</label> \
+                        <label for="">Type of Chart</label> \
                         <select class="form-control"> \
                             <option>Line</option> \
                             <option>Bar</option> \
@@ -86,11 +114,11 @@
                         </select> \
                     </div> \
                     <div class="form-group"> \
-                        <label for="3">X- Label</label> \
+                        <label for="">X- Label</label> \
                         <input class="form-control" type="text"> \
                     </div> \
                     <div class="form-group"> \
-                        <label for="3">Y- Label</label> \
+                        <label for="">Y- Label</label> \
                         <input class="form-control" type="text"> \
                     </div> \
                         <label>Include selected data:</label> \
@@ -107,9 +135,5 @@
                 </div>'
             );
         }));
-        // - LOGIC TO REMOVE A CHART CONFIGURATION
-        $('.chart-configuration-remove').on('click', function() {
-            $(this).parent('.chart-configuration').get(0).remove();
-        });
     </script>
 </body>

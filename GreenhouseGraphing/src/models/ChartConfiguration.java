@@ -2,19 +2,15 @@ package models;
 
 import java.util.Set;
 
-/**
- *  This is a model representation of the 'chart_configurations' database table
- *  from Mango's embedded Apache Derby database.
- */
 public class ChartConfiguration {
 
     Set<Sensor> individualSensors;
     Set<Equation> equations;
-    Set<Object> manualData;
+    Set<ManualData> manualData;
 
     public ChartConfiguration(Set<Sensor> individualSensors,
                               Set<Equation> equations,
-                              Set<Object> manualData) {
+                              Set<ManualData> manualData) {
         this.individualSensors = individualSensors;
         this.equations = equations;
         this.manualData = manualData;
@@ -36,11 +32,11 @@ public class ChartConfiguration {
         this.equations = equations;
     }
 
-    public Set<Object> getManualData() {
+    public Set<ManualData> getManualData() {
         return manualData;
     }
 
-    public void setManualData(Set<Object> manualData) {
+    public void setManualData(Set<ManualData> manualData) {
         this.manualData = manualData;
     }
 }

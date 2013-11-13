@@ -2,25 +2,39 @@ package models;
 
 import java.util.Set;
 
-/**
- *  This is a model representation of the 'report_templates' database table
- *  from Mango's embedded Apache Derby database.
- */
 public class ReportTemplate {
 
+    private Long id;
+    private String name;
     Set<Sensor> individualSensors;
     Set<Equation> equations;
-    Set<Object> manualData;
+    Set<ManualData> manualData;
     Set<ChartConfiguration> chartConfigurations;
 
     public ReportTemplate(Set<Sensor> individualSensors,
                           Set<Equation> equations,
-                          Set<Object> manualData,
+                          Set<ManualData> manualData,
                           Set<ChartConfiguration> chartConfigurations) {
         this.individualSensors = individualSensors;
         this.equations = equations;
         this.manualData = manualData;
         this.chartConfigurations = chartConfigurations;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Sensor> getIndividualSensors() {
@@ -39,11 +53,11 @@ public class ReportTemplate {
         this.equations = equations;
     }
 
-    public Set<Object> getManualData() {
+    public Set<ManualData> getManualData() {
         return manualData;
     }
 
-    public void setManualData(Set<Object> manualData) {
+    public void setManualData(Set<ManualData> manualData) {
         this.manualData = manualData;
     }
 
