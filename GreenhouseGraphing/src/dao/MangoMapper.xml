@@ -21,6 +21,19 @@
         <result property="level" column="level" />
     </resultMap>
 
+    <resultMap id="ManualDataMap" type="ManualData">
+        <result property="id" column="id" />
+        <result property="value" column="value" />
+        <result property="typeId" column="typeId" />
+        <result property="userId" column="userId" />
+        <result property="timeStamp" column="timeStamp" />
+    </resultMap>
+
+    <resultMap id="ManualDataTypesMap" type="ManualDataType">
+        <result property="name" column="name" />
+        <result property="id" column="id" />
+    </resultMap>
+
     <select id="selectLevel" parameterType="User" resultType="UserPriv">
         select * from userprivileges where userId=#{id}
     </select>
@@ -53,5 +66,14 @@
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
+
+    <insert id="insertManualData" parameterType="ManualData">
+        insert into manualdatavalues (value, typeId, userId, timeStamp)
+        values (#{value},#{typeId},#{userId},#{timeStamp})
+    </insert>
+
+    <select id="selectManualDataType" parameterType="ManualDataType" resultType="ManualDataType">
+        select * from manualdatatypes where name=#{name}
+    </select>
 	
 </mapper>

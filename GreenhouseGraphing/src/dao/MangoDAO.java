@@ -1,5 +1,7 @@
 package dao;
 
+import models.ManualData;
+import models.ManualDataType;
 import models.User;
 import models.UserPriv;
 import org.apache.ibatis.io.Resources;
@@ -130,6 +132,33 @@ public class MangoDAO {
                 session.close();
             }
         }
+    }
+
+    public void insertManualData(ManualData manualData) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertManualData", manualData);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    public ManualDataType selectManualDataType(ManualDataType manualDataType) {
+        SqlSession session = null;
+        ManualDataType tableManualDataType;
+        try {
+            session = factory.openSession();
+            tableManualDataType = session.selectOne("dao.MangoMapper.selectManualDataType", manualDataType);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return tableManualDataType;
     }
 	
 }
