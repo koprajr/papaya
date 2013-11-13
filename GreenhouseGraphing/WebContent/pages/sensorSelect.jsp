@@ -12,5 +12,12 @@
 
 		<s:submit cssClass="btn btn-primary" />
 	</s:form>
+	
+	<s:if test="%{selectedSensors != null}">
+		You selected:<br/>
+		<s:iterator value="selectedSensors" var="n">
+			${n} <br />
+		</s:iterator>
+	</s:if>
 
 </div>
