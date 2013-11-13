@@ -2,7 +2,7 @@ package dao;
 
 import models.Sensor;
 import models.User;
-
+import models.UserPriv;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -25,6 +25,20 @@ public class MangoDAO {
 		}
 		
 	}
+
+    public UserPriv getLevel(User user) {
+        SqlSession session = null;
+        UserPriv userPriv;
+        try {
+            session = factory.openSession();
+            userPriv = session.selectOne("dao.MangoMapper.selectLevel", user);
+        } finally {
+            if (session != null){
+                session.close();
+            }
+        }
+        return userPriv;
+    }
 	
 	public List<User> getUsers(){
 		SqlSession session = null;
@@ -53,6 +67,32 @@ public class MangoDAO {
         }
         return userFromTable;
     }
+
+    public void insertUser(User user) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertUser", user);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    public void updateUserPass(User user) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.update("dao.MangoMapper.updateUserPass", user);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
 	
 	public void deleteUser(User user){
 		SqlSession session = null;
@@ -79,6 +119,19 @@ public class MangoDAO {
 			}
 		}
 	}
+
+    public void updateLevel(UserPriv userPriv) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.update("dao.MangoMapper.updatePrivilege", userPriv);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
 	
 	public List<Sensor> getSensors(){
 		SqlSession session = null;

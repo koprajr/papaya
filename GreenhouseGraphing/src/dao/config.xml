@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="models.User" alias="User" />
 		<typeAlias type="models.Sensor" alias="Sensor" />
+        <typeAlias type="models.UserPriv" alias="UserPriv" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

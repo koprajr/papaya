@@ -24,7 +24,7 @@
             <div class="container">
 
                 <div class="navbar-header">
-                    <s:if test="%{loggedIn}">
+                    <s:if test="#session.loggedIn">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="div.navbar-collapse">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -33,42 +33,54 @@
                     </s:if>
                     <s:url action="index" var="homeUrl" />
                     <a class="navbar-brand" href="${homeUrl}"><img class="logo" src="img/logo.jpg"/></a> <!-- Application Logo -->
+                    <s:if test="#session.loggedIn">
+                        <br><br><br><span class="loggedInAsSmall visible-xs">Logged in as: <strong> ${username} </strong> </span>
+                    </s:if>
                 </div><!-- /.navbar-header -->
 
                 <div class="collapse navbar-collapse">
-                    <s:if test="%{loggedIn}">
+                    <s:if test="#session.loggedIn">
+                        <span class="loggedInAs hidden-xs">Logged in as: <strong> ${username} </strong> </span><br/>
+                        <%-- <s:url action="accountSettings" var="accountSettingsPage" />    in the href - ${accountSettingsPage}--%>
+                        <s:url action="logout" var="logoutAction" />
+                        <s:url action="goTo_AccountSettings" var="AccountSettingsPage_Action" />
+                        <s:url action="goTo_adminPrivileges" var="adminPrivileges_Action" />
+
+
                         <ul class="nav navbar-nav hidden-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
-                            <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
-                            <li><a href="#">Account Settings</a></li>
-                            <li class="last"><a href="#">Logout</a></li>
+                            <s:if test='#session.level=="admin"'>
+                                <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                            </s:if>
+
+                            <li><a href="${AccountSettingsPage_Action}">Account Settings</a></li>
+                            <li class="last"><a href="${logoutAction}">Logout</a></li>
                         </ul>
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
-                            <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
-                            <li><a href="#">Account Settings</a></li>
-                            <form action="logout" method="post">
-                                <!-- <li><a href="#">Logout</a></li> -->
-                                <li><button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button></li>
-                            </form>
+                            <s:if test='#session.level=="admin"'>
+                                <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                            </s:if>
 
+                            <li><a href="${AccountSettingsPage_Action}">Account Settings</a></li>
+                            <li><a href="${logoutAction}">Logout</a></li>
                         </ul>
                     </s:if>
                 </div><!-- /.collapse .nav-collapse -->
 
-            </div><!-- /.container -->
-        </div><!-- /.container-navbar -->
-    </div><!-- /.navbar .navbar-inverse-->
+        </div><!-- /.container -->
+    </div><!-- /.container-navbar -->
+</div><!-- /.navbar .navbar-inverse-->
 
-	<d:body />
+<d:body />
 
-    <div class="container container-main">
-        <!--FOOTER-->
-        <hr/>
-        <footer>
-            <p class="copyright">&copy; Copyright: Clarkson University</p>
-            <p class="developedBY">Created By: Software Engineering Class of 2014</p>
-        </footer>
+<div class="container container-main">
+    <!--FOOTER-->
+    <hr/>
+    <footer>
+        <p class="copyright">&copy; Copyright: Clarkson University</p>
+        <p class="developedBY">Created By: Software Engineering Class of 2014</p>
+    </footer>
 
-    </div><!--/.container .container-main-->
+</div><!--/.container .container-main-->
 
 </body>
 </html>
