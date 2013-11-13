@@ -67,12 +67,6 @@ public class LoginAction extends ActionSupport{
                             return "invalid";
                     }
 
-                    /*if (tableUser.getAdmin().equals("Y")) {
-                        session.put("admin", true);
-                    } else {
-                        session.put("admin", false);
-                    }
-
                     return "success";
 
                 }

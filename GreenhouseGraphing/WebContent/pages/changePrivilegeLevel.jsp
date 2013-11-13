@@ -21,15 +21,16 @@
             </div><!-- /.page-header-->
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <form role="form" action="privilegeChangeAction" method="post">
+                    <form role="form" action="userPrivilegeChange" method="post">
                         <!--ONE OF THESE FOR EACH MANUAL DATAPOINT-->
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" name="bean.username" class="form-control" id="username" placeholder="">
-                            <br><label>Privilege Level</label><br>
+                            <!--<br><label>Privilege Level</label><br>
                             <input type="radio" name="bean.level" value="A">Administrator<br>
                             <input type="radio" name="bean.level" value="R">Researcher<br>
-                            <input type="radio" name="bean.level" value="S">Student
+                            <input type="radio" name="bean.level" value="S">Student      -->
+
                         </div><!-- /.form-group-->
                         <button type="submit" class="btn btn-primaryGreen manualDataSubmit">Submit  <span class="glyphicon glyphicon-arrow-right"/></button>
                     </form>

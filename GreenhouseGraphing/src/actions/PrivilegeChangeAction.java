@@ -11,7 +11,7 @@ import models.UserPrivBean;
  * Time: 7:56 PM
  */
 public class PrivilegeChangeAction {
-    private UserPrivBean userPrivBean;
+    private UserPrivBean bean;
     private MangoDAO mangoDAO;
 
     public PrivilegeChangeAction() {
@@ -19,12 +19,12 @@ public class PrivilegeChangeAction {
     }
 
     public String execute() {
-        if (!userPrivBean.getUsername().equals("")&&!userPrivBean.getLevel().equals("")) {
+        if (!bean.getUsername().equals("")&&!bean.getLevel().equals("")) {
 
-            if (userPrivBean.getLevel().toString().length() > 1) return "invalid";
+            if (bean.getLevel().toString().length() > 1) return "invalid";
 
             User user = new User();
-            user.setUsername(userPrivBean.getUsername());
+            user.setUsername(bean.getUsername());
 
             User tableUser = mangoDAO.getUser(user);
 
@@ -33,7 +33,8 @@ public class PrivilegeChangeAction {
             UserPriv userPriv = new UserPriv();
 
             userPriv.setId(tableUser.getId());
-            userPriv.setLevel(userPrivBean.getLevel());
+            //userPriv.setLevel(bean.getLevel());
+            userPriv.setLevel('R');
 
             mangoDAO.updateLevel(userPriv);
 
@@ -43,11 +44,11 @@ public class PrivilegeChangeAction {
         return "invalid";
     }
 
-    public UserPrivBean getUserPrivBean() {
-        return userPrivBean;
+    public UserPrivBean getBean() {
+        return bean;
     }
 
-    public void setUserPrivBean(UserPrivBean userPrivBean) {
-        this.userPrivBean = userPrivBean;
+    public void setBean(UserPrivBean bean) {
+        this.bean = bean;
     }
 }
