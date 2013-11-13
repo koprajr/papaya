@@ -85,6 +85,10 @@
             <result name="invalid">/pages/error.jsp</result>
         </action>
 		
+		<action name="sensorSelect" class="actions.SensorSelectAction" method="execute">
+			<result name="success">/pages/sensorSelect.jsp</result>
+		</action>
+		
 	</package>
 
 </struts>

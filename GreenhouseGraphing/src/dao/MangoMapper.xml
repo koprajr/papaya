@@ -16,6 +16,11 @@
 		<result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents" />
 	</resultMap>
 
+	<resultMap id="SensorMap" type="Sensor">
+		<result property="id" column="id"/>
+		<result property="data" column="data"/>
+	</resultMap>
+
     <resultMap id="PrivilegeLevelMap" type="UserPriv">
         <result property="userId" column="userId" />
         <result property="level" column="level" />
@@ -53,5 +58,9 @@
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
+	
+	<select id="selectSensors" resultType="Sensor">
+		select * from datapoints
+	</select>
 	
 </mapper>
