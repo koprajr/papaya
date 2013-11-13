@@ -35,31 +35,38 @@
 
             </div><!-- /.row .reportList-->
 
-            <!--MANUAL ENTER DATA-->
-            <!--*for researchers and admins ONLY*-->
-            <div class="row manualEnterData">
-                <div class="col-md-8 col-md-offset-1">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Manually Enter Data for the: <small>SYSTEM NAME</h3>
-                        </div><!-- /.panel-heading-->
-                        <div class="panel-body">
+            <s:if test='#session.level=="admin" || #session.level=="researcher"'>
+                <!--MANUAL ENTER DATA-->
+                <!--*for researchers and admins ONLY*-->
+                <div class="row manualEnterData">
+                    <div class="col-md-8 col-md-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Manually Enter Data for the: <small>SYSTEM NAME</small></h3>
+                            </div><!-- /.panel-heading-->
+                            <div class="panel-body">
 
-                            <form role="form">
-                                <!--ONE OF THESE FOR EACH MANUAL DATAPOINT-->
-                                <div class="form-group">
-                                    <label>NAME OF SOMETHING</label>
-                                    <input type="text" class="form-control" id="nameOfSomething" placeholder="last value">
+                                <form action="insertManualData" method="post">
+                                    <!--ONE OF THESE FOR EACH MANUAL DATAPOINT-->
+                                    <label for="select">Select a Manual Data Type: </label>
+                                    <s:select list="manualDataTypes"
+                                              name="bean.type"
+                                              id="select"
+                                              cssClass="form-control"
+                                    />
+                                    <br>
+                                    <label for="value">Value</label>
+                                    <br>
+                                    <input type="text" name="bean.quantity" class="form-control" id="value">
 
-                                </div><!-- /.form-group-->
+                                    <button type="submit" class="btn btn-primaryGreen manualDataSubmit">Submit  <span class="glyphicon glyphicon-arrow-right"/></button>
+                                </form>
 
-                                <button type="submit" class="btn btn-primaryGreen manualDataSubmit">Submit  <span class="glyphicon glyphicon-arrow-right"/></button>
-                            </form>
-
+                            </div><!-- /.panel .panel-default-->
                         </div><!-- /.panel .panel-default-->
-                    </div><!-- /.panel .panel-default-->
-                </div><!-- /.col-md-8 .col-md-offset-1-->
-            </div><!-- /.row .manualEnterData-->
+                    </div><!-- /.col-md-8 .col-md-offset-1-->
+                </div><!-- /.row .manualEnterData-->
+            </s:if>
 
         </div><!-- /.col-xs-12 .col-sm-12-->
     </div><!-- /.row .row-offcanvas .row-offcanvas-right-->

@@ -149,7 +149,7 @@ public class MangoDAO {
 
     public ManualDataType selectManualDataType(ManualDataType manualDataType) {
         SqlSession session = null;
-        ManualDataType tableManualDataType;
+        ManualDataType tableManualDataType = null;
         try {
             session = factory.openSession();
             tableManualDataType = session.selectOne("dao.MangoMapper.selectManualDataType", manualDataType);
@@ -159,6 +159,20 @@ public class MangoDAO {
             }
         }
         return tableManualDataType;
+    }
+
+    public List<String> selectManualDataTypes() {
+        SqlSession session = null;
+        List<String> manualDataTypes = null;
+        try {
+            session = factory.openSession();
+            manualDataTypes = session.selectList("dao.MangoMapper.selectManualDataTypes");
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return manualDataTypes;
     }
 	
 }

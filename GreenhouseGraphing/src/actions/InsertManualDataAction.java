@@ -1,6 +1,7 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
 import models.ManualData;
 import models.ManualDataBean;
@@ -16,15 +17,16 @@ import java.util.Map;
  * Time: 12:18 AM
  * To change this template use File | Settings | File Templates.
  */
-public class InsertManualDataAction {
-    ManualDataBean bean;
-    MangoDAO mangoDAO;
+public class InsertManualDataAction extends ActionSupport {
+    private ManualDataBean bean;
+    private MangoDAO mangoDAO;
 
     public InsertManualDataAction() {
         mangoDAO = new MangoDAO();
     }
 
     public String execute() {
+        if (bean == null) return "invalid";
         if (!bean.getQuantity().equals("")&&!bean.getType().equals("")){
             if (!isDouble(bean.getQuantity())) return "invalid";
             ManualData manualData = new ManualData();
@@ -61,5 +63,13 @@ public class InsertManualDataAction {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public void setBean(ManualDataBean bean) {
+        this.bean = bean;
+    }
+
+    public ManualDataBean getBean() {
+        return bean;
     }
 }

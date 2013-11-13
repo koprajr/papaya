@@ -1,7 +1,5 @@
 package models;
 
-import java.util.Date;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Jeff

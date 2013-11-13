@@ -23,10 +23,10 @@
 
     <resultMap id="ManualDataMap" type="ManualData">
         <result property="id" column="id" />
-        <result property="value" column="value" />
-        <result property="typeId" column="typeId" />
+        <result property="value" column="pointvalue" />
+        <result property="typeId" column="manualdatatypeId" />
         <result property="userId" column="userId" />
-        <result property="timeStamp" column="timeStamp" />
+        <result property="timeStamp" column="ts" />
     </resultMap>
 
     <resultMap id="ManualDataTypesMap" type="ManualDataType">
@@ -68,12 +68,16 @@
 	</insert>
 
     <insert id="insertManualData" parameterType="ManualData">
-        insert into manualdatavalues (value, typeId, userId, timeStamp)
-        values (#{value},#{typeId},#{userId},#{timeStamp})
+        insert into manualdatapointvalues (manualdatapointid, userid, pointvalue, ts)
+        values (#{typeId},#{userId},#{value},#{timeStamp})
     </insert>
 
     <select id="selectManualDataType" parameterType="ManualDataType" resultType="ManualDataType">
-        select * from manualdatatypes where name=#{name}
+        select * from manualdatapoints where name=#{name}
+    </select>
+
+    <select id="selectManualDataTypes" resultType="String">
+        select name from manualdatapoints
     </select>
 	
 </mapper>
