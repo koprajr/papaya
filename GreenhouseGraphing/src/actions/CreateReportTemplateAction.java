@@ -6,6 +6,7 @@ import models.Equation;
 import models.ReportTemplate;
 import models.Sensor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -20,7 +21,13 @@ public class CreateReportTemplateAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        // TODO: Implement the logic for this action.
+        // BEING - Testing Code
+        sensors = new HashSet<Sensor>();
+        sensors.add(new Sensor(new Long(1), "kasa"));
+        sensors.add(new Sensor(new Long(2), "dawitt"));
+        sensors.add(new Sensor(new Long(3), "williams"));
+        // END - TESTING CODE
+
         return "success";
     }
 

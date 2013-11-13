@@ -3,6 +3,25 @@ package models;
 /**
  *
  */
-public interface Equation {
-    public Integer solve();
+public abstract class Equation {
+    private Long id;
+    private String name;
+
+    public abstract Integer solve();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
