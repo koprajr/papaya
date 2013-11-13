@@ -8,7 +8,12 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="struts2-2.3.14-struts2-2.3.14" />
-          <element id="library" level="project" name="commons-codec-1.8" />
+          <element id="library" level="project" name="commons-codec:commons-codec:1.2" />
+          <element id="library" level="project" name="jstl:jstl:1.2" />
+          <element id="library" level="project" name="opensymphony:sitemesh:2.4.2" />
+          <element id="library" level="project" name="org.apache.derby:derbyclient:10.9.1.0" />
+          <element id="library" level="project" name="org.mybatis:mybatis:3.2.3" />
+          <element id="library" level="project" name="struts2-arianna-plugin-0.5.11" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="GreenhouseGraphing/web/Web" />
