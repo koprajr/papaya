@@ -26,10 +26,10 @@
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" name="bean.username" class="form-control" id="username" placeholder="">
-                            <!--<br><label>Privilege Level</label><br>
+                            <br><label>Privilege Level</label><br>
                             <input type="radio" name="bean.level" value="A">Administrator<br>
                             <input type="radio" name="bean.level" value="R">Researcher<br>
-                            <input type="radio" name="bean.level" value="S">Student      -->
+                            <input type="radio" name="bean.level" value="S">Student
 
                         </div><!-- /.form-group-->
                         <button type="submit" class="btn btn-primaryGreen manualDataSubmit">Submit  <span class="glyphicon glyphicon-arrow-right"/></button>

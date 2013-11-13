@@ -48,7 +48,7 @@
 
 
                         <ul class="nav navbar-nav hidden-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
-                            <s:if test="#session.admin">
+                            <s:if test='#session.level=="admin"'>
                                 <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
 
@@ -56,7 +56,7 @@
                             <li class="last"><a href="${logoutAction}">Logout</a></li>
                         </ul>
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
-                            <s:if test="#session.admin">
+                            <s:if test='#session.level=="admin"'>
                                 <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
 

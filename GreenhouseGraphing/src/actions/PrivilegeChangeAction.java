@@ -33,8 +33,7 @@ public class PrivilegeChangeAction {
             UserPriv userPriv = new UserPriv();
 
             userPriv.setId(tableUser.getId());
-            //userPriv.setLevel(bean.getLevel());
-            userPriv.setLevel('R');
+            userPriv.setLevel(bean.getLevel());
 
             mangoDAO.updateLevel(userPriv);
 
