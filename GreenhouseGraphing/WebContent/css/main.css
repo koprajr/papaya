@@ -287,3 +287,11 @@ footer .copyright {
 		text-align: center;
 	}
 }
+
+.sensorList {
+	height: 200px !important;
+	width: 150px !important;
+	overflow: auto;
+	border: solid 1px #DDD;
+	padding: 2px;
+}

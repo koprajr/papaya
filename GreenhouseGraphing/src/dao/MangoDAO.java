@@ -1,6 +1,8 @@
 package dao;
 
+import models.Sensor;
 import models.User;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -76,6 +78,20 @@ public class MangoDAO {
 				session.close();
 			}
 		}
+	}
+	
+	public List<Sensor> getSensors(){
+		SqlSession session = null;
+		List<Sensor> sensors = null;
+		try {
+			session = factory.openSession();
+			sensors = session.selectList("dao.MangoMapper.selectSensors");
+		} finally {
+			if (session != null){
+				session.close();
+			}
+		}
+		return sensors;
 	}
 	
 }
