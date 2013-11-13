@@ -28,9 +28,10 @@ public class PasswordChangeAction extends ActionSupport {
 
     public String execute() {
 
-        if (!bean.getOldpass().equals("")&&!bean.getNewPass().equals("")) {
-            Map<String, Object> session = ActionContext.getContext().getSession();
-            String username = (String) session.get("username");
+        if (!bean.getOldpass().equals("")&&!bean.getNewPass().equals("")&&!bean.getNewPass2().equals("")) {
+            if(!bean.getNewPass().equals(bean.getNewPass2())) return "invalid";
+
+            String username = bean.getUsername();
 
             if (username.equals("")) return "invalid";
 

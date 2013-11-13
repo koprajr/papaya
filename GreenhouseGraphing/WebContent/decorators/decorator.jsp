@@ -44,11 +44,12 @@
                         <%-- <s:url action="accountSettings" var="accountSettingsPage" />    in the href - ${accountSettingsPage}--%>
                         <s:url action="logout" var="logoutAction" />
                         <s:url action="goTo_AccountSettings" var="AccountSettingsPage_Action" />
+                        <s:url action="goTo_adminPrivileges" var="adminPrivileges_Action" />
 
 
                         <ul class="nav navbar-nav hidden-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test="#session.admin">
-                                <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                                <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
 
                             <li><a href="${AccountSettingsPage_Action}">Account Settings</a></li>
@@ -56,10 +57,10 @@
                         </ul>
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test="#session.admin">
-                                <li><a href="#">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                                <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
 
-                            <li><a href="${AccountSettingsAction}">Account Settings</a></li>
+                            <li><a href="${AccountSettingsPage_Action}">Account Settings</a></li>
                             <li><a href="${logoutAction}">Logout</a></li>
                         </ul>
                     </s:if>

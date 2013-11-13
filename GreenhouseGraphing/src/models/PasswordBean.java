@@ -6,8 +6,10 @@ package models;
  * Time: 10:29 PM
  */
 public class PasswordBean {
+    private String username;
     private String oldPass;
     private String newPass;
+    private String newPass2;
 
     public String getOldpass() {
         return oldPass;
@@ -23,5 +25,22 @@ public class PasswordBean {
 
     public void setNewPass(String newPass) {
         this.newPass = newPass;
+    }
+
+    public String getNewPass2() {
+        return newPass2;
+    }
+
+    public void setNewPass2(String newPass2) {
+        this.newPass2 = newPass2;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
