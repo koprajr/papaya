@@ -16,14 +16,18 @@
 		<result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents" />
 	</resultMap>
 
-    <resultMap id="PrivilegeLevel" type="UserPriv">
-        <result property="id" column="id" />
+    <resultMap id="PrivilegeLevelMap" type="UserPriv">
+        <result property="userId" column="userId" />
         <result property="level" column="level" />
     </resultMap>
 
     <select id="selectLevel" parameterType="User" resultType="UserPriv">
         select * from userprivileges where userId=#{id}
     </select>
+
+    <update id="updatePrivilege" parameterType="UserPriv">
+        update userprivileges set level=#{level} where userId=#{id}
+    </update>
 
 	<select id="selectUsers" resultType="User">
 		select * from users
@@ -40,8 +44,6 @@
 	<delete id="deleteUser" parameterType="User">
 		delete from users where id=#{id}
 	</delete>
-
-
 
     <update id="updateUserPass" parameterType="User">
         update users set password=#{password} where id=#{id}

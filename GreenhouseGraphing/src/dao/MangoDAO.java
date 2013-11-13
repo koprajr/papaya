@@ -118,5 +118,18 @@ public class MangoDAO {
 			}
 		}
 	}
+
+    public void updateLevel(UserPriv userPriv) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.update("dao.MangoMapper.updatePrivilege", userPriv);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
 	
 }
