@@ -1,9 +1,10 @@
 package models;
 
-public class LoginBean {
+public class Login {
 
 	private String name;
-	
+    private String password;
+
 	public String getName() {
 		return name;
 	}
@@ -16,6 +17,4 @@ public class LoginBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	private String password;
-	
 }

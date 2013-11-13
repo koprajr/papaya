@@ -1,3 +1,13 @@
+# IntelliJ Project Files
+*.iml
+.idea
+
+# IntelliJ Output
+out/
+
+# External Libraries
+lib/
+
 *.class
 
 # Idea Project Files
