@@ -1,27 +1,65 @@
 package models;
 
+import java.util.List;
 import java.util.Set;
 
 public class ChartConfiguration {
 
-    Set<Sensor> individualSensors;
-    Set<Equation> equations;
-    Set<ManualData> manualData;
+    private Integer id;
+    private String name;
+    private String xLabel;
+    private String yLabal;
+    private String chartType;
+    private List<Sensor> sensors;
+    private Set<Equation> equations;
+    private Set<ManualData> manualData;
 
-    public ChartConfiguration(Set<Sensor> individualSensors,
-                              Set<Equation> equations,
-                              Set<ManualData> manualData) {
-        this.individualSensors = individualSensors;
-        this.equations = equations;
-        this.manualData = manualData;
+    public Integer getId() {
+        return id;
     }
 
-    public Set<Sensor> getIndividualSensors() {
-        return individualSensors;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setIndividualSensors(Set<Sensor> individualSensors) {
-        this.individualSensors = individualSensors;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getxLabel() {
+        return xLabel;
+    }
+
+    public void setxLabel(String xLabel) {
+        this.xLabel = xLabel;
+    }
+
+    public String getyLabal() {
+        return yLabal;
+    }
+
+    public void setyLabal(String yLabal) {
+        this.yLabal = yLabal;
+    }
+
+    public String getChartType() {
+        return chartType;
+    }
+
+    public void setChartType(String chartType) {
+        this.chartType = chartType;
+    }
+
+    public List<Sensor> getSensors() {
+        return sensors;
+    }
+
+    public void setSensors(List<Sensor> sensors) {
+        this.sensors = sensors;
     }
 
     public Set<Equation> getEquations() {

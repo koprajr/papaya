@@ -5,7 +5,7 @@
 
 	<s:form action="sensorSelect">
 		<div class="sensorList">
-			<s:iterator value="sensors" var="n">
+			<s:iterator value="sensorIds" var="n">
 				<input type="checkbox" name="selectedSensors" value="${n.id}" /> ${n.name} <br />
 			</s:iterator>
 		</div>

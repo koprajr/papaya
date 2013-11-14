@@ -1,25 +1,27 @@
 package actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import dao.MangoDAO;
 import models.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class NewReportTemplateAction extends ActionSupport {
-    private ReportTemplate reportTemplate;
-    private Set<ChartConfiguration> chartConfigurations;
-    private Set<Sensor> sensors;
+
+    private MangoDAO dao;
+    private List<Sensor> sensors;
     private Set<Equation> equations;
     private Set<ManualData> manualData;
+
+    public NewReportTemplateAction() {
+        dao = new MangoDAO();
+    }
 
     @Override
     public String execute() throws Exception {
         // BEING - Testing Code
-        sensors = new HashSet<Sensor>();
-//        sensors.add(new Sensor(new Long(1), "Sensor 1's Name"));
-//        sensors.add(new Sensor(new Long(2), "Sensor 2's Name"));
-//        sensors.add(new Sensor(new Long(3), "Sensor 3's Name"));
+        sensors = dao.getSensors();
         equations = new HashSet<Equation>();
         equations.add(new SampleEquation(new Long(1), "Equation 1's Name"));
         equations.add(new SampleEquation(new Long(2), "Equation 2's Name"));
@@ -30,14 +32,14 @@ public class NewReportTemplateAction extends ActionSupport {
         manualData.add(new ManualData(new Long(3), "Manual Data 3's Name"));
         // END - TESTING CODE
 
-        return "success";
+        return SUCCESS;
     }
 
-    public Set<Sensor> getSensors() {
+    public List<Sensor> getSensors() {
         return sensors;
     }
 
-    public void setSensors(Set<Sensor> sensors) {
+    public void setSensors(List<Sensor> sensors) {
         this.sensors = sensors;
     }
 
