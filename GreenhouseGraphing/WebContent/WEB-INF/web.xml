@@ -35,5 +35,4 @@
 		<listener-class>org.apache.struts2.dispatcher.ng.listener.StrutsListener</listener-class>
 	</listener>
 
-
 </web-app>

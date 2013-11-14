@@ -1,46 +1,42 @@
 package models;
 
-import java.util.List;
+import java.util.Set;
 
-/**
- *  This is a model representation of the 'chart_configurations' database table
- *  from Mango's embedded Apache Derby database.
- */
 public class ChartConfiguration {
 
-    List<Sensor> individualSensors;
-    List<Equation> equations;
-    List<Object> manualData;
+    Set<Sensor> individualSensors;
+    Set<Equation> equations;
+    Set<ManualData> manualData;
 
-    public ChartConfiguration(List<Sensor> individualSensors,
-                              List<Equation> equations,
-                              List<Object> manualData) {
+    public ChartConfiguration(Set<Sensor> individualSensors,
+                              Set<Equation> equations,
+                              Set<ManualData> manualData) {
         this.individualSensors = individualSensors;
         this.equations = equations;
         this.manualData = manualData;
     }
 
-    public List<Sensor> getIndividualSensors() {
+    public Set<Sensor> getIndividualSensors() {
         return individualSensors;
     }
 
-    public void setIndividualSensors(List<Sensor> individualSensors) {
+    public void setIndividualSensors(Set<Sensor> individualSensors) {
         this.individualSensors = individualSensors;
     }
 
-    public List<Equation> getEquations() {
+    public Set<Equation> getEquations() {
         return equations;
     }
 
-    public void setEquations(List<Equation> equations) {
+    public void setEquations(Set<Equation> equations) {
         this.equations = equations;
     }
 
-    public List<Object> getManualData() {
+    public Set<ManualData> getManualData() {
         return manualData;
     }
 
-    public void setManualData(List<Object> manualData) {
+    public void setManualData(Set<ManualData> manualData) {
         this.manualData = manualData;
     }
 }

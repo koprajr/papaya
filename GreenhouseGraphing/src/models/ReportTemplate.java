@@ -1,61 +1,71 @@
 package models;
 
-import java.util.List;
+import java.util.Set;
 
-/**
- *  This is a model representation of the 'report_templates' database table
- *  from Mango's embedded Apache Derby database.
- */
 public class ReportTemplate {
 
-    int id;
-    String name;
-    String description;
+    private Long id;
+    private String name;
+    Set<Sensor> individualSensors;
+    Set<Equation> equations;
+    Set<ManualData> manualData;
+    Set<ChartConfiguration> chartConfigurations;
 
-    List<Sensor> individualSensors;
-    List<Equation> equations;
-    List<Object> manualData;
-    List<ChartConfiguration> chartConfigurations;
-
-    public ReportTemplate(List<Sensor> individualSensors,
-                          List<Equation> equations,
-                          List<Object> manualData,
-                          List<ChartConfiguration> chartConfigurations) {
+    public ReportTemplate(Set<Sensor> individualSensors,
+                          Set<Equation> equations,
+                          Set<ManualData> manualData,
+                          Set<ChartConfiguration> chartConfigurations) {
         this.individualSensors = individualSensors;
         this.equations = equations;
         this.manualData = manualData;
         this.chartConfigurations = chartConfigurations;
     }
 
-    public List<Sensor> getIndividualSensors() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Sensor> getIndividualSensors() {
         return individualSensors;
     }
 
-    public void setIndividualSensors(List<Sensor> individualSensors) {
+    public void setIndividualSensors(Set<Sensor> individualSensors) {
         this.individualSensors = individualSensors;
     }
 
-    public List<Equation> getEquations() {
+    public Set<Equation> getEquations() {
         return equations;
     }
 
-    public void setEquations(List<Equation> equations) {
+    public void setEquations(Set<Equation> equations) {
         this.equations = equations;
     }
 
-    public List<Object> getManualData() {
+    public Set<ManualData> getManualData() {
         return manualData;
     }
 
-    public void setManualData(List<Object> manualData) {
+    public void setManualData(Set<ManualData> manualData) {
         this.manualData = manualData;
     }
 
-    public List<ChartConfiguration> getChartConfigurations() {
+    public Set<ChartConfiguration> getChartConfigurations() {
         return chartConfigurations;
     }
 
-    public void setChartConfigurations(List<ChartConfiguration> chartConfigurations) {
+    public void setChartConfigurations(Set<ChartConfiguration> chartConfigurations) {
         this.chartConfigurations = chartConfigurations;
     }
 }

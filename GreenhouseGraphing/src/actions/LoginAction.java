@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
 import models.Login;
 import models.User;
+import models.UserPriv;
 import org.apache.commons.codec.binary.Base64;
 
 import java.nio.charset.Charset;
@@ -15,7 +16,7 @@ import java.util.Map;
 public class LoginAction extends ActionSupport{
     private Login bean;
     private MangoDAO mangoDao;
-    //private List<User> users;        `
+    //private List<User> users;
     public static final Charset UTF8_CS = Charset.forName("UTF-8");
 
     public LoginAction() {
@@ -45,10 +46,25 @@ public class LoginAction extends ActionSupport{
                     session.put("loggedIn", true);
                     session.put("username", bean.getName());
 
-                    if (tableUser.getAdmin().equals("Y")) {
-                        session.put("admin", true);
-                    } else {
-                        session.put("admin", false);
+                    UserPriv userPriv = mangoDao.getLevel(tableUser);
+
+                    char level = userPriv.getLevel();
+
+                    switch (level) {
+                        case 'A':
+                            session.put("level", "admin");
+                            break;
+
+                        case 'R':
+                            session.put("level", "researcher");
+                            break;
+
+                        case 'S':
+                            session.put("level", "student");
+                            break;
+
+                        default:
+                            return "invalid";
                     }
 
                     return "success";
@@ -72,3 +88,4 @@ public class LoginAction extends ActionSupport{
 
 	
 }
+

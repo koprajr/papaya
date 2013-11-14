@@ -2,9 +2,7 @@ package dao;
 
 import models.ManualDataPoint;
 import models.ReportTemplate;
-import models.Sensor;
 import models.User;
-import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,8 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MangoDAO {
@@ -29,6 +25,20 @@ public class MangoDAO {
 		}
 		
 	}
+
+    public UserPriv getLevel(User user) {
+        SqlSession session = null;
+        UserPriv userPriv;
+        try {
+            session = factory.openSession();
+            userPriv = session.selectOne("dao.MangoMapper.selectLevel", user);
+        } finally {
+            if (session != null){
+                session.close();
+            }
+        }
+        return userPriv;
+    }
 	
 	public List<User> getUsers(){
 		SqlSession session = null;
@@ -57,6 +67,32 @@ public class MangoDAO {
         }
         return userFromTable;
     }
+
+    public void insertUser(User user) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertUser", user);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    public void updateUserPass(User user) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.update("dao.MangoMapper.updateUserPass", user);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
 	
 	public void deleteUser(User user){
 		SqlSession session = null;
@@ -82,6 +118,33 @@ public class MangoDAO {
 				session.close();
 			}
 		}
+	}
+
+    public void updateLevel(UserPriv userPriv) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.update("dao.MangoMapper.updatePrivilege", userPriv);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+	
+	public List<Sensor> getSensors(){
+		SqlSession session = null;
+		List<Sensor> sensors = null;
+		try {
+			session = factory.openSession();
+			sensors = session.selectList("dao.MangoMapper.selectSensors");
+		} finally {
+			if (session != null){
+				session.close();
+			}
+		}
+		return sensors;
 	}
 
     public List<ManualDataPoint> getManualDataPoints() {

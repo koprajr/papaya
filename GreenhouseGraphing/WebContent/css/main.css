@@ -34,6 +34,12 @@ h2 {
 	background-color: #26534e;
 	border-color: #fff;
 }
+.alert {
+    margin: 50px 10px;
+}
+.alert.smallMargin {
+    margin: 10px 10px;
+}
 .page-header {
 	margin: 10px 0px 20px 0px;
 }
@@ -59,6 +65,13 @@ h2 small, .h2 small {
 	color: #3d3d3d;
 }
 
+@media (max-width: 767px) {
+    div.row div.col-12 {
+        padding-left:15px;
+        padding-right:15px;
+    }
+}
+
 
 /* 
 =======================================================
@@ -73,13 +86,19 @@ img.logo {
 	margin-bottom: 0px;
 }
 .navbar-inverse .navbar-toggle {
-border-color: #a5a5a5;
+    border-color: #a5a5a5;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
-background-color: #a5a5a5;
+    background-color: #a5a5a5;
 }
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-border: none;
+    border: none;
+    margin-top: 10px;
+}
+@media (max-width: 767px) {
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        margin-top: 0px;
+    }
 }
 .navbar-collapse .navbar-nav.visible-xs{
 	float: none;
@@ -107,7 +126,7 @@ border: none;
 	padding: 5px 0px;
 }
 .navbar-collapse ul {
-	margin-top: 25px;
+	margin-top: 10px;
 }
 .navbar-nav {
 	float: right;
@@ -138,6 +157,19 @@ border: none;
 	color: #014838;
 	font-weight: bold;
 }
+.navbar-collapse .loggedInAs {
+    float: right;
+    display: block;
+    margin-right: 15px;
+}
+.navbar-header .loggedInAsSmall {
+    float: right;
+    position: relative;
+    margin-bottom: 10px;
+    margin-right: 15px;
+}
+
+
 
 
 /* 
@@ -286,4 +318,12 @@ footer .copyright {
 		width: 100%;
 		text-align: center;
 	}
+}
+
+.sensorList {
+	height: 200px !important;
+	width: 150px !important;
+	overflow: auto;
+	border: solid 1px #DDD;
+	padding: 2px;
 }

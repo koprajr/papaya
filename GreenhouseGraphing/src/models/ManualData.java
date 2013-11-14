@@ -1,15 +1,13 @@
 package models;
 
-public abstract class Equation {
+public class ManualData {
     private Long id;
     private String name;
 
-    protected Equation(Long id, String name) {
+    public ManualData(Long id, String name) {
         this.id = id;
         this.name = name;
     }
-
-    public abstract Integer solve();
 
     public Long getId() {
         return id;

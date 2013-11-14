@@ -38,29 +38,29 @@
 		select * from users
 	</select>
 
-    <select id="selectUser" resultType="User">
+    <select id="insertUser" parameterType="User">
+        insert into users values (6,#{username},#{password},'research@mango.com','','N','N', 0, 0,'',0,'N')
+    </select>
+
+    <select id="selectUser" parameterType="User" resultType="User">
         select * from users where username=#{username}
     </select>
 	
 	<delete id="deleteUser" parameterType="User">
 		delete from users where id=#{id}
 	</delete>
+
+    <update id="updateUserPass" parameterType="User">
+        update users set password=#{password} where id=#{id}
+    </update>
 	
 	<insert id="createUser" parameterType="User">
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
-
-    <resultMap id="manualDataPointMap" type="ManualDataPoint">
-        <result property="id" column="id"/>
-        <result property="name" column="name"/>
-    </resultMap>
-
-
-    <select id="selectManualDataPoints" resultType="ManualDataPoint">
-        select * from manualDataPoints
-    </select>
-
-
-
+	
+	<select id="selectSensors" resultType="Sensor">
+		select * from datapoints
+	</select>
+	
 </mapper>

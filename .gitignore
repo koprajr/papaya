@@ -12,6 +12,11 @@ out/
 
 *.class
 
+# Idea Project Files
+*.iml
+*.idea
+.idea/
+
 # Package Files #
 *.jar
 *.war
