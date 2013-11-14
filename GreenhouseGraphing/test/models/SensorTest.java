@@ -1,6 +1,5 @@
 package models;
 
-import dao.MangoDAO;
 import org.junit.Test;
 
 /**
@@ -14,10 +13,9 @@ public class SensorTest {
 
     @Test
     public void testGetSensor() {
-        MangoDAO dao = new MangoDAO();
-        Sensor s = new Sensor();
-        s.setId(22);
-        s = dao.getSensor(s);
+//        MangoDAO dao = new MangoDAO();
+//        Sensor s = new Sensor();
+//        s.setId(22);
 
 
     }
