@@ -20,14 +20,16 @@
             <div class="row">
                 <div class="col-xs-4">
                     <h4>Individual Graphs</h4>
-                    <s:iterator value="sensors" var="sensor">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="sensorList[]" value="${sensor.name}"> ${sensor.name}
-                        </label>
-                    </div>
-                    </s:iterator>
-                    <hr>
+					<div class="sensorList">
+						<s:iterator value="sensors" var="sensor">
+							<div class="checkbox">
+								<label> <input type="checkbox" name="sensorList[]"
+									value="${sensor.name}"> ${sensor.name}
+								</label>
+							</div>
+						</s:iterator>
+					</div>
+					<hr>
                     <h4>Calculated Total Values to Display</h4>
                     <s:iterator value="equations" var="equation">
                     <div class="checkbox">

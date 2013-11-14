@@ -25,6 +25,12 @@
         <result property="userId" column="userId" />
         <result property="level" column="level" />
     </resultMap>
+    
+    <resultMap id="PointValueMap" type="PointValue">
+        <result property="dataPointId" column="datapointid" />
+        <result property="pointValue" column="pointValue" />
+        <result property="ts" column="ts" />
+    </resultMap>
 
     <select id="selectLevel" parameterType="User" resultType="UserPriv">
         select * from userprivileges where userId=#{id}
@@ -61,6 +67,14 @@
 	
 	<select id="selectSensors" resultType="Sensor">
 		select * from datapoints
+	</select>
+	
+	<select id="selectSensor" parameterType="int" resultType="Sensor">
+		select * from datapoints where id=#{id}
+	</select>
+	
+	<select id="selectPointValues" parameterType="int" resultType="PointValue">
+		select * from pointvalues where dataPointId=#{id}
 	</select>
 	
 </mapper>

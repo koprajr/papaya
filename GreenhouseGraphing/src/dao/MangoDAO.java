@@ -1,8 +1,10 @@
 package dao;
 
+import models.PointValue;
 import models.Sensor;
 import models.User;
 import models.UserPriv;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -145,6 +147,34 @@ public class MangoDAO {
 			}
 		}
 		return sensors;
+	}
+	
+	public Sensor getSensor(int sensorId){
+		SqlSession session = null;
+		List<Sensor> sensors = null;
+		try {
+			session = factory.openSession();
+			sensors = session.selectList("dao.MangoMapper.selectSensor", sensorId);
+		} finally {
+			if (session != null){
+				session.close();
+			}
+		}
+		return sensors != null ? sensors.get(0) : null;
+	}
+	
+	public List<PointValue> getPointValues(int sensorId){
+		SqlSession session = null;
+		List<PointValue> pointValues = null;
+		try {
+			session = factory.openSession();
+			pointValues = session.selectList("dao.MangoMapper.selectPointValues", sensorId);
+		} finally {
+			if (session != null){
+				session.close();
+			}
+		}
+		return pointValues;
 	}
 	
 }

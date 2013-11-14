@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	<script type="text/javascript" src="js/chart.js"></script>
 	
 	<d:head />
 </head>
