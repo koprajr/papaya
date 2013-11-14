@@ -35,10 +35,10 @@
 
             <div class="row visible-xs">
                 <div class="col-md-4 col-md-offset-4">
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Water System</button>
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Lighting System</button>
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Temperature Control</button>
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Electricity</button>
+                    <a href="${reportListAndManualData}" type="button" class="btn btn-lg btn-primaryGreen btn-block">Water System</a>
+                    <a href="#" type="button" class="btn btn-lg btn-primaryGreen btn-block">Lighting System</a>
+                    <a href="#" type="button" class="btn btn-lg btn-primaryGreen btn-block">Temperature Control</a>
+                    <a href="#" type="button" class="btn btn-lg btn-primaryGreen btn-block">Electricity</a>
                     <br>
                 </div><!-- /.col-md-4 .col-md-offset-4-->
             </div><!-- /.row .visible-xs-->
