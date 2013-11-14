@@ -1,7 +1,10 @@
 package dao;
 
 import models.ManualDataPoint;
+import models.ReportTemplate;
+import models.Sensor;
 import models.User;
+import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -9,6 +12,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MangoDAO {
@@ -91,5 +96,16 @@ public class MangoDAO {
         }
         return manualDataPoints;
     }
+
+    public void createReportTemplate(ReportTemplate reportTemplate) {
+        // insert into reportTemplate: name, description
+        // insert into reportTemplateSensorAssociation: every sensor, equation, and manualData
+        // insert into chartConfiguartions: each chart configuration
+    }
+
+
+
+
+
 	
 }

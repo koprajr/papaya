@@ -18,4 +18,43 @@ public class ManualDataPointValue {
     BigInteger ts;
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getManualDataPointId() {
+        return manualDataPointId;
+    }
+
+    public void setManualDataPointId(int manualDataPointId) {
+        this.manualDataPointId = manualDataPointId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Double getPointValue() {
+        return pointValue;
+    }
+
+    public void setPointValue(Double pointValue) {
+        this.pointValue = pointValue;
+    }
+
+    public BigInteger getTs() {
+        return ts;
+    }
+
+    public void setTs(BigInteger ts) {
+        this.ts = ts;
+    }
 }

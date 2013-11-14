@@ -42,5 +42,7 @@
     <select id="selectManualDataPoints" resultType="ManualDataPoint">
         select * from manualDataPoints
     </select>
-	
+
+
+
 </mapper>

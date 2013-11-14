@@ -8,6 +8,10 @@ import java.util.List;
  */
 public class ReportTemplate {
 
+    int id;
+    String name;
+    String description;
+
     List<Sensor> individualSensors;
     List<Equation> equations;
     List<Object> manualData;
