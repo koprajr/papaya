@@ -305,6 +305,45 @@ TIME PICKER MODAL
 	padding: 19px 20px 0px;
 }
 
+/*
+=======================================================
+REPORT TEMPLATE CREATION STEP 2
+=======================================================
+*/
+.reportTempCreation2 {
+    background-color: #E2E2E2;
+    border: solid 2px #BDBDBD;
+}
+form.reportTempCreation2Form {
+    margin:30px 10px;
+}
+.page-header.reportTempCreation {
+    border: 0px;
+    margin-bottom: 0px;
+}
+h4.borderBottom {
+    border-bottom: solid 2px #BDBDBD;
+    margin-top: 50px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+.btn.chart-configuration-add {
+  margin-bottom: 10px;
+}
+.sensorList {
+    max-height: 200px !important;
+    width: 100% !important;
+    overflow: auto;
+    border-top: solid 1px #DDD;
+    border-bottom: solid 1px #DDD;
+    padding: 2px;
+}
+@media (max-width: 767px) {
+    h4.borderBottom {
+        margin-top: 50px !important;
+    }
+}
+
 /* 
 =======================================================
 FOOTER
@@ -324,14 +363,6 @@ footer .copyright {
 		width: 100%;
 		text-align: center;
 	}
-}
-
-.sensorList {
-	height: 200px !important;
-	width: 200px !important;
-	overflow: auto;
-	border: solid 1px #DDD;
-	padding: 2px;
 }
 
 
