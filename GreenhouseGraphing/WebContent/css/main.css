@@ -328,7 +328,7 @@ footer .copyright {
 
 .sensorList {
 	height: 200px !important;
-/* 	width: 200px !important; */
+	width: 200px !important;
 	overflow: auto;
 	border: solid 1px #DDD;
 	padding: 2px;
