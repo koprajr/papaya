@@ -64,11 +64,17 @@ h2 small, .h2 small {
 	font-size: 18px;
 	color: #3d3d3d;
 }
+div.container.container-main {
+    min-height: 400px;
+}
 
 @media (max-width: 767px) {
     div.row div.col-12 {
         padding-left:15px;
         padding-right:15px;
+    }
+    div.container.container-main {
+        min-height: inherit;
     }
 }
 

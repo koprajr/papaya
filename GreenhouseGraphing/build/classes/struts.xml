@@ -93,6 +93,15 @@
             <result name="success">/pages/newReportTemplate.jsp</result>
         </action>
 
+        <action name="reportListAndManualData" class="actions.ReportListAndManualDataAction" method="execute">
+            <result name="success">/pages/reportList.jsp</result>
+        </action>
+
+        <action name="insertManualData" class="actions.InsertManualDataAction" method="execute">
+            <result name="success">/pages/success.jsp</result>
+            <result name="invalid">/pages/error.jsp</result>
+        </action>
+
         <action name="saveReportTemplate" class="actions.SaveReportTemplateAction" method="execute">
             <result name="success"></result>
         </action>

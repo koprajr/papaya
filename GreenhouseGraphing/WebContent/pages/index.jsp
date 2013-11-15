@@ -28,10 +28,10 @@
 
             <div class="row visible-xs">
                 <div class="col-md-4 col-md-offset-4">
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Greenhouse</button>
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Energy Cabin</button>
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Digester</button>
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Overall System</button>
+                    <a href="${greenhousePage_Action}" type="button" class="btn btn-lg btn-primaryGreen btn-block">Greenhouse</a>
+                    <a href="${energyCabinPage_Action}" type="button" class="btn btn-lg btn-primaryGreen btn-block">Energy Cabin</a>
+                    <a href="${digesterPage_Action}" type="button" class="btn btn-lg btn-primaryGreen btn-block">Digester</a>
+                    <a type="button" class="btn btn-lg btn-primaryGreen btn-block">Overall System</a>
                     <br>
                 </div><!-- /.col-md-4 .col-md-offset-4-->
             </div><!-- /.row .visible-xs-->

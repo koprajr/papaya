@@ -5,7 +5,8 @@ import models.Sensor;
 import models.SensorValueSelect;
 import models.User;
 import models.UserPriv;
-
+import models.ManualData;
+import models.ManualDataType;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -134,6 +135,47 @@ public class MangoDAO {
                 session.close();
             }
         }
+    }
+
+    public void insertManualData(ManualData manualData) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertManualData", manualData);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    public ManualDataType selectManualDataType(ManualDataType manualDataType) {
+        SqlSession session = null;
+        ManualDataType tableManualDataType = null;
+        try {
+            session = factory.openSession();
+            tableManualDataType = session.selectOne("dao.MangoMapper.selectManualDataType", manualDataType);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return tableManualDataType;
+    }
+
+    public List<String> selectManualDataTypes() {
+        SqlSession session = null;
+        List<String> manualDataTypes = null;
+        try {
+            session = factory.openSession();
+            manualDataTypes = session.selectList("dao.MangoMapper.selectManualDataTypes");
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return manualDataTypes;
     }
 	
 	public List<Sensor> getSensors(){

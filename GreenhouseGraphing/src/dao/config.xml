@@ -9,6 +9,8 @@
         <typeAlias type="models.SensorValueSelect" alias="SensorValueSelect" />
         <typeAlias type="models.UserPriv" alias="UserPriv" />
         <typeAlias type="models.PointValue" alias="PointValue" />
+        <typeAlias type="models.ManualData" alias="ManualData" />
+        <typeAlias type="models.ManualDataType" alias="ManualDataType" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

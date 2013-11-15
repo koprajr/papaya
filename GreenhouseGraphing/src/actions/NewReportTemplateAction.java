@@ -27,9 +27,6 @@ public class NewReportTemplateAction extends ActionSupport {
         equations.add(new SampleEquation(new Long(2), "Equation 2's Name"));
         equations.add(new SampleEquation(new Long(3), "Equation 3's Name"));
         manualData = new HashSet<ManualData>();
-        manualData.add(new ManualData(new Long(1), "Manual Data 1's Name"));
-        manualData.add(new ManualData(new Long(2), "Manual Data 2's Name"));
-        manualData.add(new ManualData(new Long(3), "Manual Data 3's Name"));
         // END - TESTING CODE
 
         return "success";

@@ -32,6 +32,19 @@
         <result property="ts" column="ts" />
     </resultMap>
 
+    <resultMap id="ManualDataMap" type="ManualData">
+        <result property="id" column="id" />
+        <result property="value" column="pointvalue" />
+        <result property="typeId" column="manualdatatypeId" />
+        <result property="userId" column="userId" />
+        <result property="timeStamp" column="ts" />
+    </resultMap>
+
+    <resultMap id="ManualDataTypesMap" type="ManualDataType">
+        <result property="name" column="name" />
+        <result property="id" column="id" />
+    </resultMap>
+
     <select id="selectLevel" parameterType="User" resultType="UserPriv">
         select * from userprivileges where userId=#{id}
     </select>
@@ -64,6 +77,19 @@
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
+
+    <insert id="insertManualData" parameterType="ManualData">
+        insert into manualdatapointvalues (manualdatapointid, userid, pointvalue, ts)
+        values (#{typeId},#{userId},#{value},#{timeStamp})
+    </insert>
+
+    <select id="selectManualDataType" parameterType="ManualDataType" resultType="ManualDataType">
+        select * from manualdatapoints where name=#{name}
+    </select>
+
+    <select id="selectManualDataTypes" resultType="String">
+        select name from manualdatapoints
+    </select>
 	
 	<select id="selectSensors" resultType="Sensor">
 		select * from datapoints
