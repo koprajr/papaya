@@ -1,10 +1,14 @@
 package models;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class ManualDataPoint {
     private Long id;
     private String name;
+
+    public ManualDataPoint() {
+    }
 
     public ManualDataPoint(Long id, String name) {
         this.id = id;
@@ -33,9 +37,14 @@ public class ManualDataPoint {
             ManualDataPoint other = (ManualDataPoint) obj;
             EqualsBuilder eb = new EqualsBuilder();
             eb.append(this.getId(), other.getId());
-            eb.append(this.getName(), other.getId());
+//            eb.append(this.getName(), other.getId());
             return eb.build();
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(id).build();
     }
 }

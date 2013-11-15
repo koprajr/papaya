@@ -4,6 +4,7 @@ import java.util.Set;
 
 public class ChartConfiguration {
 
+
     Set<Sensor> individualSensors;
     Set<Equation> equations;
     Set<ManualDataPoint> manualDataPoint;

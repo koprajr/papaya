@@ -42,9 +42,9 @@ public class ReportTemplateTest {
 
         Assert.assertEquals(testTemplate_1, testTemplate1PulledFromDB);
 
-
-
-
+        Assert.assertEquals(testTemplate1PulledFromDB.getManualDataPoint().iterator().next().getId(), new Long(1));
+        Assert.assertEquals(testTemplate1PulledFromDB.getManualDataPoint().iterator().next().getName(), "Pounds of lettuce added to digestor");
+        Assert.assertEquals(testTemplate1PulledFromDB.getDescription(), "a description");
     }
 
     private ReportTemplate getTestTemplate_1() {
@@ -55,6 +55,7 @@ public class ReportTemplateTest {
 
         ReportTemplate testTemplate_1 = new ReportTemplate();
         testTemplate_1.setName("test template 1");
+        testTemplate_1.setDescription("a description");
 
         // Add sensors to this report.
         Sensor s = new Sensor();
@@ -73,7 +74,8 @@ public class ReportTemplateTest {
 
 
         ChartConfiguration chartConfig = new ChartConfiguration(sensors, equations, manualDataPoints);
-        chartConfigurations.add(chartConfig);
+//        chartConfig.
+//        chartConfigurations.add(chartConfig);
         testTemplate_1.setChartConfigurations(chartConfigurations);
 
 

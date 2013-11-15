@@ -203,16 +203,18 @@ public class MangoDAO {
             session.insert("dao.MangoMapper.createReportTemplate", reportTemplate);
             session.commit();
             reportTemplate.setId( ((ReportTemplate) session.selectOne("dao.MangoMapper.getReportTemplateByName", reportTemplate)).getId() );
+
             // Sensor Associations.
             for (Sensor s: reportTemplate.getIndividualSensors()) { // (dataPoints)
                 session.insert("dao.MangoMapper.createReportTemplateDataPointAssoc", new ReportTemplateDataPointAssoc(reportTemplate.getId(), s.getId()));
             }
 
-//            // Manudal Data Points Associations.
+            // Manudal Data Points Associations.
             for (ManualDataPoint mdp : reportTemplate.getManualDataPoint()) {
                 session.insert("dao.MangoMapper.createReportTemplateManualDataPointAssoc", new ReportTemplateManualDataPointAssoc(reportTemplate.getId(), mdp.getId()));
             }
 
+            // TODO: store chart configs.
             // Create chart configurations
 
 
@@ -238,11 +240,12 @@ public class MangoDAO {
     }
 
 
-    public void deleteReportTemplate(ReportTemplate reportTemplate) {
-        // delete from reporttemplateDataPointAssoc
-        // delete from reporttemplatesManualDataPointAssoc
-        // delete from reporttemplates
-    }
+               //TODO
+//    public List<ReportTemplate> getAllReportTemplates() {
+//
+//    }
+
+
 
 
     //TODO: FOR TESTING ONLY.

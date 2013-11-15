@@ -57,6 +57,8 @@
         <result property="description" column="description"/>
     </resultMap>
 
+
+
     <insert id="createReportTemplate" parameterType="ReportTemplate">
         insert into reportTemplates (name, description)
         values (#{name}, #{description})
@@ -90,11 +92,11 @@
 
 
     <select id="getDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="Sensor">
-        select * from dataPoints where
+        select id, data from reporttemplatedatapointassoc join datapoints on datapoints.id=reporttemplatedatapointassoc.datapointid where reporttemplateid=#{id}
     </select>
 
     <select id="getManualDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="ManualDataPoint">
-      select * from manualDataPoints
+      select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
     </select>
 
 

@@ -1,6 +1,7 @@
 package models;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Sensor {
 
@@ -33,11 +34,18 @@ public class Sensor {
         if (obj instanceof Sensor) {
             EqualsBuilder eb = new EqualsBuilder();
             Sensor other = (Sensor) obj;
-            eb.append(id, other);
-            eb.append(data, other.data);
-            eb.append(this.getName(), other.getName());
+            eb.append(id, other.getId());
+//            eb.append(data, other.data);
+//            eb.append(this.getName(), other.getName());
             return eb.build();
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+//        HashCodeBuilder builder = new HashCodeBuilder();
+//        builder.append(id);
+        return new HashCodeBuilder().append(id).build();
     }
 }
