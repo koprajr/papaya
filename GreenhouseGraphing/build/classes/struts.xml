@@ -6,28 +6,13 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 
-    <constant name="arianna:maxCrumbs" value="6" />
-
 	<package name="greenhouse" extends="struts-default">
-
-        <interceptors>
-            <interceptor name="breadCrumbs" class="org.softwareforge.struts2.breadcrumb.BreadCrumbInterceptor">
-                <param name="defaultRewindMode">AUTO</param>
-                <param name="defaultComparator">org.softwareforge.struts2.breadcrumb.NameComparator</param>
-            </interceptor>
-
-            <interceptor-stack name="myStack">
-                <interceptor-ref name="defaultStack"/>
-                <interceptor-ref name="breadCrumbs"/>
-            </interceptor-stack>
-        </interceptors>
-
 
         <default-action-ref name="index" />
 
 		<action name="index" class="actions.IndexAction" method="execute">
 			<result name="success">/pages/index.jsp</result>
-			<result name="generic">/pages/generic.jsp</result>
+			<result name="invalid">/pages/generic.jsp</result>
 			
 		</action>
 		
@@ -43,6 +28,36 @@
 				<param name="actionName">index</param>
 			</result>
 		</action>
+
+        <action name="goTo_AccountSettings" class="actions.IndexAction" method="execute">
+            <result name="success">/pages/accountSettings.jsp</result>
+            <result name="invalid">/pages/generic.jsp</result>
+        </action>
+
+        <action name="goTo_greenhouse" class="actions.IndexAction" method="execute">
+            <result name="success">/pages/greenhouse.jsp</result>
+            <result name="invalid">/pages/generic.jsp</result>
+        </action>
+
+        <action name="goTo_digester" class="actions.IndexAction" method="execute">
+            <result name="success">/pages/digester.jsp</result>
+            <result name="invalid">/pages/generic.jsp</result>
+        </action>
+
+        <action name="goTo_energyCabin" class="actions.IndexAction" method="execute">
+            <result name="success">/pages/energyCabin.jsp</result>
+            <result name="invalid">/pages/generic.jsp</result>
+        </action>
+
+        <action name="goTo_adminPrivileges" class="actions.IndexAction" method="execute">
+            <result name="success">/pages/adminPrivileges.jsp</result>
+            <result name="invalid">/pages/generic.jsp</result>
+        </action>
+
+        <action name="goTo_changePrivilegeLevel" class="actions.IndexAction" method="execute">
+            <result name="success">/pages/changePrivilegeLevel.jsp</result>
+            <result name="invalid">/pages/generic.jsp</result>
+        </action>
 		
 		<action name="users" class="actions.UsersAction">
 			<result name="success">/pages/users.jsp</result>
@@ -59,7 +74,39 @@
 				<param name="actionName">users</param>
 			</result>
 		</action>
+
+        <action name="userChangePassword" class="actions.PasswordChangeAction" method="execute">
+            <result name="success">/pages/success.jsp</result>
+            <result name="invalid">/pages/error.jsp</result>
+        </action>
+
+        <action name="userPrivilegeChange" class="actions.PrivilegeChangeAction" method="execute">
+            <result name="success">/pages/success.jsp</result>
+            <result name="invalid">/pages/error.jsp</result>
+        </action>
 		
+		<action name="sensorSelect" class="actions.SensorSelectAction" method="execute">
+			<result name="success">/pages/sensorSelect.jsp</result>
+		</action>
+		
+        <action name="newReportTemplate" class="actions.NewReportTemplateAction" method="execute">
+            <result name="success">/pages/newReportTemplate.jsp</result>
+        </action>
+
+        <action name="reportListAndManualData" class="actions.ReportListAndManualDataAction" method="execute">
+            <result name="success">/pages/reportList.jsp</result>
+        </action>
+
+        <action name="insertManualData" class="actions.InsertManualDataAction" method="execute">
+            <result name="success">/pages/success.jsp</result>
+            <result name="invalid">/pages/error.jsp</result>
+        </action>
+
+        <action name="saveReportTemplate" class="actions.SaveReportTemplateAction" method="execute">
+            <result name="success">/pages/success.jsp</result>
+        </action>
+
 	</package>
 
 </struts>
+

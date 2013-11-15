@@ -2,7 +2,7 @@ package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
-import models.LoginBean;
+import models.Login;
 import models.User;
 import org.apache.commons.codec.binary.Base64;
 
@@ -10,13 +10,8 @@ import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * User: Daniel Deloff
- * Date: 11/11/13
- * Time: 11:47 AM
- */
 public class InsertUserAction extends ActionSupport {
-    private LoginBean bean;
+    private Login bean;
     private MangoDAO mangoDao;
     public static final Charset UTF8_CS = Charset.forName("UTF-8");
 
@@ -43,11 +38,11 @@ public class InsertUserAction extends ActionSupport {
         return "success";
     }
 
-    public LoginBean getBean() {
+    public Login getBean() {
         return bean;
     }
 
-    public void setBean(LoginBean bean) {
+    public void setBean(Login bean) {
         this.bean = bean;
     }
 }

@@ -3,7 +3,7 @@ package actions;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
-import models.LoginBean;
+import models.Login;
 import models.User;
 import models.UserPriv;
 import org.apache.commons.codec.binary.Base64;
@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 public class LoginAction extends ActionSupport{
-    private LoginBean bean;
+    private Login bean;
     private MangoDAO mangoDao;
     //private List<User> users;
     public static final Charset UTF8_CS = Charset.forName("UTF-8");
@@ -78,13 +78,14 @@ public class LoginAction extends ActionSupport{
         return "invalid";
 	}
 
-	public LoginBean getBean() {
+	public Login getBean() {
 		return bean;
 	}
 
-	public void setBean(LoginBean bean) {
+	public void setBean(Login bean) {
 		this.bean = bean;
 	}
 
 	
 }
+
