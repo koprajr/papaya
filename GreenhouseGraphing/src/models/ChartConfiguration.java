@@ -6,6 +6,7 @@ import java.util.Set;
 public class ChartConfiguration {
 
     private Integer id;
+    private Integer reportTemplateId;
     private String name;
     private String xLabel;
     private String yLabal;
@@ -20,6 +21,14 @@ public class ChartConfiguration {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getReportTemplateId() {
+        return reportTemplateId;
+    }
+
+    public void setReportTemplateId(Integer reportTemplateId) {
+        this.reportTemplateId = reportTemplateId;
     }
 
     public String getName() {
