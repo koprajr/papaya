@@ -6,13 +6,19 @@
 <html>
 <head>
     <title>Clarkson University</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Bootstrap and Application Specific CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
+    <link href="css/jquery-ui.css" rel="stylesheet" />
 	
 	<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/timepicker.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/chart.js"></script>
+	<script type="text/javascript" src="js/highcharts.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	
 	<d:head />
@@ -45,11 +51,16 @@
                         <s:url action="logout" var="logoutAction" />
                         <s:url action="goTo_AccountSettings" var="AccountSettingsPage_Action" />
                         <s:url action="goTo_adminPrivileges" var="adminPrivileges_Action" />
+                        <s:url action="newReportTemplate" var="template"/>
+                        <s:url action="sensorSelect" var="sensorSelect"/>
 
 
                         <ul class="nav navbar-nav hidden-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test='#session.level=="admin"'>
+                            	<li><a href="${sensorSelect}">Graph Test</a></li>
+                                <li><a href="${template}">Create Report Template</a></li>
                                 <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                                
                             </s:if>
 
                             <li><a href="${AccountSettingsPage_Action}">Account Settings</a></li>
@@ -57,6 +68,8 @@
                         </ul>
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test='#session.level=="admin"'>
+                            	<li><a href="${sensorSelect}">Graph Test</a></li>
+                                <li><a href="${template}">Create Report Template</a></li>
                                 <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
 

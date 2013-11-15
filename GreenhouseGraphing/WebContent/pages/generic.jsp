@@ -7,8 +7,8 @@
         <ol class="breadcrumb hide">
             <li class="active">Home</li>
         </ol>
-    </div><!-- /.container-->
-</div><!-- /.container-breadcrumb-->
+    </div><!-- /.container -->
+</div><!-- /.container-breadcrumb -->
 
 <div class="container container-main">
 	<div class="row">

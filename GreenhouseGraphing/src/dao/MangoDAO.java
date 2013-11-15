@@ -1,8 +1,8 @@
 package dao;
 
-import models.*;
-import models.associations.ReportTemplateDataPointAssoc;
-import models.associations.ReportTemplateManualDataPointAssoc;
+import models.Sensor;
+import models.User;
+import models.UserPriv;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,7 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
 import java.util.List;
 
 public class MangoDAO {
@@ -133,6 +132,47 @@ public class MangoDAO {
             }
         }
     }
+
+    public void insertManualData(ManualData manualData) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertManualData", manualData);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    public ManualDataType selectManualDataType(ManualDataType manualDataType) {
+        SqlSession session = null;
+        ManualDataType tableManualDataType = null;
+        try {
+            session = factory.openSession();
+            tableManualDataType = session.selectOne("dao.MangoMapper.selectManualDataType", manualDataType);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return tableManualDataType;
+    }
+
+    public List<String> selectManualDataTypes() {
+        SqlSession session = null;
+        List<String> manualDataTypes = null;
+        try {
+            session = factory.openSession();
+            manualDataTypes = session.selectList("dao.MangoMapper.selectManualDataTypes");
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return manualDataTypes;
+    }
 	
 	public List<Sensor> getSensors(){
 		SqlSession session = null;
@@ -146,6 +186,34 @@ public class MangoDAO {
 			}
 		}
 		return sensors;
+	}
+	
+	public Sensor getSensor(int sensorId){
+		SqlSession session = null;
+		List<Sensor> sensors = null;
+		try {
+			session = factory.openSession();
+			sensors = session.selectList("dao.MangoMapper.selectSensor", sensorId);
+		} finally {
+			if (session != null){
+				session.close();
+			}
+		}
+		return sensors != null ? sensors.get(0) : null;
+	}
+	
+	public List<PointValue> getPointValues(SensorValueSelect sensor){
+		SqlSession session = null;
+		List<PointValue> pointValues = null;
+		try {
+			session = factory.openSession();
+			pointValues = session.selectList("dao.MangoMapper.selectPointValues", sensor);
+		} finally {
+			if (session != null){
+				session.close();
+			}
+		}
+		return pointValues;
 	}
 
     public List<ManualDataPoint> getManualDataPoints() {

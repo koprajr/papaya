@@ -14,10 +14,10 @@
 <div class="container container-main">
     <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-12">
-
+            <s:url action="reportListAndManualData" var="reportListAndManualData" />
             <!--GREENHOUSE GRAPHIC-->
             <map name="greenhouseMap">
-                <area href="#" shape="rect" coords="26, 59, 141, 97"> <!-- Water System Room 1 -->
+                <area href="${reportListAndManualData}" shape="rect" coords="26, 59, 141, 97"> <!-- Water System Room 1 -->
                 <area href="#" shape="rect" coords="26, 102, 141, 140"> <!-- Lighting System Room 1 -->
                 <area href="#" shape="rect" coords="25, 145, 139, 179"> <!-- Temperature Control Room 1 -->
                 <area href="#" shape="rect" coords="24, 184, 140, 220"> <!-- Electricity Room 1 -->
@@ -35,10 +35,10 @@
 
             <div class="row visible-xs">
                 <div class="col-md-4 col-md-offset-4">
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Water System</button>
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Lighting System</button>
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Temperature Control</button>
-                    <button type="button" class="btn btn-lg btn-primaryGreen btn-block">Electricity</button>
+                    <a href="${reportListAndManualData}" type="button" class="btn btn-lg btn-primaryGreen btn-block">Water System</a>
+                    <a href="#" type="button" class="btn btn-lg btn-primaryGreen btn-block">Lighting System</a>
+                    <a href="#" type="button" class="btn btn-lg btn-primaryGreen btn-block">Temperature Control</a>
+                    <a href="#" type="button" class="btn btn-lg btn-primaryGreen btn-block">Electricity</a>
                     <br>
                 </div><!-- /.col-md-4 .col-md-offset-4-->
             </div><!-- /.row .visible-xs-->

@@ -10,11 +10,6 @@ import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * User: Daniel Deloff
- * Date: 11/11/13
- * Time: 11:47 AM
- */
 public class InsertUserAction extends ActionSupport {
     private Login bean;
     private MangoDAO mangoDao;

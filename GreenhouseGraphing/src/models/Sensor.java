@@ -1,11 +1,8 @@
 package models;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 public class Sensor {
 
-	private int id;
+	private Integer id;
 	private byte[] data;
 	
 	public int getId() {
@@ -28,24 +25,5 @@ public class Sensor {
 		name = name.substring(0, name.indexOf("---"));
 		return name;
 	}
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Sensor) {
-            EqualsBuilder eb = new EqualsBuilder();
-            Sensor other = (Sensor) obj;
-            eb.append(id, other.getId());
-//            eb.append(data, other.data);
-//            eb.append(this.getName(), other.getName());
-            return eb.build();
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-//        HashCodeBuilder builder = new HashCodeBuilder();
-//        builder.append(id);
-        return new HashCodeBuilder().append(id).build();
-    }
+	
 }

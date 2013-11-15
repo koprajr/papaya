@@ -64,11 +64,17 @@ h2 small, .h2 small {
 	font-size: 18px;
 	color: #3d3d3d;
 }
+div.container.container-main {
+    min-height: 400px;
+}
 
 @media (max-width: 767px) {
     div.row div.col-12 {
         padding-left:15px;
         padding-right:15px;
+    }
+    div.container.container-main {
+        min-height: inherit;
     }
 }
 
@@ -322,8 +328,22 @@ footer .copyright {
 
 .sensorList {
 	height: 200px !important;
-	width: 150px !important;
+	width: 200px !important;
 	overflow: auto;
 	border: solid 1px #DDD;
 	padding: 2px;
 }
+
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }
