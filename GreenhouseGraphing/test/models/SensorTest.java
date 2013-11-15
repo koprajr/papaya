@@ -13,9 +13,6 @@ public class SensorTest {
 
     @Test
     public void testGetSensor() {
-//        MangoDAO dao = new MangoDAO();
-//        Sensor s = new Sensor();
-//        s.setId(22);
 
 
     }

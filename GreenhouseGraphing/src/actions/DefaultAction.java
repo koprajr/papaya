@@ -9,7 +9,8 @@ import java.util.Map;
 public class DefaultAction extends ActionSupport{
 
 	public String execute(){
-		if (getSession().get("loggedIn") == null){
+
+        if (getSession().get("loggedIn") == null){
 			return "invalid";
 		} else {
 			return Action.SUCCESS;
@@ -27,4 +28,6 @@ public class DefaultAction extends ActionSupport{
 	public String getUsername(){
 		return (String) getSession().get("username");
 	}
+
+
 }

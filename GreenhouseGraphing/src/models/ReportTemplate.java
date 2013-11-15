@@ -1,23 +1,29 @@
 package models;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 import java.util.Set;
 
 public class ReportTemplate {
 
-    private Long id;
-    private String name;
+    Long id;
+    String name = "";
+    String description = "";
     Set<Sensor> individualSensors;
     Set<Equation> equations;
-    Set<ManualData> manualData;
+    Set<ManualDataPoint> manualDataPoint;
     Set<ChartConfiguration> chartConfigurations;
+
+    public ReportTemplate() {
+    }
 
     public ReportTemplate(Set<Sensor> individualSensors,
                           Set<Equation> equations,
-                          Set<ManualData> manualData,
+                          Set<ManualDataPoint> manualDataPoint,
                           Set<ChartConfiguration> chartConfigurations) {
         this.individualSensors = individualSensors;
         this.equations = equations;
-        this.manualData = manualData;
+        this.manualDataPoint = manualDataPoint;
         this.chartConfigurations = chartConfigurations;
     }
 
@@ -53,12 +59,12 @@ public class ReportTemplate {
         this.equations = equations;
     }
 
-    public Set<ManualData> getManualData() {
-        return manualData;
+    public Set<ManualDataPoint> getManualDataPoint() {
+        return manualDataPoint;
     }
 
-    public void setManualData(Set<ManualData> manualData) {
-        this.manualData = manualData;
+    public void setManualDataPoint(Set<ManualDataPoint> manualDataPoint) {
+        this.manualDataPoint = manualDataPoint;
     }
 
     public Set<ChartConfiguration> getChartConfigurations() {
@@ -67,5 +73,32 @@ public class ReportTemplate {
 
     public void setChartConfigurations(Set<ChartConfiguration> chartConfigurations) {
         this.chartConfigurations = chartConfigurations;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ReportTemplate) {
+            EqualsBuilder eb = new EqualsBuilder();
+            ReportTemplate o = (ReportTemplate) obj;
+            eb.append(id, o.getId());
+            eb.append(name, o.getName());
+            eb.append(individualSensors, o.getIndividualSensors());
+            eb.append(manualDataPoint, o.getManualDataPoint());
+//            eb.append(chartConfigurations, o.chartConfigurations);
+           // TODO: Add more params to test equals
+
+
+
+            return eb.build();
+        }
+        return false;
     }
 }

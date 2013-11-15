@@ -1,11 +1,11 @@
 package actions;
 
+import dao.MangoDAO;
+import models.Sensor;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import dao.MangoDAO;
-import models.Sensor;
 
 public class SensorSelectAction implements Comparator<Sensor>{
 

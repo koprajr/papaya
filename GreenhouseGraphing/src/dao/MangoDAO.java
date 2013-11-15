@@ -1,8 +1,8 @@
 package dao;
 
-import models.ManualDataPoint;
-import models.ReportTemplate;
-import models.User;
+import models.*;
+import models.associations.ReportTemplateDataPointAssoc;
+import models.associations.ReportTemplateManualDataPointAssoc;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashSet;
 import java.util.List;
 
 public class MangoDAO {
@@ -160,11 +161,109 @@ public class MangoDAO {
         return manualDataPoints;
     }
 
+    public ReportTemplate getReportTemplateByName(String name) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            ReportTemplate temp_reportTemplate = new ReportTemplate();
+            temp_reportTemplate.setName(name);
+            ReportTemplate templateFromDB = session.selectOne("dao.MangoMapper.getReportTemplateByName", temp_reportTemplate);
+
+            List<ManualDataPoint> manualDataPoints = session.selectList("dao.MangoMapper.getManualDataPointsForReportTemplate", templateFromDB);
+            templateFromDB.setManualDataPoint(new HashSet<ManualDataPoint>(manualDataPoints));
+
+            List<Sensor> sensors = session.selectList("dao.MangoMapper.getDataPointsForReportTemplate", templateFromDB);
+            templateFromDB.setIndividualSensors(new HashSet<Sensor>(sensors));
+
+          //TODO:  templateFromDB.setChartConfigurations();
+
+
+            return templateFromDB;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (session != null)
+                session.close();
+        }
+        return null;
+    }
+
+
+
     public void createReportTemplate(ReportTemplate reportTemplate) {
         // insert into reportTemplate: name, description
         // insert into reportTemplateSensorAssociation: every sensor, equation, and manualData
         // insert into chartConfiguartions: each chart configuration
+
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.createReportTemplate", reportTemplate);
+            session.commit();
+            reportTemplate.setId( ((ReportTemplate) session.selectOne("dao.MangoMapper.getReportTemplateByName", reportTemplate)).getId() );
+            // Sensor Associations.
+            for (Sensor s: reportTemplate.getIndividualSensors()) { // (dataPoints)
+                session.insert("dao.MangoMapper.createReportTemplateDataPointAssoc", new ReportTemplateDataPointAssoc(reportTemplate.getId(), s.getId()));
+            }
+
+//            // Manudal Data Points Associations.
+            for (ManualDataPoint mdp : reportTemplate.getManualDataPoint()) {
+                session.insert("dao.MangoMapper.createReportTemplateManualDataPointAssoc", new ReportTemplateManualDataPointAssoc(reportTemplate.getId(), mdp.getId()));
+            }
+
+            // Create chart configurations
+
+
+//            //
+//            for (ChartConfiguration chartConfig : reportTemplate.getChartConfigurations()) {
+//                session.insert("dao.MangoMapper.createReportTemplateChartConfigurationsAssoc", chartConfig);
+//            }
+
+
+
+            session.commit();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        finally {
+            if (session != null){
+                session.close();
+            }
+        }
+
     }
+
+
+    public void deleteReportTemplate(ReportTemplate reportTemplate) {
+        // delete from reporttemplateDataPointAssoc
+        // delete from reporttemplatesManualDataPointAssoc
+        // delete from reporttemplates
+    }
+
+
+    //TODO: FOR TESTING ONLY.
+    public void deleteAllReportTemplates() {
+        SqlSession session = null;
+        List<Sensor> sensors = null;
+        try {
+            session = factory.openSession();
+            session.delete("deleteAllreportTemplateManualDataPointAssoc");
+            session.delete("deleteAllReportTemplateDataPointAssoc");
+            session.delete("deleteAllReportTemplates");
+            session.commit();
+        } finally {
+            if (session != null){
+                session.close();
+            }
+        }
+
+    }
+
+
 
 
 

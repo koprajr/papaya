@@ -51,15 +51,77 @@
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
 
-    <resultMap id="manualDataPointMap" type="ManualDataPoint">
+    <resultMap id="ReportTemplateMap" type="ReportTemplate">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
+        <result property="description" column="description"/>
     </resultMap>
 
+    <insert id="createReportTemplate" parameterType="ReportTemplate">
+        insert into reportTemplates (name, description)
+        values (#{name}, #{description})
+    </insert>
 
-    <select id="selectManualDataPoints" resultType="ManualDataPoint">
-        select * from manualDataPoints
+    <!--<resultMap id="reportTemplateDataPointAssoc" type="ReportTemplateDataPointAssoc">-->
+        <!--<result property="reportTemplateId" column="reportTemplateId"/>-->
+        <!--<result property="dataPointId" column="dataPointId"/>-->
+    <!--</resultMap>-->
+
+    <insert id="createReportTemplateDataPointAssoc" parameterType="ReportTemplateDataPointAssoc">
+        insert into reportTemplateDataPointAssoc (reportTemplateId, dataPointId)
+        values (#{reportTemplateId}, #{dataPointId})
+    </insert>
+
+    <insert id="createReportTemplateManualDataPointAssoc" parameterType="ReportTemplateManualDataPointAssoc">
+        insert into reportTemplateManualDataPointAssoc (reportTemplateId, manualDataPointId)
+        values (#{reportTemplateId}, #{manualDataPointId})
+    </insert>
+
+
+
+
+
+    <select id="getReportTemplateByName" parameterType="ReportTemplate" resultType="ReportTemplate">
+        select * from reportTemplates where name=#{name}
     </select>
+
+
+
+
+
+    <select id="getDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="Sensor">
+        select * from dataPoints where
+    </select>
+
+    <select id="getManualDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="ManualDataPoint">
+      select * from manualDataPoints
+    </select>
+
+
+
+
+
+    <delete id="deleteAllreportTemplateManualDataPointAssoc">
+        delete from reportTemplateManualDataPointAssoc
+    </delete>
+    <delete id="deleteAllReportTemplateDataPointAssoc">
+        delete from reportTemplateDataPointAssoc
+    </delete>
+    <delete id="deleteAllReportTemplates">
+        delete from reportTemplates
+    </delete>
+
+	
+
+    <!--<resultMap id="manualDataPointMap" type="ManualDataPoint">-->
+        <!--<result property="id" column="id"/>-->
+        <!--<result property="name" column="name"/>-->
+    <!--</resultMap>-->
+
+
+    <!--<select id="selectManualDataPoints" resultType="ManualDataPoint">-->
+        <!--select * from manualDataPoints-->
+    <!--</select>-->
 
 
 

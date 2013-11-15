@@ -11,7 +11,7 @@ public class NewReportTemplateAction extends ActionSupport {
     private Set<ChartConfiguration> chartConfigurations;
     private Set<Sensor> sensors;
     private Set<Equation> equations;
-    private Set<ManualData> manualData;
+    private Set<ManualDataPoint> manualDataPoint;
 
     @Override
     public String execute() throws Exception {
@@ -24,10 +24,10 @@ public class NewReportTemplateAction extends ActionSupport {
         equations.add(new SampleEquation(new Long(1), "Equation 1's Name"));
         equations.add(new SampleEquation(new Long(2), "Equation 2's Name"));
         equations.add(new SampleEquation(new Long(3), "Equation 3's Name"));
-        manualData = new HashSet<ManualData>();
-        manualData.add(new ManualData(new Long(1), "Manual Data 1's Name"));
-        manualData.add(new ManualData(new Long(2), "Manual Data 2's Name"));
-        manualData.add(new ManualData(new Long(3), "Manual Data 3's Name"));
+        manualDataPoint = new HashSet<ManualDataPoint>();
+        manualDataPoint.add(new ManualDataPoint(new Long(1), "Manual Data 1's Name"));
+        manualDataPoint.add(new ManualDataPoint(new Long(2), "Manual Data 2's Name"));
+        manualDataPoint.add(new ManualDataPoint(new Long(3), "Manual Data 3's Name"));
         // END - TESTING CODE
 
         return "success";
@@ -49,11 +49,11 @@ public class NewReportTemplateAction extends ActionSupport {
         this.equations = equations;
     }
 
-    public Set<ManualData> getManualData() {
-        return manualData;
+    public Set<ManualDataPoint> getManualDataPoint() {
+        return manualDataPoint;
     }
 
-    public void setManualData(Set<ManualData> manualData) {
-        this.manualData = manualData;
+    public void setManualDataPoint(Set<ManualDataPoint> manualDataPoint) {
+        this.manualDataPoint = manualDataPoint;
     }
 }

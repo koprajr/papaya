@@ -1,24 +1,21 @@
 package models;
 
-/**
- * Created with IntelliJ IDEA.
- * User: matthallman
- * Date: 11/7/13
- * Time: 2:29 PM
- * A manual data point. Similar to the dataPoints table for sensors in the database.
- * Represents a type of manual data. eg. "Pounds of lettuce added to digestor."
- */
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 public class ManualDataPoint {
+    private Long id;
+    private String name;
 
-    int id;
-    String name;
+    public ManualDataPoint(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -28,5 +25,17 @@ public class ManualDataPoint {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ManualDataPoint) {
+            ManualDataPoint other = (ManualDataPoint) obj;
+            EqualsBuilder eb = new EqualsBuilder();
+            eb.append(this.getId(), other.getId());
+            eb.append(this.getName(), other.getId());
+            return eb.build();
+        }
+        return false;
     }
 }

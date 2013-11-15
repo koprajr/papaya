@@ -7,6 +7,9 @@
 		<typeAlias type="models.User" alias="User" />
 		<typeAlias type="models.Sensor" alias="Sensor" />
         <typeAlias type="models.UserPriv" alias="UserPriv" />
+        <typeAlias type="models.ReportTemplate" alias="ReportTemplate"/>
+        <typeAlias type="models.associations.ReportTemplateDataPointAssoc" alias="ReportTemplateDataPointAssoc"/>
+        <typeAlias type="models.associations.ReportTemplateManualDataPointAssoc" alias="ReportTemplateManualDataPointAssoc"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
