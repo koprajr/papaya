@@ -6,14 +6,19 @@
 <html>
 <head>
     <title>Clarkson University</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap and Application Specific CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
+    <link href="css/jquery-ui.css" rel="stylesheet" />
 	
 	<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/timepicker.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	<script type="text/javascript" src="js/chart.js"></script>
 	
 	<d:head />
 </head>
@@ -83,4 +88,5 @@
 </div><!--/.container .container-main-->
 
 </body>
+
 </html>

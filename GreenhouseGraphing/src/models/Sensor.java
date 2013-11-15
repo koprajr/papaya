@@ -2,7 +2,7 @@ package models;
 
 public class Sensor {
 
-	private int id;
+	private Integer id;
 	private byte[] data;
 	
 	public int getId() {

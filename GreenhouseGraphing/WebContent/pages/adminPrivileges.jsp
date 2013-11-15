@@ -18,9 +18,20 @@
                 <h2>Administrative Privileges: </h2>
             </div><!-- /.page-header-->
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-4">
+                    <a href="#"><img src="img/user-add.jpg" class="img-rounded"></a>
+                    <a href="#">Add Users</a>
+
+                </div><!-- /.panel .panel-default-->
+                <div class="col-md-4">
                     <s:url action="goTo_changePrivilegeLevel" var="changePrivilegeLevel_Action" />
+                    <a href="${changePrivilegeLevel_Action}"><img src="img/user-settings.jpg" class="img-rounded"></a>
                     <a href="${changePrivilegeLevel_Action}">Change User Privilege Level</a>
+
+                </div><!-- /.panel .panel-default-->
+                <div class="col-md-4">
+                    <a href="#"><img src="img/user-edit.jpg" class="img-rounded"></a>
+                    <a href="#">Change User's Password</a>
 
                 </div><!-- /.panel .panel-default-->
             </div><!-- /.panel .panel-default-->
