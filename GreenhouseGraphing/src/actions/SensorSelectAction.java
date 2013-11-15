@@ -1,12 +1,16 @@
 package actions;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import dao.MangoDAO;
 import models.PointValue;
 import models.Sensor;
+import models.SensorValueSelect;
 
 public class SensorSelectAction implements Comparator<Sensor> {
 
@@ -16,7 +20,10 @@ public class SensorSelectAction implements Comparator<Sensor> {
 
 	private Sensor sensor;
 	
-	private int max;
+	private String start;
+	private String end;
+	
+	private int max = 70;
 	
 	public String execute() {
 		MangoDAO dao = new MangoDAO();
@@ -26,13 +33,20 @@ public class SensorSelectAction implements Comparator<Sensor> {
 		Collections.sort(sensors, this);
 
 		if (selectedSensors != null) {
+			
+			System.err.println("Start: " + start);
+			System.err.println("End: " + end);
+			
+			System.err.println("start: " + timeStampToEpochTime(start));
+			System.err.println("end: " + timeStampToEpochTime(end));
+			
 			// if there are some selected sensors, display their ids
 			for (Integer i : selectedSensors) {
 				System.err.println("Sensor Id: " + i);
 				
 				sensor = dao.getSensor(i);
 
-				List<PointValue> dataPoints = dao.getPointValues(i);
+				List<PointValue> dataPoints = dao.getPointValues(new SensorValueSelect(i, timeStampToEpochTime(start), timeStampToEpochTime(end)));
 
 				System.err.println("Total data points: " + dataPoints.size());
 				
@@ -50,6 +64,17 @@ public class SensorSelectAction implements Comparator<Sensor> {
 		return "success";
 	}
 
+	private long timeStampToEpochTime(String timestamp){
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		try {
+			Date date = sdf.parse(timestamp);
+			return date.getTime();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	public List<Sensor> getSensors() {
 		return sensors;
 	}
@@ -75,12 +100,20 @@ public class SensorSelectAction implements Comparator<Sensor> {
 		return sensor;
 	}
 
-	public int getMax() {
-		return max;
+	public String getStart() {
+		return start;
 	}
 
-	public void setMax(int max) {
-		this.max = max;
+	public void setStart(String start) {
+		this.start = start;
+	}
+
+	public String getEnd() {
+		return end;
+	}
+
+	public void setEnd(String end) {
+		this.end = end;
 	}
 
 }

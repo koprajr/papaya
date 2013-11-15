@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	$(".datepicker").datetimepicker();
+	
 	var ctx = document.getElementById("myChart").getContext("2d");
 
 	var options = {

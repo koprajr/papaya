@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="models.User" alias="User" />
 		<typeAlias type="models.Sensor" alias="Sensor" />
+        <typeAlias type="models.SensorValueSelect" alias="SensorValueSelect" />
         <typeAlias type="models.UserPriv" alias="UserPriv" />
         <typeAlias type="models.PointValue" alias="PointValue" />
 	</typeAliases>

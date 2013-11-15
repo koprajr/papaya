@@ -13,19 +13,15 @@
 				<input type="checkbox" name="selectedSensors" value="${n.id}" /> ${n.name} <br />
 			</s:iterator>
 		</div>
-
-		<label>Max Values:<s:textfield name="max" /></label>
+		
+		<div>
+			<s:textfield name="start" placeholder="Start" cssClass="datepicker"/>
+			<s:textfield name="end" placeholder="End" cssClass="datepicker"/>
+		</div>
 
 		<s:submit cssClass="btn btn-primary" />
 
 	</s:form>
-
-	<s:if test="%{selectedSensors != null}">
-		You selected:<br />
-		<s:iterator value="selectedSensors" var="n">
-			Sensor Id: ${n} <br />
-		</s:iterator>
-	</s:if>
 
 	<hr />
 

@@ -2,6 +2,7 @@ package dao;
 
 import models.PointValue;
 import models.Sensor;
+import models.SensorValueSelect;
 import models.User;
 import models.UserPriv;
 
@@ -163,12 +164,12 @@ public class MangoDAO {
 		return sensors != null ? sensors.get(0) : null;
 	}
 	
-	public List<PointValue> getPointValues(int sensorId){
+	public List<PointValue> getPointValues(SensorValueSelect sensor){
 		SqlSession session = null;
 		List<PointValue> pointValues = null;
 		try {
 			session = factory.openSession();
-			pointValues = session.selectList("dao.MangoMapper.selectPointValues", sensorId);
+			pointValues = session.selectList("dao.MangoMapper.selectPointValues", sensor);
 		} finally {
 			if (session != null){
 				session.close();

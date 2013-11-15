@@ -20,7 +20,7 @@
 		<result property="id" column="id"/>
 		<result property="data" column="data"/>
 	</resultMap>
-
+	
     <resultMap id="PrivilegeLevelMap" type="UserPriv">
         <result property="userId" column="userId" />
         <result property="level" column="level" />
@@ -73,8 +73,8 @@
 		select * from datapoints where id=#{id}
 	</select>
 	
-	<select id="selectPointValues" parameterType="int" resultType="PointValue">
-		select * from pointvalues where dataPointId=#{id}
+	<select id="selectPointValues" parameterType="SensorValueSelect" resultType="PointValue">
+		select * from pointvalues where dataPointId=#{id} and ts &lt; #{endTime} and ts &gt; #{startTime}
 	</select>
 	
 </mapper>
