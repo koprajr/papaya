@@ -4,106 +4,106 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<constant name="struts.devMode" value="true" />
+	<constant title="struts.devMode" value="true" />
 
-	<package name="greenhouse" extends="struts-default">
+	<package title="greenhouse" extends="struts-default">
 
-        <default-action-ref name="index" />
+        <default-action-ref title="index" />
 
-		<action name="index" class="actions.IndexAction" method="execute">
-			<result name="success">/pages/index.jsp</result>
-			<result name="invalid">/pages/generic.jsp</result>
+		<action title="index" class="actions.IndexAction" method="execute">
+			<result title="success">/pages/index.jsp</result>
+			<result title="invalid">/pages/generic.jsp</result>
 			
 		</action>
 		
-		<action name="login" class="actions.LoginAction" method="execute">
-			<result name="success" type="redirectAction">
-				<param name="actionName">index</param>
+		<action title="login" class="actions.LoginAction" method="execute">
+			<result title="success" type="redirectAction">
+				<param title="actionName">index</param>
 			</result>
-			<result name="invalid">/pages/invalid.jsp</result>
+			<result title="invalid">/pages/invalid.jsp</result>
 		</action>
 		
-		<action name="logout" class="actions.LogoutAction" method="execute">
-			<result name="success" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>
-		</action>
-
-        <action name="goTo_AccountSettings" class="actions.IndexAction" method="execute">
-            <result name="success">/pages/accountSettings.jsp</result>
-            <result name="invalid">/pages/generic.jsp</result>
-        </action>
-
-        <action name="goTo_greenhouse" class="actions.IndexAction" method="execute">
-            <result name="success">/pages/greenhouse.jsp</result>
-            <result name="invalid">/pages/generic.jsp</result>
-        </action>
-
-        <action name="goTo_digester" class="actions.IndexAction" method="execute">
-            <result name="success">/pages/digester.jsp</result>
-            <result name="invalid">/pages/generic.jsp</result>
-        </action>
-
-        <action name="goTo_energyCabin" class="actions.IndexAction" method="execute">
-            <result name="success">/pages/energyCabin.jsp</result>
-            <result name="invalid">/pages/generic.jsp</result>
-        </action>
-
-        <action name="goTo_adminPrivileges" class="actions.IndexAction" method="execute">
-            <result name="success">/pages/adminPrivileges.jsp</result>
-            <result name="invalid">/pages/generic.jsp</result>
-        </action>
-
-        <action name="goTo_changePrivilegeLevel" class="actions.IndexAction" method="execute">
-            <result name="success">/pages/changePrivilegeLevel.jsp</result>
-            <result name="invalid">/pages/generic.jsp</result>
-        </action>
-		
-		<action name="users" class="actions.UsersAction">
-			<result name="success">/pages/users.jsp</result>
-		</action>
-		
-		<action name="createUser" class="actions.UsersAction" method="create">
-			<result name="success" type="redirectAction">
-				<param name="actionName">users</param>
-			</result>
-		</action>
-		
-		<action name="deleteUser" class="actions.UsersAction" method="delete">
-			<result name="success" type="redirectAction">
-				<param name="actionName">users</param>
+		<action title="logout" class="actions.LogoutAction" method="execute">
+			<result title="success" type="redirectAction">
+				<param title="actionName">index</param>
 			</result>
 		</action>
 
-        <action name="userChangePassword" class="actions.PasswordChangeAction" method="execute">
-            <result name="success">/pages/success.jsp</result>
-            <result name="invalid">/pages/error.jsp</result>
+        <action title="goTo_AccountSettings" class="actions.IndexAction" method="execute">
+            <result title="success">/pages/accountSettings.jsp</result>
+            <result title="invalid">/pages/generic.jsp</result>
         </action>
 
-        <action name="userPrivilegeChange" class="actions.PrivilegeChangeAction" method="execute">
-            <result name="success">/pages/success.jsp</result>
-            <result name="invalid">/pages/error.jsp</result>
+        <action title="goTo_greenhouse" class="actions.IndexAction" method="execute">
+            <result title="success">/pages/greenhouse.jsp</result>
+            <result title="invalid">/pages/generic.jsp</result>
+        </action>
+
+        <action title="goTo_digester" class="actions.IndexAction" method="execute">
+            <result title="success">/pages/digester.jsp</result>
+            <result title="invalid">/pages/generic.jsp</result>
+        </action>
+
+        <action title="goTo_energyCabin" class="actions.IndexAction" method="execute">
+            <result title="success">/pages/energyCabin.jsp</result>
+            <result title="invalid">/pages/generic.jsp</result>
+        </action>
+
+        <action title="goTo_adminPrivileges" class="actions.IndexAction" method="execute">
+            <result title="success">/pages/adminPrivileges.jsp</result>
+            <result title="invalid">/pages/generic.jsp</result>
+        </action>
+
+        <action title="goTo_changePrivilegeLevel" class="actions.IndexAction" method="execute">
+            <result title="success">/pages/changePrivilegeLevel.jsp</result>
+            <result title="invalid">/pages/generic.jsp</result>
         </action>
 		
-		<action name="sensorSelect" class="actions.SensorSelectAction" method="execute">
-			<result name="success">/pages/sensorSelect.jsp</result>
+		<action title="users" class="actions.UsersAction">
+			<result title="success">/pages/users.jsp</result>
 		</action>
 		
-        <action name="newReportTemplate" class="actions.NewReportTemplateAction" method="execute">
-            <result name="success">/pages/newReportTemplate.jsp</result>
+		<action title="createUser" class="actions.UsersAction" method="create">
+			<result title="success" type="redirectAction">
+				<param title="actionName">users</param>
+			</result>
+		</action>
+		
+		<action title="deleteUser" class="actions.UsersAction" method="delete">
+			<result title="success" type="redirectAction">
+				<param title="actionName">users</param>
+			</result>
+		</action>
+
+        <action title="userChangePassword" class="actions.PasswordChangeAction" method="execute">
+            <result title="success">/pages/success.jsp</result>
+            <result title="invalid">/pages/error.jsp</result>
         </action>
 
-        <action name="reportListAndManualData" class="actions.ReportListAndManualDataAction" method="execute">
-            <result name="success">/pages/reportList.jsp</result>
+        <action title="userPrivilegeChange" class="actions.PrivilegeChangeAction" method="execute">
+            <result title="success">/pages/success.jsp</result>
+            <result title="invalid">/pages/error.jsp</result>
+        </action>
+		
+		<action title="sensorSelect" class="actions.SensorSelectAction" method="execute">
+			<result title="success">/pages/sensorSelect.jsp</result>
+		</action>
+		
+        <action title="newReportTemplate" class="actions.NewReportTemplateAction" method="execute">
+            <result title="success">/pages/newReportTemplate.jsp</result>
         </action>
 
-        <action name="insertManualData" class="actions.InsertManualDataAction" method="execute">
-            <result name="success">/pages/success.jsp</result>
-            <result name="invalid">/pages/error.jsp</result>
+        <action title="reportListAndManualData" class="actions.ReportListAndManualDataAction" method="execute">
+            <result title="success">/pages/reportList.jsp</result>
         </action>
 
-        <action name="saveReportTemplate" class="actions.SaveReportTemplateAction" method="execute">
-            <result name="success">/pages/success.jsp</result>
+        <action title="insertManualData" class="actions.InsertManualDataAction" method="execute">
+            <result title="success">/pages/success.jsp</result>
+            <result title="invalid">/pages/error.jsp</result>
+        </action>
+
+        <action title="saveReportTemplate" class="actions.SaveReportTemplateAction" method="execute">
+            <result title="success">/pages/success.jsp</result>
         </action>
 
 	</package>

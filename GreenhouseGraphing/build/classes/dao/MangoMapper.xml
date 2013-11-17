@@ -41,7 +41,7 @@
     </resultMap>
 
     <resultMap id="ManualDataTypesMap" type="ManualDataType">
-        <result property="name" column="name" />
+        <result property="title" column="title" />
         <result property="id" column="id" />
     </resultMap>
 
@@ -84,11 +84,11 @@
     </insert>
 
     <select id="selectManualDataType" parameterType="ManualDataType" resultType="ManualDataType">
-        select * from manualdatapoints where name=#{name}
+        select * from manualdatapoints where title=#{title}
     </select>
 
     <select id="selectManualDataTypes" resultType="String">
-        select name from manualdatapoints
+        select title from manualdatapoints
     </select>
 	
 	<select id="selectSensors" resultType="Sensor">

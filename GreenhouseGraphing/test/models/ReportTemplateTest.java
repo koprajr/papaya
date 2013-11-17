@@ -4,6 +4,7 @@ import dao.MangoDAO;
 import junit.framework.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,11 +41,15 @@ public class ReportTemplateTest {
 
         ReportTemplate testTemplate1PulledFromDB = dao.getReportTemplateByName(testTemplate_1.getName());
 
-        Assert.assertEquals(testTemplate_1, testTemplate1PulledFromDB);
+        Assert.assertEquals(testTemplate_1.getName(), testTemplate1PulledFromDB.getName());
+        Assert.assertEquals(testTemplate_1.getDescription(), testTemplate_1.getDescription());
+        Assert.assertEquals(testTemplate_1.getIndividualSensors().size(), testTemplate1PulledFromDB.getIndividualSensors().size());
+        Assert.assertEquals(testTemplate_1.getManualDataPoints().size(), testTemplate1PulledFromDB.getManualDataPoints().size());
+        ChartConfiguration chartConfiguration = testTemplate1PulledFromDB.getChartConfigurations().iterator().next();
+        Assert.assertEquals("chartName", chartConfiguration.getTitle());
+        Assert.assertEquals("x label", chartConfiguration.getxAxis());
+        Assert.assertEquals("y label", chartConfiguration.getyAxis());
 
-        Assert.assertEquals(testTemplate1PulledFromDB.getManualDataPoint().iterator().next().getId(), new Long(1));
-        Assert.assertEquals(testTemplate1PulledFromDB.getManualDataPoint().iterator().next().getName(), "Pounds of lettuce added to digestor");
-        Assert.assertEquals(testTemplate1PulledFromDB.getDescription(), "a description");
     }
 
     private ReportTemplate getTestTemplate_1() {
@@ -63,19 +68,26 @@ public class ReportTemplateTest {
         sensors.add(s);
         s = new Sensor();
         s.setId(23);
+
         sensors.add(s);
         testTemplate_1.setIndividualSensors(sensors);
 
 
         // Add Manual data points to this report.
-        ManualDataPoint mdp = new ManualDataPoint(new Long(1), "");
+        ManualDataPoint mdp = new ManualDataPoint(1, "");
         manualDataPoints.add(mdp);
-        testTemplate_1.setManualDataPoint(manualDataPoints);
+        testTemplate_1.setManualDataPoints(manualDataPoints);
 
 
-        ChartConfiguration chartConfig = new ChartConfiguration(sensors, equations, manualDataPoints);
-//        chartConfig.
-//        chartConfigurations.add(chartConfig);
+        ChartConfiguration chartConfig = new ChartConfiguration();
+        chartConfig.setSensors(new ArrayList<Sensor>(sensors));
+        chartConfig.setTitle("chartName");
+        chartConfig.setxAxis("x label");
+        chartConfig.setyAxis("y label");
+        chartConfig.setType("plot");
+//        chartConfig.setEquations();
+        chartConfig.setManualData(new ArrayList<ManualDataPoint>(manualDataPoints));
+        chartConfigurations.add(chartConfig);
         testTemplate_1.setChartConfigurations(chartConfigurations);
 
 

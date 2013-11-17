@@ -15,9 +15,9 @@
 		<div class="col-md-4 col-md-offset-4">
 			<form class="form-signin" action="login" method="post">
 				<h3 class="form-signin-heading">Please sign in:</h3>
-				<input type="text" name="bean.name" class="form-control" placeholder="Username" autofocus>
+				<input type="text" title="bean.title" class="form-control" placeholder="Username" autofocus>
                 <br>
-                <input type="password" name="bean.password" class="form-control" placeholder="Password">
+                <input type="password" title="bean.password" class="form-control" placeholder="Password">
                 <br>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 			</form>

@@ -16,7 +16,7 @@
         <div class="col-xs-12 col-sm-12">
             <s:url action="reportListAndManualData" var="reportListAndManualData" />
             <!--GREENHOUSE GRAPHIC-->
-            <map name="greenhouseMap">
+            <map title="greenhouseMap">
                 <area href="${reportListAndManualData}" shape="rect" coords="26, 59, 141, 97"> <!-- Water System Room 1 -->
                 <area href="#" shape="rect" coords="26, 102, 141, 140"> <!-- Lighting System Room 1 -->
                 <area href="#" shape="rect" coords="25, 145, 139, 179"> <!-- Temperature Control Room 1 -->

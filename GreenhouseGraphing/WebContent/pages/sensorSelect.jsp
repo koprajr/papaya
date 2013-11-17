@@ -10,13 +10,13 @@
 	<s:form action="sensorSelect" method="get">
 		<div class="sensorList">
 			<s:iterator value="sensors" var="n">
-				<input type="checkbox" name="selectedSensors" value="${n.id}" /> ${n.name} <br />
+				<input type="checkbox" title="selectedSensors" value="${n.id}" /> ${n.title} <br />
 			</s:iterator>
 		</div>
 
 		<div>
-			<s:textfield name="start" placeholder="Start" cssClass="datepicker" />
-			<s:textfield name="end" placeholder="End" cssClass="datepicker" />
+			<s:textfield title="start" placeholder="Start" cssClass="datepicker" />
+			<s:textfield title="end" placeholder="End" cssClass="datepicker" />
 		</div>
 
 		<s:submit cssClass="btn btn-primary" />
@@ -26,7 +26,7 @@
 	<s:if test="%{selectedSensors != null}">
 		<hr />
 		<div class="row">
-			<h2 id="sensorName">${sensor.name}</h2>
+			<h2 id="sensorName">${sensor.title}</h2>
 			<div class="col-md-3">
 				<table class="table table-condensed" id="datatable">
 					<thead>

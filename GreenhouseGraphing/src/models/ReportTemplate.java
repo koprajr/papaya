@@ -6,12 +6,12 @@ import java.util.Set;
 
 public class ReportTemplate {
 
-    Long id;
+    int id;
     String name = "";
     String description = "";
     Set<Sensor> individualSensors;
     Set<Equation> equations;
-    Set<ManualDataPoint> manualDataPoint;
+    Set<ManualDataPoint> manualDataPoints;
     Set<ChartConfiguration> chartConfigurations;
 
     public ReportTemplate() {
@@ -19,19 +19,19 @@ public class ReportTemplate {
 
     public ReportTemplate(Set<Sensor> individualSensors,
                           Set<Equation> equations,
-            Set<ManualDataPoint> manualDataPoint,
+            Set<ManualDataPoint> manualDataPoints,
             Set<ChartConfiguration> chartConfigurations) {
                 this.individualSensors = individualSensors;
                 this.equations = equations;
-                this.manualDataPoint = manualDataPoint;
+                this.manualDataPoints = manualDataPoints;
                 this.chartConfigurations = chartConfigurations;
             }
 
-        public Long getId() {
+        public int getId() {
             return id;
         }
 
-        public void setId(Long id) {
+        public void setId(int id) {
             this.id = id;
         }
 
@@ -59,12 +59,12 @@ public class ReportTemplate {
             this.equations = equations;
         }
 
-        public Set<ManualDataPoint> getManualDataPoint() {
-            return manualDataPoint;
+        public Set<ManualDataPoint> getManualDataPoints() {
+            return manualDataPoints;
         }
 
-        public void setManualDataPoint(Set<ManualDataPoint> manualDataPoint) {
-            this.manualDataPoint = manualDataPoint;
+        public void setManualDataPoints(Set<ManualDataPoint> manualDataPoints) {
+            this.manualDataPoints = manualDataPoints;
         }
 
         public Set<ChartConfiguration> getChartConfigurations() {
@@ -99,9 +99,9 @@ public class ReportTemplate {
 //                    eb.append(sensorList.get(i), otherSensorList.get(i));
 //                }
 
-                eb.append(manualDataPoint.containsAll(other.getManualDataPoint()), true);
+                eb.append(manualDataPoints.containsAll(other.getManualDataPoints()), true);
 
-//                eb.append(manualDataPoint, other.getManualDataPoint());
+//                eb.append(manualDataPoints, other.getManualDataPoints());
 
 //            eb.append(chartConfigurations, o.chartConfigurations);
            // TODO: Add more params to test equals

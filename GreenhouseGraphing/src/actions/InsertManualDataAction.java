@@ -3,10 +3,7 @@ package actions;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
-import models.ManualData;
-import models.ManualDataBean;
-import models.ManualDataType;
-import models.User;
+import models.*;
 
 import java.util.Map;
 
@@ -29,7 +26,7 @@ public class InsertManualDataAction extends ActionSupport {
         if (bean == null) return "invalid";
         if (!bean.getQuantity().equals("")&&!bean.getType().equals("")){
             if (!isDouble(bean.getQuantity())) return "invalid";
-            ManualData manualData = new ManualData();
+            ManualDataPointValue manualDataPointValue = new ManualDataPointValue();
 
             Double value = Double.parseDouble(bean.getQuantity());
 
@@ -38,16 +35,16 @@ public class InsertManualDataAction extends ActionSupport {
             user.setUsername((String)session.get("username"));
             User tableUser = mangoDAO.getUser(user);
 
-            ManualDataType manualDataType = new ManualDataType();
+            ManualDataPoint manualDataType = new ManualDataPoint();
             manualDataType.setName(bean.getType());
-            ManualDataType tableManualDataType = mangoDAO.selectManualDataType(manualDataType);
+            ManualDataPoint tableManualDataType = mangoDAO.selectManualDataType(manualDataType);
 
-            manualData.setUserId(tableUser.getId());
-            manualData.setValue(value);
-            manualData.setTimeStamp(System.currentTimeMillis());
-            manualData.setTypeId(tableManualDataType.getId());
+            manualDataPointValue.setUserId(tableUser.getId());
+            manualDataPointValue.setPointValue(value);
+            manualDataPointValue.setTs(System.currentTimeMillis());
+            manualDataPointValue.setManualDataPointId(tableManualDataType.getId());
 
-            mangoDAO.insertManualData(manualData);
+            mangoDAO.insertManualDataPointValue(manualDataPointValue);
 
             return "success";
         }

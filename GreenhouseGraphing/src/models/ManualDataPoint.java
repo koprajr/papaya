@@ -3,23 +3,33 @@ package models;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+
+/**
+ * A class that represents a type of manual data.
+ * Corresponds to the manualDataPoint table.
+ *
+ */
 public class ManualDataPoint {
-    private Long id;
-    private String name;
+    private int id;
+    private String name; // eg. "Pounds of lettuce added to the greenhouse"
 
     public ManualDataPoint() {
     }
 
-    public ManualDataPoint(Long id, String name) {
+    public ManualDataPoint(String name) {
+        this.name = name;
+    }
+
+    public ManualDataPoint(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -37,7 +47,7 @@ public class ManualDataPoint {
             ManualDataPoint other = (ManualDataPoint) obj;
             EqualsBuilder eb = new EqualsBuilder();
             eb.append(this.getId(), other.getId());
-//            eb.append(this.getName(), other.getId());
+//            eb.append(this.getTitle(), other.getId());
             return eb.build();
         }
         return false;

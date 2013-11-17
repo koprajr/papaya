@@ -20,14 +20,14 @@
             <div class="row">
                 <div class="col-xs-4">
                     <h4>Report Template Name</h4>
-                    <input class="form-control" type="text" name="template.name" autofocus>
+                    <input class="form-control" type="text" title="template.title" autofocus>
                     <hr>
                     <h4>Individual Sensors</h4>
                     <div class="sensorList">
                         <s:iterator value="sensors" var="sensor">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="sensorIds" value="${sensor.id}"> ${sensor.name}
+                                <input type="checkbox" title="sensorIds" value="${sensor.id}"> ${sensor.title}
                             </label>
                         </div>
                         </s:iterator>
@@ -37,16 +37,16 @@
                     <s:iterator value="equations" var="equation">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="equations" value="${equation.name}"> ${equation.name}
+                            <input type="checkbox" title="equations" value="${equation.title}"> ${equation.title}
                         </label>
                     </div>
                     </s:iterator>
                     <hr>
                     <h4>Manual Data</h4>
-                    <s:iterator value="manualData" var="data">
+                    <s:iterator value="manualDataPoints" var="data">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="manualData" value="${data.name}"> ${data.name}
+                            <input type="checkbox" title="manualDataPoints" value="${data.title}"> ${data.title}
                         </label>
                     </div>
                     </s:iterator>
@@ -77,11 +77,11 @@
                 '<div class="chart-configuration"> \
                     <div class="form-group"> \
                         <label for="">Chart Name</label> \
-                        <input class="form-control" type="text" name="configurationNames"> \
+                        <input class="form-control" type="text" title="configurationNames"> \
                     </div> \
                     <div class="form-group"> \
                         <label for="">Type of Chart</label> \
-                        <select class="form-control" name="configurationTypes"> \
+                        <select class="form-control" title="configurationTypes"> \
                             <option value="Line">Line</option> \
                             <option value="Bar">Bar</option> \
                             <option value="Pie">Pie</option> \
@@ -89,18 +89,18 @@
                     </div> \
                     <div class="form-group"> \
                         <label for="">X- Label</label> \
-                        <input class="form-control" type="text" name="configurationXLabels"> \
+                        <input class="form-control" type="text" title="configurationXLabels"> \
                     </div> \
                     <div class="form-group"> \
                         <label for="">Y- Label</label> \
-                        <input class="form-control" type="text" name="configurationYLabels"> \
+                        <input class="form-control" type="text" title="configurationYLabels"> \
                     </div> \
                     <label>Include selected sensors:</label> \
                     <div class="sensorList"> \
                         <s:iterator value="sensors" var="chartSensor"> \
                         <div class="checkbox"> \
                             <label> \
-                                <input type="checkbox" name="chartSensorIds[' + generatedChartCount + ']" value="${chartSensor.id}"> ${chartSensor.name} \
+                                <input type="checkbox" title="chartSensorIds[' + generatedChartCount + ']" value="${chartSensor.id}"> ${chartSensor.title} \
                             </label> \
                         </div> \
                         </s:iterator> \

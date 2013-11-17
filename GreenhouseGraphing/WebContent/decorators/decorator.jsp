@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Clarkson University</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta title="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Bootstrap and Application Specific CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet" />

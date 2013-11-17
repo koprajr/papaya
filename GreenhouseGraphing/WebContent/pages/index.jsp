@@ -18,7 +18,7 @@
             <s:url action="goTo_digester" var="digesterPage_Action" />
 
             <!--TOP LEVEL SYSTEM GRAPHIC-->
-            <map name="MainPicMap">
+            <map title="MainPicMap">
                 <area href="${greenhousePage_Action}" shape="polygon" coords="34, 240, 35, 193, 124, 161, 154, 162, 235, 194, 235, 243, 34, 243"> <!--Greenhouse-->
                 <area href="${energyCabinPage_Action}" shape="polygon" coords="262, 171, 282, 109, 277, 89, 305, 75, 393, 75, 427, 98, 427, 175, 262, 177"> <!--Energy Cabin-->
                 <area href="${digesterPage_Action}" shape="polygon" coords="308, 306, 360, 292, 389, 292, 424, 310, 425, 414, 363, 426, 307, 411"> <!--Digester-->

@@ -1,19 +1,19 @@
 package models;
 
 import java.util.List;
-import java.util.Set;
 
 public class ChartConfiguration {
 
-    private Integer id;
-    private Integer reportTemplateId;
-    private String name;
-    private String xLabel;
-    private String yLabal;
+    private int id;
+    private int reportTemplateId;
+    private String title;
+    private String xAxis;
+    private String yAxis;
     private String chartType;
     private List<Sensor> sensors;
-    private Set<Equation> equations;
-    private Set<ManualData> manualData;
+    private List<Equation> equations;
+    private List<ManualDataPoint> manualData;
+    private String type;
 
     public Integer getId() {
         return id;
@@ -31,28 +31,28 @@ public class ChartConfiguration {
         this.reportTemplateId = reportTemplateId;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getxLabel() {
-        return xLabel;
+    public String getxAxis() {
+        return xAxis;
     }
 
-    public void setxLabel(String xLabel) {
-        this.xLabel = xLabel;
+    public void setxAxis(String xAxis) {
+        this.xAxis = xAxis;
     }
 
-    public String getyLabal() {
-        return yLabal;
+    public String getyAxis() {
+        return yAxis;
     }
 
-    public void setyLabal(String yLabal) {
-        this.yLabal = yLabal;
+    public void setyAxis(String yAxis) {
+        this.yAxis = yAxis;
     }
 
     public String getChartType() {
@@ -71,19 +71,35 @@ public class ChartConfiguration {
         this.sensors = sensors;
     }
 
-    public Set<Equation> getEquations() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setReportTemplateId(int reportTemplateId) {
+        this.reportTemplateId = reportTemplateId;
+    }
+
+    public List<Equation> getEquations() {
         return equations;
     }
 
-    public void setEquations(Set<Equation> equations) {
+    public void setEquations(List<Equation> equations) {
         this.equations = equations;
     }
 
-    public Set<ManualData> getManualData() {
+    public List<ManualDataPoint> getManualData() {
         return manualData;
     }
 
-    public void setManualData(Set<ManualData> manualData) {
+    public void setManualData(List<ManualDataPoint> manualData) {
         this.manualData = manualData;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

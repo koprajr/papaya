@@ -14,7 +14,7 @@ public class NewReportTemplateAction extends ActionSupport {
     private MangoDAO dao;
     private List<Sensor> sensors;
     private Set<Equation> equations;
-    private Set<ManualData> manualData;
+    private Set<ManualDataPoint> ManualDataPoints;
 
     public NewReportTemplateAction() {
         dao = new MangoDAO();
@@ -28,7 +28,7 @@ public class NewReportTemplateAction extends ActionSupport {
         equations.add(new SampleEquation(new Long(1), "Equation 1's Name"));
         equations.add(new SampleEquation(new Long(2), "Equation 2's Name"));
         equations.add(new SampleEquation(new Long(3), "Equation 3's Name"));
-        manualData = new HashSet<ManualData>();
+        ManualDataPoints = new HashSet<ManualDataPoint>();
         // END - TESTING CODE
 
         return SUCCESS;
@@ -50,11 +50,11 @@ public class NewReportTemplateAction extends ActionSupport {
         this.equations = equations;
     }
 
-    public Set<ManualData> getManualData() {
-        return manualData;
+    public Set<ManualDataPoint> getManualDataPoints() {
+        return ManualDataPoints;
     }
 
-    public void setManualData(Set<ManualData> manualData) {
-        this.manualData = manualData;
+    public void setManualDataPoints(Set<ManualDataPoint> manualDataPoints) {
+        this.ManualDataPoints = manualDataPoints;
     }
 }

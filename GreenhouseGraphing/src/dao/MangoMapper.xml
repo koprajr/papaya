@@ -32,18 +32,18 @@
         <result property="ts" column="ts" />
     </resultMap>
 
-    <resultMap id="ManualDataMap" type="ManualData">
-        <result property="id" column="id" />
-        <result property="value" column="pointvalue" />
-        <result property="typeId" column="manualdatatypeId" />
-        <result property="userId" column="userId" />
-        <result property="timeStamp" column="ts" />
-    </resultMap>
+    <!--<resultMap id="ManualDataMap" type="ManualData">-->
+        <!--<result property="id" column="id" />-->
+        <!--<result property="value" column="pointvalue" />-->
+        <!--<result property="typeId" column="manualdatatypeId" />-->
+        <!--<result property="userId" column="userId" />-->
+        <!--<result property="timeStamp" column="ts" />-->
+    <!--</resultMap>-->
 
-    <resultMap id="ManualDataTypesMap" type="ManualDataType">
-        <result property="name" column="name" />
-        <result property="id" column="id" />
-    </resultMap>
+    <!--<resultMap id="ManualDataTypesMap" type="ManualDataType">-->
+        <!--<result property="title" column="title" />-->
+        <!--<result property="id" column="id" />-->
+    <!--</resultMap>-->
 
     <select id="selectLevel" parameterType="User" resultType="UserPriv">
         select * from userprivileges where userId=#{id}
@@ -74,9 +74,12 @@
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
 
+
+    <!-- Report Templates -->
+
     <resultMap id="ReportTemplateMap" type="ReportTemplate">
         <result property="id" column="id"/>
-        <result property="name" column="name"/>
+        <result property="title" column="title"/>
         <result property="description" column="description"/>
     </resultMap>
 
@@ -126,6 +129,7 @@
 
 
 
+
     <delete id="deleteAllreportTemplateManualDataPointAssoc">
         delete from reportTemplateManualDataPointAssoc
     </delete>
@@ -137,18 +141,99 @@
     </delete>
 
 
-    <insert id="insertManualData" parameterType="ManualData">
-        insert into manualdatapointvalues (manualdatapointid, userid, pointvalue, ts)
-        values (#{typeId},#{userId},#{value},#{timeStamp})
+    <!-- Chart Configurations -->
+    <insert id="insertChartConfiguration" parameterType="ChartConfiguration">
+        insert into chartConfigurations (reportTemplateId, title, xAxis, yAxis, type)
+        values (#{reportTemplateId}, #{title}, #{xAxis}, #{yAxis}, #{type})
     </insert>
 
-    <select id="selectManualDataType" parameterType="ManualDataType" resultType="ManualDataType">
-        select * from manualdatapoints where name=#{name}
+    <select id="getSensorsForChartConfig" parameterType="java.lang.Integer" resultType="Sensor">
+        select id, data from chartConfigurationDataPointAssoc join dataPoints on chartConfigurationDataPointAssoc.dataPointId = dataPoints.id where chartConfigurationId=#{id}
     </select>
 
-    <select id="selectManualDataTypes" resultType="String">
-        select name from manualdatapoints
+    <select id="getChartConfigurationByReportTemplateId" parameterType="java.lang.Integer" resultType="ChartConfiguration">
+        select * from chartConfigurations where reportTemplateId=#{id}
     </select>
+
+    <select id="getChartConfigurationByName" parameterType="java.lang.String" resultType="ChartConfiguration">
+        select * from chartConfigurations where title=#{title}
+    </select>
+
+    <insert id="insertChartConfigurationDataPointAssoc" parameterType="ChartConfigurationDataPointAssoc">
+        insert into chartConfigurationDataPointAssoc (chartConfigurationId, dataPointId)
+        values (#{chartConfigurationId}, #{dataPointId})
+    </insert>
+
+    <insert id="insertChartConfigurationManualDataPointAssoc" parameterType="ChartConfigurationManualDataPointAssoc">
+        insert into chartConfigurationManualDataPointAssoc (chartConfigurationId, manualDataPointId)
+        values (#{chartConfigurationId}, #{manualDataPointId})
+    </insert>
+
+    <select id="getManualDataPointsForChartConfig" parameterType="java.lang.Integer" resultType="ManualDataPoint">
+        select id, name from chartConfigurationManualDataPointAssoc join manualDataPoints on chartConfigurationManualDataPointAssoc.manualDataPointId = manualDataPoints.id where chartConfigurationId=#{id}
+    </select>
+
+    <delete id="deleteAllChartConfigDataPointAssoc">
+        delete from chartConfigurationDataPointAssoc
+    </delete>
+
+    <delete id="deleteAllChartConfigManualDataPointAssoc">
+        delete from chartConfigurationManualDataPointAssoc
+    </delete>
+
+    <delete id="deleteAllChartConfiguraitons">
+        delete from chartConfigurations
+    </delete>
+
+
+
+
+    <!--<insert id="insertManualDataPointValue" parameterType="ManualData">-->
+        <!--insert into manualdatapointvalues (manualdatapointid, userid, pointvalue, ts)-->
+        <!--values (#{typeId},#{userId},#{value},#{timeStamp})-->
+    <!--</insert>-->
+
+    <!--<select id="selectManualDataType" parameterType="ManualDataType" resultType="ManualDataType">-->
+        <!--select * from manualdatapoints where title=#{title}-->
+    <!--</select>-->
+
+    <!--<select id="selectManualDataTypes" resultType="String">-->
+        <!--select title from manualdatapoints-->
+    <!--</select>-->
+
+
+    <!-- Manual Data Points -->
+
+    <select id="selectManualDataPointByName" parameterType="String" resultType="ManualDataPoint">
+        select * from manualDataPoints where title=#{title}
+    </select>
+
+    <select id="selectManualDataPoints" resultType="ManualDataPoint">
+        select * from manualDataPoints
+    </select>
+
+    <insert id="insertManualDataPoint" parameterType="ManualDataPoint">
+        insert into manualDataPoints (title) values (#{title})
+    </insert>
+
+    <delete id="deleteManualDataPointByName" parameterType="java.lang.String">
+        delete from manualDataPoints where title=#{title}
+    </delete>
+
+
+    <delete id="deleteManualDataPointById" parameterType="java.lang.Integer">
+        delete from manualDataPoints where id=#{id}
+    </delete>
+
+
+    <!-- Manual Data Point Values -->
+
+
+
+
+
+
+    <!-- Data Points -->
 	
 	<select id="selectSensors" resultType="Sensor">
 		select * from datapoints
@@ -157,6 +242,8 @@
 	<select id="selectSensor" parameterType="int" resultType="Sensor">
 		select * from datapoints where id=#{id}
 	</select>
+
+    <!-- Data Point Values -->
 	
 	<select id="selectPointValues" parameterType="SensorValueSelect" resultType="PointValue">
 		select * from pointvalues where dataPointId=#{id} and ts &lt; #{endTime} and ts &gt; #{startTime}

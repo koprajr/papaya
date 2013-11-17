@@ -57,4 +57,10 @@ public class ManualDataPointValue {
     public void setTs(BigInteger ts) {
         this.ts = ts;
     }
+
+    public void setTs(Long ts) {
+        setTs(BigInteger.valueOf(ts));
+    }
+
+
 }

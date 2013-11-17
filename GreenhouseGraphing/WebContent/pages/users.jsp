@@ -6,16 +6,16 @@
 	
 	<form action="createUser" class="form-inline" method="post">
 		<div class="form-group">
-			<s:textfield name="user.username" placeholder="Username" cssClass="form-control"/>
+			<s:textfield title="user.username" placeholder="Username" cssClass="form-control"/>
 		</div>
 		<div class="form-group">
-			<s:textfield name="user.email" placeholder="Email" cssClass="form-control"/>
+			<s:textfield title="user.email" placeholder="Email" cssClass="form-control"/>
 		</div>
 		<div class="form-group">
-			<s:textfield name="user.phone" placeholder="Phone" cssClass="form-control"/>
+			<s:textfield title="user.phone" placeholder="Phone" cssClass="form-control"/>
 		</div>
 		<div class="form-group">
-			<s:textfield name="user.password" placeholder="Password" cssClass="form-control"/>
+			<s:textfield title="user.password" placeholder="Password" cssClass="form-control"/>
 		</div>
 		<button type="submit" class="btn btn-primary">Create</button>
 	</form>
@@ -39,7 +39,7 @@
 				<tr>
 					<td>
 						<s:url action="deleteUser" var="delete">
-							<s:param name="user.id">${u.id}</s:param>
+							<s:param title="user.id">${u.id}</s:param>
 						</s:url>
 						<s:a href="%{delete}" cssClass="btn btn-danger btn-xs">Delete</s:a>
 					</td>

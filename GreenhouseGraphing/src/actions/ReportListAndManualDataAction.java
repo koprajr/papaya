@@ -2,7 +2,6 @@ package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
-import models.ManualDataType;
 import models.ReportListBean;
 
 import java.util.ArrayList;

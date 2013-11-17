@@ -53,14 +53,14 @@
                                     <!--ONE OF THESE FOR EACH MANUAL DATAPOINT-->
                                     <label for="select">Select a Manual Data Type: </label>
                                     <s:select list="manualDataTypes"
-                                              name="bean.type"
+                                              title="bean.type"
                                               id="select"
                                               cssClass="form-control"
                                     />
                                     <br>
                                     <label for="value">Value</label>
                                     <br>
-                                    <input type="text" style="margin-left:0px;" name="bean.quantity" class="form-control" id="value">
+                                    <input type="text" style="margin-left:0px;" title="bean.quantity" class="form-control" id="value">
                                     <br>
                                     <button type="submit" class="btn btn-primaryGreen manualDataSubmit">Submit  <span class="glyphicon glyphicon-arrow-right"/></button>
                                 </form>
@@ -88,8 +88,8 @@
                     <!--ONE OF THESE FOR EACH MANUAL DATAPOINT-->
                     <div class="form-group">
                         <br>
-                        <label for="timefrom" style="margin-right: 5px;">From:</label><input id="timefrom" type="datetime-local" name="from" value="">
-                        <label for="timeto" style="margin-right: 5px; margin-left: 10px;">To: </label><input id="timeto" type="datetime-local" name="to" value="">
+                        <label for="timefrom" style="margin-right: 5px;">From:</label><input id="timefrom" type="datetime-local" title="from" value="">
+                        <label for="timeto" style="margin-right: 5px; margin-left: 10px;">To: </label><input id="timeto" type="datetime-local" title="to" value="">
                     </div><!-- /.form-group-->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
