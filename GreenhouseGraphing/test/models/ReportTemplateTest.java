@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ReportTemplateTest {
@@ -49,6 +50,14 @@ public class ReportTemplateTest {
         Assert.assertEquals("chartName", chartConfiguration.getTitle());
         Assert.assertEquals("x label", chartConfiguration.getxAxis());
         Assert.assertEquals("y label", chartConfiguration.getyAxis());
+
+    }
+
+    @Test
+    public void testSelectAllReportTemplates() throws Exception{
+        MangoDAO dao = new MangoDAO();
+        List<ReportTemplate> reportTemplates = dao.getAllReportTemplates();
+        System.out.println(reportTemplates);  // TODO: make this test better. Just used debugger to see result.
 
     }
 

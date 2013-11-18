@@ -417,8 +417,54 @@ public class MangoDAO {
 
 
     /** Report template functions */
-    public void getAllReportTemplates() {
-        //TODO
+    public List<ReportTemplate> getAllReportTemplates() {
+        SqlSession session = null;
+        List<ReportTemplate> reportTemplates = null;
+        try {
+            session = factory.openSession();
+            reportTemplates =  session.selectList("dao.MangoMapper.selectReportTemplates");
+            return fillInReportTemplates(reportTemplates);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return null;
+    }
+
+    /**
+     * Fills in the report templates with sensors, manual data points, and chart configurations.
+     * @param templates A list of ReportTemplate with only their id, name, and description.
+     * @return
+     */
+    private List<ReportTemplate> fillInReportTemplates(List<ReportTemplate> templates) {
+        for (ReportTemplate reportTemplate : templates) {
+            reportTemplate = fillInReportTemplate(reportTemplate);
+        }
+        return templates;
+    }
+
+    private ReportTemplate fillInReportTemplate(ReportTemplate reportTemplate) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+
+            List<ManualDataPoint> manualDataPoints = session.selectList("dao.MangoMapper.getManualDataPointsForReportTemplate", reportTemplate);
+            reportTemplate.setManualDataPoints(new HashSet<ManualDataPoint>(manualDataPoints));
+
+            List<Sensor> sensors = session.selectList("dao.MangoMapper.getDataPointsForReportTemplate", reportTemplate);
+            reportTemplate.setIndividualSensors(new HashSet<Sensor>(sensors));
+
+            List<ChartConfiguration> chartConfigurations = getChartConfigsForReportTemplateId(reportTemplate.getId());
+            reportTemplate.setChartConfigurations(new HashSet<ChartConfiguration>(chartConfigurations));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return reportTemplate;
     }
 
 
@@ -450,11 +496,6 @@ public class MangoDAO {
                 chartConfig.setReportTemplateId(reportTemplate.getId());
                 insertChartConfiguration(chartConfig);
             }
-
-
-
-
-
             session.commit();
         }
         catch (Exception e) {
@@ -466,7 +507,6 @@ public class MangoDAO {
                 session.close();
             }
         }
-
     }
 
     public void insertChartConfiguration(ChartConfiguration chartConfig) {
@@ -492,8 +532,6 @@ public class MangoDAO {
 
             session.commit();
 
-
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -501,12 +539,6 @@ public class MangoDAO {
                 session.close();
         }
     }
-
-
-               //TODO
-//    public List<ReportTemplate> getAllReportTemplates() {
-//
-//    }
 
 
 

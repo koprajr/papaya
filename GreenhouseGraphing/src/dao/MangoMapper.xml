@@ -105,6 +105,10 @@
         values (#{reportTemplateId}, #{manualDataPointId})
     </insert>
 
+    <select id="selectReportTemplates" resultType="ReportTemplate">
+        select * from reportTemplates
+    </select>
+
 
 
 
