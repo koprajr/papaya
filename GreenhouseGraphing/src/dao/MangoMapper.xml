@@ -205,7 +205,7 @@
     <!-- Manual Data Points -->
 
     <select id="selectManualDataPointByName" parameterType="String" resultType="ManualDataPoint">
-        select * from manualDataPoints where title=#{title}
+        select * from manualDataPoints where name=#{name}
     </select>
 
     <select id="selectManualDataPoints" resultType="ManualDataPoint">
@@ -213,11 +213,11 @@
     </select>
 
     <insert id="insertManualDataPoint" parameterType="ManualDataPoint">
-        insert into manualDataPoints (title) values (#{title})
+        insert into manualDataPoints (name) values (#{name})
     </insert>
 
     <delete id="deleteManualDataPointByName" parameterType="java.lang.String">
-        delete from manualDataPoints where title=#{title}
+        delete from manualDataPoints where name=#{namee}
     </delete>
 
 
