@@ -2,19 +2,11 @@ package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
-import models.ManualDataType;
 import models.ReportListBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Jeff
- * Date: 11/13/13
- * Time: 10:36 AM
- * To change this template use File | Settings | File Templates.
- */
 public class ReportListAndManualDataAction extends ActionSupport {
     private MangoDAO mangoDAO;
     private ReportListBean reportListBean;
