@@ -11,6 +11,7 @@
         <typeAlias type="models.PointValue" alias="PointValue" />
         <typeAlias type="models.ManualData" alias="ManualData" />
         <typeAlias type="models.ManualDataType" alias="ManualDataType" />
+        <typeAlias type="models.Category" alias="Category"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

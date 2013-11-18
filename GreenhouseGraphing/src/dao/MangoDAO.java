@@ -1,12 +1,6 @@
 package dao;
 
-import models.PointValue;
-import models.Sensor;
-import models.SensorValueSelect;
-import models.User;
-import models.UserPriv;
-import models.ManualData;
-import models.ManualDataType;
+import models.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -219,5 +213,55 @@ public class MangoDAO {
 		}
 		return pointValues;
 	}
+
+
+    public void insertCategory(String categoryName) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertCategory", categoryName);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public void deleteCategory(String categoryName) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.delete("dao.MangoMapper.deleteCategoryByName", categoryName);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public List<Category> selectCategories() {
+        SqlSession session = null;
+        List<Category> categories = null;
+        try {
+            session = factory.openSession();
+            categories = session.selectList("dao.MangoMapper.selectCategories");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return categories;
+    }
+
+    public void categorizeDataPoint(int dataPointId) {}
+
+    public void categorizeManualDataPoint(int manualDataPointId) {}
+
+    public void categorizeReportTemplate(int reportTemplateId) {}
 	
 }

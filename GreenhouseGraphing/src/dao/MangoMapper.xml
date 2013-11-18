@@ -102,5 +102,25 @@
 	<select id="selectPointValues" parameterType="SensorValueSelect" resultType="PointValue">
 		select * from pointvalues where dataPointId=#{id} and ts &lt; #{endTime} and ts &gt; #{startTime}
 	</select>
+
+
+    <!-- Categories -->
+
+    <insert id="insertCategory" parameterType="java.lang.String">
+        insert into categories (name)
+        values #{name}
+    </insert>
+
+    <delete id="deleteCategoryByName" parameterType="java.lang.String">
+        delete from categories where name=#{name}
+    </delete>
+
+    <delete id="deleteCategoryById" parameterType="java.lang.Integer">
+        delete from categories where id=#{id}
+    </delete>
+
+    <select id="selectCategories" resultType="Category">
+        select * from categories
+    </select>
 	
 </mapper>
