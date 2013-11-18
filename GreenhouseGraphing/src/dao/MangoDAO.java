@@ -258,9 +258,12 @@ public class MangoDAO {
         return categories;
     }
 
-    public void categorizeDataPoint(int dataPointId) {}
+    public void categorizeDataPoint(Category category, Sensor dataPoint) {
 
-    public void categorizeManualDataPoint(int manualDataPointId) {}
+
+    }
+
+//    public void categorizeManualDataPoint(Category category, ManualDataPoint manualDataPoint) {}
 
     public void categorizeReportTemplate(int reportTemplateId) {}
 	
