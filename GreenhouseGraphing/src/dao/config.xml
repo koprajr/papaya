@@ -20,6 +20,9 @@
         <typeAlias type="models.ManualDataPoint" alias="ManualDataPoint"/>
         <typeAlias type="models.PointValue" alias="PointValue" />
         <typeAlias type="models.ChartConfiguration" alias="ChartConfiguration"/>
+        <typeAlias type="models.associations.categories.CategoryDataPointAssoc" alias="CategoryDataPointAssoc"/>
+        <typeAlias type="models.associations.categories.CategoryManualDataPointAssoc" alias="CategoryManualDataPointAssoc"/>
+        <typeAlias type="models.associations.categories.CategoryReportTemplateAssoc" alias="CategoryReportTemplateAssoc"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

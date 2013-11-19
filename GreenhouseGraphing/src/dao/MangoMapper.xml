@@ -273,5 +273,51 @@
     <select id="selectCategories" resultType="Category">
         select * from categories
     </select>
+
+   <!--DataPoint category-->
+    <insert id="categorizeDataPoint" parameterType="CategoryDataPointAssoc">
+        insert into categoryDataPointAssoc (categoryId, dataPointId)
+        values (#{categoryId}, #{dataPointId})
+    </insert>
+
+    <delete id="deleteCategoryDataPointAssoc" parameterType="CategoryDataPointAssoc">
+        delete from categoryDataPointAssoc where categoryDataPointAssoc.categoryId=#{categoryId} and categoryDataPointAssoc.dataPointId=#{dataPointId}
+    </delete>
+
+    <select id="selectDataPointsForCategory" parameterType="Category" resultType="Sensor">
+        select id, data from dataPoints join categoryDataPointAssoc on dataPoints.id = categoryDataPointAssoc.dataPointId
+        where categoryDataPointAssoc.categoryId=#{id}
+    </select>
+
+
+    <!--MDP category-->
+    <insert id="categorizeManualDataPoint" parameterType="CategoryManualDataPointAssoc">
+        insert into categoryManualDataPointAssoc (categoryId, manualDataPointId)
+        values (#{categoryId}, #{manualDataPointId})
+    </insert>
+    <delete id="deleteCategoryManualDataPointAssoc" parameterType="CategoryDataPointAssoc">
+        delete from categoryManualDataPointAssoc where categoryManualDataPointAssoc.categoryId=#{categoryId} and categoryManualDataPointAssoc.ManualDataPointId=#{manualDataPointId}
+    </delete>
+
+    <select id="selectManualDataPointsForCategory" parameterType="Category" resultType="ManualDataPoint">
+        select id, name from manualDataPoints join categoryManualDataPointAssoc on manualDataPoints.id=categoryManualDataPointAssoc.manualDataPointID
+        where categoryManualDataPointAssoc.categoryId=#{id}
+    </select>
+
+    <!-- ReportTemplate category-->
+    <insert id="categorizeReportTemplate" parameterType="CategoryReportTemplateAssoc">
+        insert into categoryReportTemplateAssoc (categoryId, reportTemplateId)
+        values (#{categoryId}, #{reportTemplateId})
+    </insert>
+
+    <delete id="deleteCategoryReportTemplateAssoc" parameterType="CategoryReportTemplateAssoc">
+        delete from categoryReportTemplateAssoc where categoryReportTemplateAssoc.categoryId=#{categoryId} and categoryReportTemplateAssoc.reportTemplateId=#{reportTemplateId}
+    </delete>
+
+    <select id="selectReportTemplatesForCategory" parameterType="Category" resultType="ReportTemplate">
+        select id, name, description from reportTemplates join categoryReportTemplateAssoc on reportTemplates.id=categoryReportTemplateAssoc.reportTemplateId
+         where categoryReportTemplateAssoc.categoryId=#{id}
+    </select>
+
 	
 </mapper>
