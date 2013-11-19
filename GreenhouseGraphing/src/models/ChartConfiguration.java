@@ -1,7 +1,6 @@
 package models;
 
 import java.util.List;
-import java.util.Set;
 
 public class ChartConfiguration {
 
@@ -12,8 +11,8 @@ public class ChartConfiguration {
     private String yLabal;
     private String chartType;
     private List<Sensor> sensors;
-    private Set<Equation> equations;
-    private Set<ManualData> manualData;
+    private List<Equation> equations;
+    private List<ManualDataPoint> manualData;
 
     public Integer getId() {
         return id;
@@ -71,19 +70,19 @@ public class ChartConfiguration {
         this.sensors = sensors;
     }
 
-    public Set<Equation> getEquations() {
+    public List<Equation> getEquations() {
         return equations;
     }
 
-    public void setEquations(Set<Equation> equations) {
+    public void setEquations(List<Equation> equations) {
         this.equations = equations;
     }
 
-    public Set<ManualData> getManualData() {
+    public List<ManualDataPoint> getManualData() {
         return manualData;
     }
 
-    public void setManualData(Set<ManualData> manualData) {
+    public void setManualData(List<ManualDataPoint> manualData) {
         this.manualData = manualData;
     }
 }

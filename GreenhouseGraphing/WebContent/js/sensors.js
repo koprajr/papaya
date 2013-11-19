@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$(".datepicker").datetimepicker();
 
 	var sensorName = $("#sensorName").text();
-	
+
 	var labels = $(".ts").map(function(i, el) {
 		return $(el).text();
 	});
@@ -14,13 +14,14 @@ $(document).ready(function() {
 
 	$('#container').highcharts({
 		chart : {
-			type : 'line'
+			type : 'line',
+			zoomType : 'xy'
 		},
 		title : {
 			text : "Chart"
 		},
 		xAxis : {
-//			categories : labels
+		// categories : labels
 		},
 		yAxis : {
 			title : {
