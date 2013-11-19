@@ -45,6 +45,11 @@
         <result property="id" column="id" />
     </resultMap>
 
+    <resultMap id="CategoryMap" type="Category">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+    </resultMap>
+
     <select id="selectLevel" parameterType="User" resultType="UserPriv">
         select * from userprivileges where userId=#{id}
     </select>
@@ -87,6 +92,11 @@
         select * from manualdatapoints where name=#{name}
     </select>
 
+    <insert id="insertManualDataType" parameterType="ManualDataType">
+        insert into manualdatapoints (name)
+        values (#{name})
+    </insert>
+
     <select id="selectManualDataTypes" resultType="String">
         select name from manualdatapoints
     </select>
@@ -102,5 +112,35 @@
 	<select id="selectPointValues" parameterType="SensorValueSelect" resultType="PointValue">
 		select * from pointvalues where dataPointId=#{id} and ts &lt; #{endTime} and ts &gt; #{startTime}
 	</select>
+
+    <select id="selectCategories" resultType="String">
+        select name from categories
+    </select>
+
+    <select id="selectCategory" resultType="Category" parameterType="Category">
+        select * from categories where name=#{name}
+    </select>
+
+    <select id="selectReportTemplate" resultType="ReportTemplate" parameterType="ReportTemplate">
+        select * from reporttemplates where name=#{name}
+    </select>
+
+    <insert id="insertCategoryManualData" parameterType="CategoryHelper">
+        insert into categorymanualdatapointassoc (categoryid, manualdatapointid)
+        values (#{categoryId}, #{dataId})
+    </insert>
+
+    <insert id="insertCategoryReportTemplate" parameterType="CategoryHelper">
+        insert into categoryreporttemplateassoc (categoryid, reporttemplateid)
+        values (#{categoryId}, #{dataId})
+    </insert>
+
+    <select id="selectCategoryManualData" parameterType="CategoryHelper" resultType="CategoryHelper">
+        select * from categorymanualdatapointassoc where categoryid=#{categoryId} AND manualdatapointid=#{dataId}
+    </select>
+
+    <select id="selectCategoryReportTemplate" parameterType="CategoryHelper" resultType="CategoryHelper">
+        select * from categoryreporttemplateassoc where categoryid=#{categoryId} AND reporttemplateid=#{dataId}
+    </select>
 	
 </mapper>

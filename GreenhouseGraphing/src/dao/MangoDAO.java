@@ -1,12 +1,6 @@
 package dao;
 
-import models.PointValue;
-import models.Sensor;
-import models.SensorValueSelect;
-import models.User;
-import models.UserPriv;
-import models.ManualData;
-import models.ManualDataType;
+import models.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -150,6 +144,19 @@ public class MangoDAO {
         }
     }
 
+    public void insertManualDataType(ManualDataType manualDataType) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertManualDataType", manualDataType);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
     public ManualDataType selectManualDataType(ManualDataType manualDataType) {
         SqlSession session = null;
         ManualDataType tableManualDataType = null;
@@ -219,5 +226,104 @@ public class MangoDAO {
 		}
 		return pointValues;
 	}
-	
+
+    public List<String> selectCategories() {
+        SqlSession session = null;
+        List<String> categories = null;
+        try {
+            session = factory.openSession();
+            categories = session.selectList("dao.MangoMapper.selectCategories");
+        } finally {
+            if (session != null){
+                session.close();
+            }
+        }
+        return categories;
+    }
+
+    public Category selectCategory(Category category) {
+        SqlSession session = null;
+        Category categoryFromTable = null;
+        try {
+            session = factory.openSession();
+            categoryFromTable = session.selectOne("dao.MangoMapper.selectCategory", category);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return categoryFromTable;
+    }
+
+    public ReportTemplate selectReportTemplate(ReportTemplate reportTemplate) {
+        SqlSession session = null;
+        ReportTemplate reportTemplateFromTable = null;
+        try {
+            session = factory.openSession();
+            reportTemplateFromTable = session.selectOne("dao.MangoMapper.selectReportTemplate", reportTemplate);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return reportTemplateFromTable;
+    }
+
+    public void insertCategoryManualData(CategoryHelper categoryHelper) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertCategoryManualData", categoryHelper);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    public void insertCategoryReportTemplate(CategoryHelper categoryHelper) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertCategoryReportTemplate", categoryHelper);
+            session.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    public CategoryHelper selectCategoryManualData(CategoryHelper categoryHelper) {
+        SqlSession session = null;
+        CategoryHelper tableCategoryHelper = null;
+        try {
+            session = factory.openSession();
+            tableCategoryHelper = session.selectOne("dao.MangoMapper.selectCategoryManualData", categoryHelper);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return tableCategoryHelper;
+
+    }
+
+    public CategoryHelper selectCategoryReportTemplate(CategoryHelper categoryHelper) {
+        SqlSession session = null;
+        CategoryHelper tableCategoryHelper = null;
+        try {
+            session = factory.openSession();
+            tableCategoryHelper = session.selectOne("dao.MangoMapper.selectCategoryReportTemplate", categoryHelper);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return tableCategoryHelper;
+
+    }
+
+
 }

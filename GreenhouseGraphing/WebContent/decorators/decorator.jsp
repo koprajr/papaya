@@ -51,6 +51,7 @@
                         <s:url action="logout" var="logoutAction" />
                         <s:url action="goTo_AccountSettings" var="AccountSettingsPage_Action" />
                         <s:url action="goTo_adminPrivileges" var="adminPrivileges_Action" />
+                        <s:url action="goTo_researcherPrivileges" var="researcherPrivileges_Action" />
                         <s:url action="newReportTemp" var="template"/>
                         <s:url action="sensorSelect" var="sensorSelect"/>
 
@@ -60,11 +61,14 @@
                             	<li><a href="${sensorSelect}">Graph Test</a></li>
                                 <li><a href="${template}">Create Report Template</a></li>
                                 <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
-                                
+                            </s:if>
+
+                            <s:if test='#session.level=="researcher"'>
+                                <li><a href="${researcherPrivileges_Action}">Researcher Privileges</a></li> <!-- *only for Researchers* -->
                             </s:if>
 
                             <li><a href="${AccountSettingsPage_Action}">Account Settings</a></li>
-                            <li class="last"><a href="${logoutAction}">Logout</a></li>
+                            <li class="last"><a data-toggle="modal" data-target="#logoutModal">Logout</a></li>
                         </ul>
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test='#session.level=="admin"'>
@@ -74,7 +78,7 @@
                             </s:if>
 
                             <li><a href="${AccountSettingsPage_Action}">Account Settings</a></li>
-                            <li><a href="${logoutAction}">Logout</a></li>
+                            <li><a data-toggle="modal" data-target="#logoutModal">Logout</a></li>
                         </ul>
                     </s:if>
                 </div><!-- /.collapse .nav-collapse -->
@@ -82,6 +86,24 @@
         </div><!-- /.container -->
     </div><!-- /.container-navbar -->
 </div><!-- /.navbar .navbar-inverse-->
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Are you sure you would like to Logout</h4>
+                </div>
+                <div class="modal-body">
+                    <span><b>Notice:</b> Any unsaved data will be lost.</span>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+                        <a href="${logoutAction}" type="submit" class="btn btn-primaryGreen">Continue to Logout <span class="glyphicon glyphicon-arrow-right"></a>
+                    </div>
+                </div><!-- /.modal-body -->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 <d:body />
 
