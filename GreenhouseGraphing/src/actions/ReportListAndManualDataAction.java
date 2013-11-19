@@ -1,8 +1,10 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+
 import dao.MangoDAO;
 import models.ReportListBean;
+import models.ReportTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,17 +13,20 @@ public class ReportListAndManualDataAction extends ActionSupport {
     private MangoDAO mangoDAO;
     private ReportListBean reportListBean;
     private List<String> manualDataTypes;
-    private List<String> reportSystemList;
+    private List<ReportTemplate> reportTemplates;
 
     public ReportListAndManualDataAction() {
         mangoDAO = new MangoDAO();
         manualDataTypes = mangoDAO.selectManualDataTypes();
-        reportSystemList = new ArrayList<String>();
-        reportSystemList.add("dog");
-        reportSystemList.add("cat");
-        reportSystemList.add("monkey");
-        reportSystemList.add("bird");
-        reportSystemList.add("bear");
+        
+        reportTemplates = mangoDAO.getAllReportTemplates();
+        
+//        reportSystemList = new ArrayList<String>();
+//        reportSystemList.add("dog");
+//        reportSystemList.add("cat");
+//        reportSystemList.add("monkey");
+//        reportSystemList.add("bird");
+//        reportSystemList.add("bear");
     }
 
     public String execute() {
@@ -44,11 +49,12 @@ public class ReportListAndManualDataAction extends ActionSupport {
         this.reportListBean = reportListBean;
     }
 
-    public List<String> getReportSystemList() {
-        return reportSystemList;
-    }
+	public List<ReportTemplate> getReportTemplates() {
+		return reportTemplates;
+	}
 
-    public void setReportSystemList(List<String> reportSystemList) {
-        this.reportSystemList = reportSystemList;
-    }
+	public void setReportTemplates(List<ReportTemplate> reportTemplates) {
+		this.reportTemplates = reportTemplates;
+	}
+
 }

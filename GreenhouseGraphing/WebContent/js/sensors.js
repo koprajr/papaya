@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	$(".datepicker").datetimepicker();
+	
 
 	var sensorName = $("#sensorName").text();
 
