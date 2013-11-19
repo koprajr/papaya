@@ -556,10 +556,8 @@ public class MangoDAO {
         }
     }
 
+    // -- FOR TESTING ONLY.
 
-
-
-    //TODO: FOR TESTING ONLY.
     public void deleteAllReportTemplates() {
         SqlSession session = null;
         List<Sensor> sensors = null;
@@ -579,5 +577,4 @@ public class MangoDAO {
         }
 
     }
-	
 }

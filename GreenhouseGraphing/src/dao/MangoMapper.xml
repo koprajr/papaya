@@ -119,7 +119,7 @@
         <result property="reportTemplateId" column="reportTemplateId"/>
         <result property="name" column="title"/>
         <result property="xLabel" column="xAxis"/>
-        <result property="yLabal" column="yAxis"/>
+        <result property="yLabel" column="yAxis"/>
         <result property="chartType" column="type"/>
 
     </resultMap>
@@ -189,7 +189,7 @@
     <!-- Chart Configurations -->
     <insert id="insertChartConfiguration" parameterType="ChartConfiguration">
         insert into chartConfigurations (reportTemplateId, title, xAxis, yAxis, type)
-        values (#{reportTemplateId}, #{name}, #{xLabel}, #{yLabal}, #{chartType})
+        values (#{reportTemplateId}, #{name}, #{xLabel}, #{yLabel}, #{chartType})
     </insert>
 
     <select id="getSensorsForChartConfig" parameterType="java.lang.Integer" resultType="Sensor">

@@ -1,6 +1,7 @@
 package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+import dao.MangoDAO;
 import models.ChartConfiguration;
 import models.Equation;
 import models.ReportTemplate;
@@ -9,7 +10,7 @@ import models.Sensor;
 import java.util.Set;
 
 public class EditReportTemplateAction extends ActionSupport {
-    private ReportTemplate reportTemplate;
+    private ReportTemplate template;
     private Set<ChartConfiguration> chartConfigurations;
     private Set<Sensor> sensors;
     private Set<Equation> equations;
@@ -18,7 +19,8 @@ public class EditReportTemplateAction extends ActionSupport {
     @Override
     public String execute() throws Exception {
         // TODO: Implement the logic for this action.
-        return super.execute();
+        MangoDAO dao = new MangoDAO();
+        return SUCCESS;
     }
 
     public Set<Sensor> getSensors() {
