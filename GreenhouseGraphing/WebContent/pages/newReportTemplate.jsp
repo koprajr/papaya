@@ -21,6 +21,8 @@
                 <div class="col-xs-4">
                     <h4>Report Template Name</h4>
                     <input class="form-control" type="text" name="template.name" autofocus>
+                    <h4>Report Template Description</h4>
+                    <textarea class="form-control" name="template.description"></textarea>
                     <hr>
                     <h4>Individual Sensors</h4>
                     <div class="sensorList">

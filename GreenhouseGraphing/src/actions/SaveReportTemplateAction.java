@@ -22,6 +22,7 @@ public class SaveReportTemplateAction extends ActionSupport {
     public String execute() throws Exception {
         // - BEGIN TEST CODE
         System.out.println(template.getName());                   // - print name of template
+        System.out.println(template.getDescription());            // - print description of template
         System.out.println(Arrays.asList(sensorIds));             // - print all selected individual sensors
         System.out.println(Arrays.asList(configurationNames));    // - print all configuration chart names
         System.out.println(Arrays.asList(configurationTypes));    // - print all configuration chart types
