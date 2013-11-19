@@ -51,7 +51,7 @@
                         <s:url action="logout" var="logoutAction" />
                         <s:url action="goTo_AccountSettings" var="AccountSettingsPage_Action" />
                         <s:url action="goTo_adminPrivileges" var="adminPrivileges_Action" />
-                        <s:url action="newReportTemplate" var="template"/>
+                        <s:url action="newReportTemp" var="template"/>
                         <s:url action="sensorSelect" var="sensorSelect"/>
 
 
