@@ -21,7 +21,7 @@ public class SensorSelectAction {
 	private String start;
 	private String end;
 	
-	private int max = 50;
+	private int max = 50000;
 	
 	public String execute() {
 		MangoDAO dao = new MangoDAO();

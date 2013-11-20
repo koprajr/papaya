@@ -1,16 +1,16 @@
 package models;
 
 import java.util.List;
-import java.util.Set;
 
 public class ReportTemplate {
 
     private Integer id;
     private String name;
+    private String description;
     private List<Sensor> sensors;
-    private Set<Equation> equations;
-    private Set<ManualData> manualData;
-    private Set<ChartConfiguration> chartConfigurations;
+    private List<Equation> equations;
+    private List<ManualDataPoint> manualData;
+    private List<ChartConfiguration> chartConfigurations;
 
     public Integer getId() {
         return id;
@@ -36,27 +36,35 @@ public class ReportTemplate {
         this.sensors = sensors;
     }
 
-    public Set<Equation> getEquations() {
+    public List<Equation> getEquations() {
         return equations;
     }
 
-    public void setEquations(Set<Equation> equations) {
+    public void setEquations(List<Equation> equations) {
         this.equations = equations;
     }
 
-    public Set<ManualData> getManualData() {
+    public List<ManualDataPoint> getManualData() {
         return manualData;
     }
 
-    public void setManualData(Set<ManualData> manualData) {
+    public void setManualData(List<ManualDataPoint> manualData) {
         this.manualData = manualData;
     }
 
-    public Set<ChartConfiguration> getChartConfigurations() {
+    public List<ChartConfiguration> getChartConfigurations() {
         return chartConfigurations;
     }
 
-    public void setChartConfigurations(Set<ChartConfiguration> chartConfigurations) {
+    public void setChartConfigurations(List<ChartConfiguration> chartConfigurations) {
         this.chartConfigurations = chartConfigurations;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

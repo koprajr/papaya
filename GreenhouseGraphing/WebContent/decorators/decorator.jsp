@@ -54,11 +54,12 @@
                         <s:url action="goTo_researcherPrivileges" var="researcherPrivileges_Action" />
                         <s:url action="newReportTemp" var="template"/>
                         <s:url action="sensorSelect" var="sensorSelect"/>
+                        <s:url action="reportListAndManualData" var="reportListAndManualData"/>
 
 
                         <ul class="nav navbar-nav hidden-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test='#session.level=="admin"'>
-                            	<li><a href="${sensorSelect}">Graph Test</a></li>
+                            	<li><a href="${reportListAndManualData}">Run a Report</a></li>
                                 <li><a href="${template}">Create Report Template</a></li>
                                 <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
@@ -72,7 +73,7 @@
                         </ul>
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test='#session.level=="admin"'>
-                            	<li><a href="${sensorSelect}">Graph Test</a></li>
+                            	<li><a href="${reportListAndManualData}">Run a Report</a></li>
                                 <li><a href="${template}">Create Report Template</a></li>
                                 <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>

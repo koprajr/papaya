@@ -104,7 +104,7 @@
 			<result name="success">/pages/sensorSelect.jsp</result>
 		</action>
 		
-        <action name="newReportTemp2" class="actions.NewReportTemplateAction" method="execute">
+        <action name="newReportTemplate" class="actions.NewReportTemplateAction" method="execute">
             <result name="success">/pages/newReportTemplate.jsp</result>
         </action>
 
@@ -125,25 +125,9 @@
             <result name="success">/pages/success.jsp</result>
         </action>
 
-        <action name="AdminChangePassword" class="actions.AdminChangePassword" method="execute">
-            <result name="success">/pages/success.jsp</result>
-            <result name="invalid">/pages/error.jsp</result>
-        </action>
-
-        <action name="newManualDataType" class="actions.newManualDataType" method="execute">
-            <result name="success">/pages/success.jsp</result>
-            <result name="invalid">/pages/error.jsp</result>
-        </action>
-
-        <action name="goTo_addCategory" class="actions.loadAddCategory" method="execute">
-            <result name="success">/pages/addCategory.jsp</result>
-            <result name="invalid">/pages/generic.jsp</result>
-        </action>
-
-        <action name="addCategory" class="actions.addCategory" method="execute">
-            <result name="success">/pages/success.jsp</result>
-            <result name="invalid">/pages/error.jsp</result>
-        </action>
+		<action name="runReport" class="actions.RunReportAction" method="execute">
+			<result name="success">/pages/runReport.jsp</result>
+		</action>
 
 	</package>
 
