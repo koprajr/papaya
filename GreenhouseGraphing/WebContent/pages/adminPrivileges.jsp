@@ -19,8 +19,9 @@
             </div><!-- /.page-header-->
             <div class="row">
                 <div class="col-md-4">
-                    <a href="#"><img src="img/user-add.jpg" class="img-rounded"></a>
-                    <a href="#">Add Users</a>
+                    <s:url action="users" var="createUser" />
+                    <a href="${createUser}"><img src="img/user-add.jpg" class="img-rounded"></a>
+                    <a href="${createUser}">Add Users</a>
 
                 </div><!-- /.panel .panel-default-->
                 <div class="col-md-4">

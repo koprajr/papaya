@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<div class="container container-main">
 <div class="row">
 	<h2>Users</h2>
 	
@@ -52,4 +53,12 @@
 		</tbody>
 	</table>
 
+    <p>Bulk User Creation</p>
+
+    <s:form action="uploadAction" method="POST" enctype="multipart/form-data">
+        <s:file name="upload" size="40" ></s:file>
+        <s:submit cssClass="btn btn-primary"/>
+    </s:form>
+
+</div>
 </div>

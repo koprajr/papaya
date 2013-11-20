@@ -110,7 +110,7 @@ public class MangoDAO {
 			}
 		}
 	}
-	
+
 	public void createUser(User user){
 		SqlSession session = null;
 		try {
