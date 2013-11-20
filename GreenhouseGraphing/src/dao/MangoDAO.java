@@ -5,6 +5,9 @@ import models.associations.ChartConfigurationDataPointAssoc;
 import models.associations.ChartConfigurationManualDataPointAssoc;
 import models.associations.ReportTemplateDataPointAssoc;
 import models.associations.ReportTemplateManualDataPointAssoc;
+import models.associations.categories.CategoryDataPointAssoc;
+import models.associations.categories.CategoryManualDataPointAssoc;
+import models.associations.categories.CategoryReportTemplateAssoc;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,6 +16,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MangoDAO {
@@ -591,6 +595,184 @@ public class MangoDAO {
             }
         }
 
+    }
+
+
+    public void insertCategory(String categoryName) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertCategory", categoryName);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public void deleteCategory(String categoryName) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.delete("dao.MangoMapper.deleteCategoryByName", categoryName);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public List<Category> selectCategories() {
+        SqlSession session = null;
+        List<Category> categories = null;
+        try {
+            session = factory.openSession();
+            categories = session.selectList("dao.MangoMapper.selectCategories");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return categories;
+    }
+
+    public void categorizeDataPoint(Category category, Sensor dataPoint) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.categorizeDataPoint", new CategoryDataPointAssoc(category.getId(), dataPoint.getId()));
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public void categorizeManualDataPoint(Category category, ManualDataPoint manualDataPoint) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.categorizeManualDataPoint", new CategoryManualDataPointAssoc(category.getId(), manualDataPoint.getId()));
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public void categorizeReportTemplate(Category category, ReportTemplate reportTemplate) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.categorizeReportTemplate", new CategoryReportTemplateAssoc(category.getId(), reportTemplate.getId()));
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public void deleteCategoryDataPointAssoc(CategoryDataPointAssoc categoryDataPointAssoc) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.delete("dao.MangoMapper.deleteCategoryDataPointAssoc", categoryDataPointAssoc);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public void deleteCategoryManualDataPointAssoc(CategoryManualDataPointAssoc categoryManualDataPointAssoc) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.delete("dao.MangoMapper.deleteCategoryManualDataPointAssoc", categoryManualDataPointAssoc);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public void deleteCategoryReportTemplateAssoc(CategoryReportTemplateAssoc categoryReportTemplateAssoc) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.delete("dao.MangoMapper.deleteCategoryReportTemplateAssoc", categoryReportTemplateAssoc);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public List<Sensor> selectDataPointsForCategory(Category category) {
+        SqlSession session = null;
+        List<Sensor> sensors = null;
+        try {
+            session = factory.openSession();
+            sensors = session.selectList("dao.MangoMapper.selectDataPointsForCategory", category);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return sensors;
+    }
+
+    public List<ManualDataPoint> selectManualDataPointsForCategory(Category category) {
+        SqlSession session = null;
+        List<ManualDataPoint> mdps =  null;
+        try {
+            session = factory.openSession();
+            mdps = session.selectList("dao.MangoMapper.selectManualDataPointsForCategory", category);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return mdps;
+    }
+
+    public List<ReportTemplate> selectReportTemplatesForCategory(Category category) {
+        SqlSession session = null;
+        List<ReportTemplate> reports =  null;
+        List<ReportTemplate> filledInReports = null;
+        try {
+            session = factory.openSession();
+            reports = session.selectList("dao.MangoMapper.selectReportTemplatesForCategory", category);
+            filledInReports = new ArrayList<ReportTemplate>();
+            for (ReportTemplate reportTemplate : reports) {
+                filledInReports.add(fillInReportTemplate(reportTemplate));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return filledInReports;
     }
 	
 
