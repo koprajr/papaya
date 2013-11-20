@@ -47,7 +47,7 @@
                 <div class="col-md-4" style="margin-bottom:30px;">
                     <s:url action="goTo_addCategory" var="addCategory_Action" />
 
-                    <!--<a href="${addCategory_Action}"><img src="img/manualData-types.jpg" class="img-rounded"></a>-->
+                    <a href="${addCategory_Action}"><img src="img/addCategorytoData.jpg" class="img-rounded"></a>
                     <a href="${addCategory_Action}">Add Category to Data</a>
 
                 </div><!-- /.panel .panel-default-->
