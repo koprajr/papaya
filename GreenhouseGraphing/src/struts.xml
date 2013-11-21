@@ -89,10 +89,6 @@
 			<result name="success">/pages/sensorSelect.jsp</result>
 		</action>
 		
-        <action name="newReportTemplate" class="actions.NewReportTemplateAction" method="execute">
-            <result name="success">/pages/newReportTemplate.jsp</result>
-        </action>
-
         <action name="reportListAndManualData" class="actions.ReportListAndManualDataAction" method="execute">
             <result name="success">/pages/reportList.jsp</result>
         </action>
@@ -102,8 +98,19 @@
             <result name="invalid">/pages/error.jsp</result>
         </action>
 
+        <action name="newReportTemplate" class="actions.NewReportTemplateAction" method="execute">
+            <result name="success">/pages/newReportTemplate.jsp</result>
+        </action>
+
+        <!--
+            TODO: Redirect to a proper view or action.
+        -->
         <action name="saveReportTemplate" class="actions.SaveReportTemplateAction" method="execute">
             <result name="success">/pages/success.jsp</result>
+        </action>
+
+        <action name="editReportTemplate" class="actions.EditReportTemplateAction" method="execute">
+            <result name="success">/pages/editReportTemplate.jsp</result>
         </action>
 
 	</package>

@@ -7,6 +7,7 @@ import models.ReportTemplate;
 import models.Sensor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SaveReportTemplateAction extends ActionSupport {
@@ -16,7 +17,7 @@ public class SaveReportTemplateAction extends ActionSupport {
     private List<String> configurationTypes;
     private List<String> configurationXLabels;
     private List<String> configurationYLabels;
-    private List<List<Integer>> chartSensorIds;
+    private List<List<String>> chartSensorIds;
 
     @Override
     public String execute() throws Exception {
@@ -25,8 +26,10 @@ public class SaveReportTemplateAction extends ActionSupport {
 
         // -- Associate the selected individual sensors with the template.
         List<Sensor> individualSensors = new ArrayList<Sensor>();
-        for (Integer id : sensorIds) {
-            individualSensors.add(dao.getSensor(id));
+        if (sensorIds != null) {
+            for (Integer id : sensorIds) {
+                individualSensors.add(dao.getSensor(id));
+            }
         }
         template.setSensors(individualSensors);
 
@@ -40,8 +43,11 @@ public class SaveReportTemplateAction extends ActionSupport {
             cc.setyLabel(configurationYLabels.get(i));
             // -- Associate the selected sensors with the associated chart configuration.
             List<Sensor> chartSensors = new ArrayList<Sensor>();
-            for (Integer id : chartSensorIds.get(0)) {
-                chartSensors.add(dao.getSensor(id));
+            System.out.println(Arrays.asList(chartSensorIds.get(i)));
+            if (chartSensorIds != null) {
+                for (String id : chartSensorIds.get(i)) {
+                    chartSensors.add(dao.getSensor(Integer.parseInt(id)));
+                }
             }
             cc.setSensors(chartSensors);
             chartConfigurations.add(cc);
@@ -102,11 +108,11 @@ public class SaveReportTemplateAction extends ActionSupport {
         this.configurationYLabels = configurationYLabels;
     }
 
-    public List<List<Integer>> getChartSensorIds() {
+    public List<List<String>> getChartSensorIds() {
         return chartSensorIds;
     }
 
-    public void setChartSensorIds(List<List<Integer>> chartSensorIds) {
+    public void setChartSensorIds(List<List<String>> chartSensorIds) {
         this.chartSensorIds = chartSensorIds;
     }
 }
