@@ -280,7 +280,7 @@
         delete from categories where id=#{id}
     </delete>
 
-    <select id="selectCategories" resultType="Category">
+    <select id="selectCategories2" resultType="Category">
         select * from categories
     </select>
 
@@ -311,6 +311,11 @@
 
     <select id="selectManualDataPointsForCategory" parameterType="Category" resultType="ManualDataPoint">
         select id, name from manualDataPoints join categoryManualDataPointAssoc on manualDataPoints.id=categoryManualDataPointAssoc.manualDataPointID
+        where categoryManualDataPointAssoc.categoryId=#{id}
+    </select>
+
+    <select id="selectManualDataPointTypesForCategory" parameterType="Category" resultType="String">
+        select name from manualDataPoints join categoryManualDataPointAssoc on manualDataPoints.id=categoryManualDataPointAssoc.manualDataPointID
         where categoryManualDataPointAssoc.categoryId=#{id}
     </select>
 
