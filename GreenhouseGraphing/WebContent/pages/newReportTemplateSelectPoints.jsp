@@ -17,7 +17,8 @@
 <div class="container-breadcrumb">
     <div class="container">
         <ol class="breadcrumb "> <!--add class "hide" to get rid of breadcrumbs-->
-            <li><a href="#">Home</a></li>
+            <s:url action="index" var="homeUrl"/>
+            <li><a href="${homeUrl}">Home</a></li>
             <li class="active">Create Report Template</li>
         </ol>
     </div>
@@ -28,7 +29,9 @@
 <!--MAIN CONTENT AREA-->
 <div class="container container-main">
 <div class="row row-offcanvas row-offcanvas-right">
-<form role="form" action="saveReportTemplate" class="reportTempCreation1Form" method="post" placeholder="">
+
+<form role="form" action="newReportTemplate.action" class="reportTempCreation1Form" method="post" placeholder="">
+
 <div class="col-sm-8">
 <div class="page-header reportTempCreation">
     <h2>Create New Report Template</h2>
@@ -157,6 +160,58 @@
     <!-- /.col-xs-12 .col-sm-12-->
 </div>
 <!-- /.row-->
+
+<div id="digesterList_breadcrumbNav" style="display:none;" class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="container-breadcrumb2">
+            <div class="container" style="width:100%;">
+                <ol class="breadcrumb"> <!--add class "hide" to get rid of breadcrumbs-->
+                    <li><a onclick="goTo_topLevel();">Top Level</a></li>
+                    <li><a onclick="goTo_digester();">Digester</a></li>
+                    <li class="active">List of Sensors</li>
+                </ol>
+            </div>
+            <!-- /.container-->
+        </div>
+        <!-- /.container-breadcrumb-->
+    </div>
+    <!-- /.col-xs-12 .col-sm-12-->
+</div>
+<!-- /.row-->
+
+<div id="energyCabin_breadcrumbNav" style="display:none;" class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="container-breadcrumb2">
+            <div class="container" style="width:100%;">
+                <ol class="breadcrumb"> <!--add class "hide" to get rid of breadcrumbs-->
+                    <li><a onclick="goTo_topLevel();">Top Level</a></li>
+                    <li class="active">Energy Cabin</li>
+                </ol>
+            </div>
+            <!-- /.container-->
+        </div>
+        <!-- /.container-breadcrumb-->
+    </div>
+    <!-- /.col-xs-12 .col-sm-12-->
+</div>
+<!-- /.row-->
+
+<div id="overallSystem_breadcrumbNav" style="display:none;" class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="container-breadcrumb2">
+            <div class="container" style="width:100%;">
+                <ol class="breadcrumb"> <!--add class "hide" to get rid of breadcrumbs-->
+                    <li><a onclick="goTo_topLevel();">Top Level</a></li>
+                    <li class="active">Overall System</li>
+                </ol>
+            </div>
+            <!-- /.container-->
+        </div>
+        <!-- /.container-breadcrumb-->
+    </div>
+    <!-- /.col-xs-12 .col-sm-12-->
+</div>
+<!-- /.row-->
 <!-- ---------------------------------------------------------------------------------------- -->
 
 <!-- MAIN IMAGE -->
@@ -168,13 +223,13 @@
                 <area onclick="goTo_greenhouse();" shape="polygon"
                       coords="34, 240, 35, 193, 124, 161, 154, 162, 235, 194, 235, 243, 34, 243">
                 <!--Greenhouse-->
-                <area href="#" shape="polygon"
+                <area onclick="goTo_energyCabin();" shape="polygon"
                       coords="262, 171, 282, 109, 277, 89, 305, 75, 393, 75, 427, 98, 427, 175, 262, 177">
                 <!--Energy Cabin-->
                 <area onclick="goTo_digester();" shape="polygon"
                       coords="308, 306, 360, 292, 389, 292, 424, 310, 425, 414, 363, 426, 307, 411">
                 <!--Digester-->
-                <area href="#" shape="rect" coords="217, 6, 382, 33">
+                <area onclick="goTo_overallSystem();" shape="rect" coords="217, 6, 382, 33">
                 <!--Overall System-->
             </map>
             <img class="mainSystemNavImage img-responsive hidden-md hidden-sm hidden-xs" style="width:720px;"
@@ -385,7 +440,95 @@
 <div id="digester_Image" class="row" style="display:none;">
     <div class="col-xs-12 col-sm-12">
         <div class="whiteBG">
-            <a href="#"><img class="mainSystemNavImage img-responsive" style="width:581px" src="img/digester.png"/></a>
+            <a onclick="goTo_digesterList();"><img class="mainSystemNavImage img-responsive" style="width:581px"
+                                                   src="img/digester.png"/></a>
+        </div>
+    </div>
+    <!-- /.col-xs-12 .col-sm-12-->
+</div>
+<!-- /.row .row-offcanvas .row-offcanvas-right-->
+
+<!-- ---------------------------------------------------------------------------------------- -->
+
+<!-- DIGESTER LIST -->
+<div id="digester_List" class="row" style="display:none;">
+    <div class="col-xs-12 col-sm-12">
+        <div class="whiteBG" style="padding: 20px;">
+            <s:iterator value="sensorsD" var="d">
+                <div class="reportEntry">
+                    <h4>${d.name}
+                        <div class="reportButtons">
+                            <a onclick="check('${d.id}', '${d.id}_input');" type="button"
+                               class="btn btn-primaryGreen reportList" data-toggle="modal" data-target="#myModal">Add
+                                to template
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div>
+                    </h4>
+                </div>
+                <!-- /.reportEntry-->
+            </s:iterator>
+            <s:if test="%{sensorsD.isEmpty()}">
+                <div class="reportEntry"><h4>Sorry there are no data sensors under this category!</h4></div>
+            </s:if>
+        </div>
+    </div>
+    <!-- /.col-xs-12 .col-sm-12-->
+</div>
+<!-- /.row .row-offcanvas .row-offcanvas-right-->
+
+<!-- ---------------------------------------------------------------------------------------- -->
+
+<!-- ENERGY CABIN LIST -->
+<div id="energyCabin_List" class="row" style="display:none;">
+    <div class="col-xs-12 col-sm-12">
+        <div class="whiteBG" style="padding: 20px;">
+            <s:iterator value="sensorsEC" var="ec">
+                <div class="reportEntry">
+                    <h4>${ec.name}
+                        <div class="reportButtons">
+                            <a onclick="check('${ec.id}', '${ec.id}_input');" type="button"
+                               class="btn btn-primaryGreen reportList" data-toggle="modal" data-target="#myModal">Add
+                                to template
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div>
+                    </h4>
+                </div>
+                <!-- /.reportEntry-->
+            </s:iterator>
+            <s:if test="%{sensorsEC.isEmpty()}">
+                <div class="reportEntry"><h4>Sorry there are no data sensors under this category!</h4></div>
+            </s:if>
+        </div>
+    </div>
+    <!-- /.col-xs-12 .col-sm-12-->
+</div>
+<!-- /.row .row-offcanvas .row-offcanvas-right-->
+
+<!-- ---------------------------------------------------------------------------------------- -->
+
+<!-- OVERALL SYSTEM LIST -->
+<div id="overallSystem_List" class="row" style="display:none;">
+    <div class="col-xs-12 col-sm-12">
+        <div class="whiteBG" style="padding: 20px;">
+            <s:iterator value="sensorsO" var="o">
+                <div class="reportEntry">
+                    <h4>${o.name}
+                        <div class="reportButtons">
+                            <a onclick="check('${o.id}', '${o.id}_input');" type="button"
+                               class="btn btn-primaryGreen reportList" data-toggle="modal" data-target="#myModal">Add
+                                to template
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div>
+                    </h4>
+                </div>
+                <!-- /.reportEntry-->
+            </s:iterator>
+            <s:if test="%{sensorsO.isEmpty()}">
+                <div class="reportEntry"><h4>Sorry there are no data sensors under this category!</h4></div>
+            </s:if>
         </div>
     </div>
     <!-- /.col-xs-12 .col-sm-12-->
@@ -434,7 +577,7 @@
 
 <div id="chart-configuration-area" class="col-sm-4 reportTempCreation2" style="border-top:0px;">
     <h4 class="borderBottom" style="margin-top:20px !important;">Report Template Name</h4>
-    <input class="form-control" type="text" name="template.name" autofocus>
+    <input class="form-control" type="text" name="bean.name" autofocus>
 
     <h4 class="borderBottom">Sensor / Data List
         <small> to include in the report</small>
@@ -442,10 +585,8 @@
     <div class="senorListnoHeight">
         <s:iterator value="sensors" var="sensor">
             <div id="${sensor.id}" class="checkbox" style="display:none;">
-                <label> <input id="${sensor.id}_input" type="checkbox" name="sensorIds"
-                               value="${sensor.id}"> ${sensor.name}</label>
-        <span onclick="uncheck('${sensor.id}', '${sensor.id}_input');"
-              class="glyphicon glyphicon-remove"></span>
+                <label> <input id="${sensor.id}_input" type="checkbox" name="sensorIds" value="${sensor.id}"> ${sensor.name}</label>
+                <span onclick="uncheck('${sensor.id}', '${sensor.id}_input');" class="glyphicon glyphicon-remove"></span>
             </div>
         </s:iterator>
         <s:iterator value="manualDataTypes" var="md">
@@ -494,7 +635,15 @@
         showHideDiv('greenhouse_breadcrumbNav', 1);
 
         showHideDiv('digester_Image', 1);
+        showHideDiv('digester_List', 1);
         showHideDiv('digester_breadcrumbNav', 1);
+        showHideDiv('digesterList_breadcrumbNav', 1);
+
+        showHideDiv('energyCabin_breadcrumbNav', 1);
+        showHideDiv('energyCabin_List', 1);
+
+        showHideDiv('overallSystem_breadcrumbNav', 1);
+        showHideDiv('overallSystem_List', 1);
 
         showHideDiv('greenhouseWater_breadcrumbNav', 1);
         showHideDiv('greenhouseLight_breadcrumbNav', 1);
@@ -560,12 +709,38 @@
     function goTo_digester() {
         showHideDiv('overall_Image', 1);
         showHideDiv('overall_breadcrumbNav', 1);
-
-        //showHideDiv('digesterList_breadcrumbNav', 1);
-        //showHideDiv('digesterList_List', 1);
+        showHideDiv('digesterList_breadcrumbNav', 1);
+        showHideDiv('digester_List', 1);
 
         showHideDiv('digester_Image', 0);
         showHideDiv('digester_breadcrumbNav', 0);
+        showHideDiv('manualData', 0);
+    }
+
+    function goTo_digesterList() {
+        showHideDiv('digester_Image', 1);
+        showHideDiv('digester_breadcrumbNav', 1);
+
+        showHideDiv('digesterList_breadcrumbNav', 0);
+        showHideDiv('digester_List', 0);
+        showHideDiv('manualData', 0);
+    }
+
+    function goTo_energyCabin() {
+        showHideDiv('overall_Image', 1);
+        showHideDiv('overall_breadcrumbNav', 1);
+
+        showHideDiv('energyCabin_List', 0);
+        showHideDiv('energyCabin_breadcrumbNav', 0);
+        showHideDiv('manualData', 0);
+    }
+
+    function goTo_overallSystem() {
+        showHideDiv('overall_Image', 1);
+        showHideDiv('overall_breadcrumbNav', 1);
+
+        showHideDiv('overallSystem_List', 0);
+        showHideDiv('overallSystem_breadcrumbNav', 0);
         showHideDiv('manualData', 0);
     }
 

@@ -16,6 +16,9 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport{
     private List<Sensor> sensorsGL;
     private List<Sensor> sensorsGT;
     private List<Sensor> sensorsGE;
+    private List<Sensor> sensorsD;
+    private List<Sensor> sensorsEC;
+    private List<Sensor> sensorsO;
 
 
     public NewReportTemplateSelectPointsAction() {
@@ -53,14 +56,38 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport{
         int categoryId4 = tableCategory4.getId();
         cat4.setId(categoryId4);
 
+        Category cat5 = new Category();
+        cat5.setName("digester");
+        Category tableCategory5 = dao.selectCategory(cat5);
+        if (tableCategory4 == null) return "invalid";
+        int categoryId5 = tableCategory5.getId();
+        cat5.setId(categoryId5);
+
+        Category cat6 = new Category();
+        cat6.setName("energyCabin");
+        Category tableCategory6 = dao.selectCategory(cat6);
+        if (tableCategory6 == null) return "invalid";
+        int categoryId6 = tableCategory6.getId();
+        cat6.setId(categoryId6);
+
+        Category cat7 = new Category();
+        cat7.setName("overallSystem");
+        Category tableCategory7 = dao.selectCategory(cat7);
+        if (tableCategory7 == null) return "invalid";
+        int categoryId7 = tableCategory7.getId();
+        cat7.setId(categoryId7);
+
         sensorsGW = dao.selectDataPointsForCategory(cat);
         sensorsGL = dao.selectDataPointsForCategory(cat2);
         sensorsGT = dao.selectDataPointsForCategory(cat3);
         sensorsGE = dao.selectDataPointsForCategory(cat4);
-
+        sensorsD = dao.selectDataPointsForCategory(cat5);
+        sensorsEC = dao.selectDataPointsForCategory(cat6);
+        sensorsO = dao.selectDataPointsForCategory(cat7);
 
         manualDataTypes = dao.selectManualDataTypes();
         sensors = dao.getSensors();
+
         return SUCCESS;
     }
 
@@ -110,5 +137,29 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport{
 
     public void setSensorsGW(List<Sensor> sensorsGW) {
         this.sensorsGW = sensorsGW;
+    }
+
+    public List<Sensor> getSensorsO() {
+        return sensorsO;
+    }
+
+    public void setSensorsO(List<Sensor> sensorsO) {
+        this.sensorsO = sensorsO;
+    }
+
+    public List<Sensor> getSensorsEC() {
+        return sensorsEC;
+    }
+
+    public void setSensorsEC(List<Sensor> sensorsEC) {
+        this.sensorsEC = sensorsEC;
+    }
+
+    public List<Sensor> getSensorsD() {
+        return sensorsD;
+    }
+
+    public void setSensorsD(List<Sensor> sensorsD) {
+        this.sensorsD = sensorsD;
     }
 }

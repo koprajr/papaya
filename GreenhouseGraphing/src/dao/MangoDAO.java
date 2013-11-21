@@ -349,6 +349,19 @@ public class MangoDAO {
         return pointFromDB;
     }
 
+    public ManualDataPoint selectManualDataPointById(Integer id) {
+        SqlSession session = null;
+        ManualDataPoint pointFromDB = null;
+        try {
+            session = factory.openSession();
+            pointFromDB =  session.selectOne("dao.MangoMapper.selectManualDataPointById");
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return pointFromDB;
+    }
+
 
 
 

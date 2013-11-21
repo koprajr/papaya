@@ -14,9 +14,12 @@
 <div class="container container-main">
     <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-12">
-
+            <s:url action="reportListAndManualData" var="digester">
+                <s:param name="category">digester</s:param>
+                <s:param name="name">Digester</s:param>
+            </s:url>
             <!--DIGESTER GRAPHIC-->
-            <a href="#"><img class="mainSystemNavImage img-responsive" style="width:581px"src="img/digester.png"/></a>
+            <a href="${digester}" onclick="gowait();"><img class="mainSystemNavImage img-responsive" style="width:581px"src="img/digester.png"/></a>
 
         </div><!-- /.col-xs-12 .col-sm-12-->
     </div><!-- /.row .row-offcanvas .row-offcanvas-right-->

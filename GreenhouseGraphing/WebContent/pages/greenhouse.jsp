@@ -21,15 +21,19 @@
 
             <s:url action="reportListAndManualData" var="greenhouseWater">
                 <s:param name="category">greenhouseWater</s:param>
+                <s:param name="name">Greenhouse Water</s:param>
             </s:url>
             <s:url action="reportListAndManualData" var="greenhouseLight">
                 <s:param name="category">greenhouseLighting</s:param>
+                <s:param name="name">Greenhouse Lighting</s:param>
             </s:url>
             <s:url action="reportListAndManualData" var="greenhouseTemp">
                 <s:param name="category">greenhouseTemperature</s:param>
+                <s:param name="name">Greenhouse Temperature</s:param>
             </s:url>
             <s:url action="reportListAndManualData" var="greenhouseElec">
                 <s:param name="category">greenhouseElectricity</s:param>
+                <s:param name="name">Greenhouse Electricity</s:param>
             </s:url>
 
             <!--GREENHOUSE GRAPHIC-->

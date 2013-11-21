@@ -18,9 +18,11 @@ public class ReportListAndManualDataAction extends ActionSupport {
     private List<String> manualDataTypes;
     private List<ReportTemplate> reportTemplates;
     private String category;
+    private String name;
 
     public ReportListAndManualDataAction() {
         mangoDAO = new MangoDAO();
+        reportListBean = new ReportListBean();
     }
 
     public String execute() {
@@ -33,6 +35,7 @@ public class ReportListAndManualDataAction extends ActionSupport {
 
         manualDataTypes = mangoDAO.selectManualDataPointTypesForCategory(testCategory);
         reportTemplates = mangoDAO.selectReportTemplatesForCategory(testCategory);
+        reportListBean.setSystem(name);
 
 //        manualDataTypes = mangoDAO.selectManualDataTypes();
 //        reportTemplates = mangoDAO.getAllReportTemplates();
@@ -46,6 +49,14 @@ public class ReportListAndManualDataAction extends ActionSupport {
 
     public void setCategory(final String category) {
         this.category = category;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
     }
 
     public List<String> getManualDataTypes() {

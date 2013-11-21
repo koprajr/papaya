@@ -247,6 +247,10 @@
         select * from manualDataPoints where name=#{name}
     </select>
 
+    <select id="selectManualDataPointById" parameterType="java.lang.Integer" resultType="ManualDataPoint">
+        select * from manualDataPoints where id=#{id}
+    </select>
+
     <select id="selectManualDataPoints" resultType="ManualDataPoint">
         select * from manualDataPoints
     </select>

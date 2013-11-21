@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <h4 class="borderBottom" style="margin-top:0px !important;">Report Template Name</h4>
-                                <input class="form-control" type="text" name="template.name" autofocus>
+                                <input class="form-control" type="text" name="bean.name" value="${bean.name}">
                                 <h4 class="borderBottom">Individual Graphs</h4>
                                 <div class="sensorList">
                                     <s:iterator value="sensors" var="sensor">
@@ -51,10 +51,10 @@
                                     </div>
                                 </s:iterator>
                                 <h4 class="borderBottom">Manual Data</h4>
-                                <s:iterator value="manualData" var="data">
+                                <s:iterator value="manualData" var="md">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="manualData" value="${data.name}"> ${data.name}
+                                            <input type="checkbox" name="manualIds" value="${md}"> ${md}
                                         </label>
                                     </div>
                                 </s:iterator>

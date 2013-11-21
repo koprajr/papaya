@@ -12,9 +12,13 @@
         <ol class="breadcrumb"> <!--add class "hide" to get rid of breadcrumbs-->
             <s:url action="index" var="homeUrl"/>
             <li><a href="${homeUrl}">Home</a></li>
-            <li><a onclick="goBack()">Environment</a></li>
+            <s:set name="n" value="name"/>
+            <s:if test='#n=="Greenhouse Water" || #n=="Greenhouse Lighting" || #n=="Greenhouse Temperature" || #n=="Greenhouse Electricity" || #n=="Digester"'>
+                    <li><a onclick="goBack()">Environment</a></li>
+            </s:if>
+
             <!--NEEDS TO BE DYNAMIC -->
-            <li class="active">EnvironmentName: Reports</li>
+            <li class="active">${reportListBean.system} Reports</li>
             <!--NEEDS TO BE DYNAMIC -->
         </ol>
     </div>
@@ -56,7 +60,7 @@
                         <!-- /.reportEntry-->
                     </s:iterator>
                     <s:if test="%{reportTemplates.isEmpty()}">
-                        <div class="reportEntry"><h4>Sorry there are no report templates under this category!</h4></div>
+                        <div class="reportEntry"><h4>Sorry there are no report templates under the category "${reportListBean.system}"!</h4></div>
                     </s:if>
 
                 </div>
@@ -65,7 +69,6 @@
             </div>
             <!-- /.row .reportList-->
             <s:if test="%{manualDataTypes.isEmpty()}">
-
             </s:if>
             <s:else>
                 <s:if test='#session.level=="admin" || #session.level=="researcher"'>
