@@ -43,7 +43,6 @@ public class SaveReportTemplateAction extends ActionSupport {
             cc.setyLabel(configurationYLabels.get(i));
             // -- Associate the selected sensors with the associated chart configuration.
             List<Sensor> chartSensors = new ArrayList<Sensor>();
-            System.out.println(Arrays.asList(chartSensorIds.get(i)));
             if (chartSensorIds != null) {
                 for (String id : chartSensorIds.get(i)) {
                     chartSensors.add(dao.getSensor(Integer.parseInt(id)));

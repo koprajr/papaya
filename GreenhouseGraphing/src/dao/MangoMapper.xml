@@ -16,16 +16,31 @@
 		<result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents" />
 	</resultMap>
 
-	<resultMap id="SensorMap" type="Sensor">
-		<result property="id" column="id"/>
-		<result property="data" column="data"/>
-	</resultMap>
-	
     <resultMap id="PrivilegeLevelMap" type="UserPriv">
         <result property="userId" column="userId" />
         <result property="level" column="level" />
     </resultMap>
-    
+
+    <resultMap id="ReportTemplateMap" type="ReportTemplate">
+        <result property="id" column="id"/>
+        <result property="name" column="title"/>
+        <result property="description" column="description"/>
+    </resultMap>
+
+    <resultMap id="ChartConfigurationMap" type="ChartConfiguration">
+        <result property="id" column="id"/>
+        <result property="reportTemplateId" column="reportTemplateId"/>
+        <result property="name" column="title"/>
+        <result property="xLabel" column="xAxis"/>
+        <result property="yLabel" column="yAxis"/>
+        <result property="chartType" column="type"/>
+    </resultMap>
+
+    <resultMap id="SensorMap" type="Sensor">
+		<result property="id" column="id"/>
+		<result property="data" column="data"/>
+	</resultMap>
+	
     <resultMap id="PointValueMap" type="PointValue">
         <result property="dataPointId" column="datapointid" />
         <result property="pointValue" column="pointValue" />
@@ -45,6 +60,10 @@
         <result property="id" column="id" />
     </resultMap>
 
+    <!--
+            USER PRIVILEGE QUERIES
+    -->
+
     <select id="selectLevel" parameterType="User" resultType="UserPriv">
         select * from userprivileges where userId=#{id}
     </select>
@@ -52,6 +71,11 @@
     <update id="updatePrivilege" parameterType="UserPriv">
         update userprivileges set level=#{level} where userId=#{id}
     </update>
+
+
+    <!--
+            USER QUERIES
+    -->
 
 	<select id="selectUsers" resultType="User">
 		select * from users
@@ -77,6 +101,10 @@
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
+
+    <!--
+            MANUAL DATA POINT QUERIES
+    -->
 
     <insert id="insertManualData" parameterType="ManualData">
         insert into manualdatapointvalues (manualdatapointid, userid, pointvalue, ts)
@@ -104,27 +132,9 @@
 	</select>
 
 
-
-
-    <!-- Report Templates -->
-
-    <resultMap id="ReportTemplateMap" type="ReportTemplate">
-        <result property="id" column="id"/>
-        <result property="name" column="title"/>
-        <result property="description" column="description"/>
-    </resultMap>
-
-    <resultMap id="ChartConfigurationMap" type="ChartConfiguration">
-        <result property="id" column="id"/>
-        <result property="reportTemplateId" column="reportTemplateId"/>
-        <result property="name" column="title"/>
-        <result property="xLabel" column="xAxis"/>
-        <result property="yLabel" column="yAxis"/>
-        <result property="chartType" column="type"/>
-
-    </resultMap>
-
-
+    <!--
+        REPORT TEMPLATE QUERIES
+    -->
 
     <insert id="createReportTemplate" parameterType="ReportTemplate">
         insert into reportTemplates (name, description)
@@ -150,17 +160,9 @@
         select * from reportTemplates
     </select>
 
-
-
-
-
     <select id="getReportTemplateByName" parameterType="ReportTemplate" resultType="ReportTemplate">
         select * from reportTemplates where name=#{name}
     </select>
-
-
-
-
 
     <select id="getDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="Sensor">
         select id, data from reporttemplatedatapointassoc join datapoints on datapoints.id=reporttemplatedatapointassoc.datapointid where reporttemplateid=#{id}
@@ -169,11 +171,6 @@
     <select id="getManualDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="ManualDataPoint">
       select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
     </select>
-
-
-
-
-
 
     <delete id="deleteAllreportTemplateManualDataPointAssoc">
         delete from reportTemplateManualDataPointAssoc
@@ -186,7 +183,10 @@
     </delete>
 
 
-    <!-- Chart Configurations -->
+    <!--
+        CHART CONFIGURATION QUERIES
+    -->
+
     <insert id="insertChartConfiguration" parameterType="ChartConfiguration">
         insert into chartConfigurations (reportTemplateId, title, xAxis, yAxis, type)
         values (#{reportTemplateId}, #{name}, #{xLabel}, #{yLabel}, #{chartType})
@@ -231,7 +231,9 @@
     </delete>
 
 
-    <!-- Manual Data Points -->
+    <!--
+        MANUAL DATA POINT QUERIES
+    -->
 
     <select id="selectManualDataPointByName" parameterType="String" resultType="ManualDataPoint">
         select * from manualDataPoints where name=#{name}
@@ -248,7 +250,6 @@
     <delete id="deleteManualDataPointByName" parameterType="java.lang.String">
         delete from manualDataPoints where name=#{namee}
     </delete>
-
 
     <delete id="deleteManualDataPointById" parameterType="java.lang.Integer">
         delete from manualDataPoints where id=#{id}

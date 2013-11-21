@@ -230,7 +230,8 @@ public class MangoDAO {
             session = factory.openSession();
             session.insert("dao.MangoMapper.insertManualDataPoint", manualDataPoint);
             session.commit();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         finally {
@@ -332,9 +333,6 @@ public class MangoDAO {
         return pointFromDB;
     }
 
-
-
-
     public ReportTemplate getReportTemplateByName(String name) {
         SqlSession session = null;
         try {
@@ -364,8 +362,6 @@ public class MangoDAO {
         }
         return null;
     }
-
-
 
     public List<ChartConfiguration> getChartConfigsForReportTemplateId(int reportTemplateId) {
         SqlSession session = null;
@@ -534,13 +530,17 @@ public class MangoDAO {
             chartConfig.setId( ((ChartConfiguration) session.selectOne("dao.MangoMapper.getChartConfigurationByName", chartConfig.getName())).getId());
 
             // Sensor Assocs
-            for (Sensor s : chartConfig.getSensors()) {
-                session.insert("dao.MangoMapper.insertChartConfigurationDataPointAssoc", new ChartConfigurationDataPointAssoc(chartConfig.getId(), s.getId()));
+            if (chartConfig.getChartType() != null) {
+                for (Sensor s : chartConfig.getSensors()) {
+                    session.insert("dao.MangoMapper.insertChartConfigurationDataPointAssoc", new ChartConfigurationDataPointAssoc(chartConfig.getId(), s.getId()));
+                }
             }
 
             // Manual Data Assocs
-            for (ManualDataPoint mdp : chartConfig.getManualData()) {
-                session.insert("dao.MangoMapper.insertChartConfigurationManualDataPointAssoc", new ChartConfigurationManualDataPointAssoc(chartConfig.getId(), mdp.getId()));
+            if (chartConfig.getManualData() != null) {
+                for (ManualDataPoint mdp : chartConfig.getManualData()) {
+                    session.insert("dao.MangoMapper.insertChartConfigurationManualDataPointAssoc", new ChartConfigurationManualDataPointAssoc(chartConfig.getId(), mdp.getId()));
+                }
             }
 
             // Equations

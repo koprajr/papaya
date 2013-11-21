@@ -1,40 +1,31 @@
 package models.associations;
 
-/**
- * Created with IntelliJ IDEA.
- * User: matthallman
- * Date: 11/17/13
- * Time: 3:54 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ChartConfigurationDataPointAssoc {
 
-    int chartConfigurationId;
-    int dataPointId;
-
-
+    private Integer chartConfigurationId;
+    private Integer dataPointId;
 
     public ChartConfigurationDataPointAssoc() {
     }
 
-    public ChartConfigurationDataPointAssoc(int chartConfigurationId, int dataPointId) {
+    public ChartConfigurationDataPointAssoc(Integer chartConfigurationId, Integer dataPointId) {
         this.chartConfigurationId = chartConfigurationId;
         this.dataPointId = dataPointId;
     }
 
-    public int getChartConfigurationId() {
+    public Integer getChartConfigurationId() {
         return chartConfigurationId;
     }
 
-    public void setChartConfigurationId(int chartConfigurationId) {
+    public void setChartConfigurationId(Integer chartConfigurationId) {
         this.chartConfigurationId = chartConfigurationId;
     }
 
-    public int getDataPointId() {
+    public Integer getDataPointId() {
         return dataPointId;
     }
 
-    public void setDataPointId(int dataPointId) {
+    public void setDataPointId(Integer dataPointId) {
         this.dataPointId = dataPointId;
     }
 }
