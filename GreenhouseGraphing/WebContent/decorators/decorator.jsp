@@ -20,10 +20,18 @@
 	<script type="text/javascript" src="js/chart.js"></script>
 	<script type="text/javascript" src="js/highcharts.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
-	
+    <script type="text/javascript">
+        function gowait() {
+            document.getElementById("waiting").style.display = "block";
+        }
+    </script>
 	<d:head />
 </head>
 <body>
+    <%--onclick="gowait();"--%>
+    <div id="waiting"
+         style="background-color: rgba(214, 214, 214, 0.5); z-index: 9999999999999; position: fixed; width: 100%; height: 100%; left: 0; top: 0; display: none;">
+    </div>
     <!--NAVIGATION BAR-->
     <div class="navbar navbar-inverse">
         <div class="container-navbar">
@@ -59,26 +67,26 @@
 
                         <ul class="nav navbar-nav hidden-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test='#session.level=="admin"'>
-                            	<li><a href="${reportListAndManualData}">Run a Report</a></li>
-                                <li><a href="${template}">Create Report Template</a></li>
-                                <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                            	<li><a onclick="gowait();" href="${reportListAndManualData}">Run a Report</a></li>
+                                <li><a onclick="gowait();" href="${template}">Create Report Template</a></li>
+                                <li><a onclick="gowait();" href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
 
                             <s:if test='#session.level=="researcher"'>
-                                <li><a href="${researcherPrivileges_Action}">Researcher Privileges</a></li> <!-- *only for Researchers* -->
+                                <li><a onclick="gowait();" href="${researcherPrivileges_Action}">Researcher Privileges</a></li> <!-- *only for Researchers* -->
                             </s:if>
 
-                            <li><a href="${AccountSettingsPage_Action}">Account Settings</a></li>
+                            <li><a onclick="gowait();" href="${AccountSettingsPage_Action}">Account Settings</a></li>
                             <li class="last"><a data-toggle="modal" data-target="#logoutModal">Logout</a></li>
                         </ul>
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test='#session.level=="admin"'>
-                            	<li><a href="${reportListAndManualData}">Run a Report</a></li>
-                                <li><a href="${template}">Create Report Template</a></li>
-                                <li><a href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
+                            	<li><a onclick="gowait();" href="${reportListAndManualData}">Run a Report</a></li>
+                                <li><a onclick="gowait();" href="${template}">Create Report Template</a></li>
+                                <li><a onclick="gowait();" href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>
 
-                            <li><a href="${AccountSettingsPage_Action}">Account Settings</a></li>
+                            <li><a onclick="gowait();" href="${AccountSettingsPage_Action}">Account Settings</a></li>
                             <li><a data-toggle="modal" data-target="#logoutModal">Logout</a></li>
                         </ul>
                     </s:if>
@@ -99,7 +107,7 @@
                     <span><b>Notice:</b> Any unsaved data will be lost.</span>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
-                        <a href="${logoutAction}" type="submit" class="btn btn-primaryGreen">Continue to Logout <span class="glyphicon glyphicon-arrow-right"></a>
+                        <a onclick="gowait();" href="${logoutAction}" type="submit" class="btn btn-primaryGreen">Continue to Logout <span class="glyphicon glyphicon-arrow-right"></a>
                     </div>
                 </div><!-- /.modal-body -->
             </div><!-- /.modal-content -->

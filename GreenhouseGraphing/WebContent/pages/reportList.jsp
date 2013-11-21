@@ -45,7 +45,7 @@
                         <div class="reportEntry">
                             <h4>${r.name}
                                 <div class="reportButtons">
-                                    <a href="${runReport}" type="button" class="btn btn-primaryGreen reportList">Run
+                                    <a href="${runReport}" onclick="gowait();"type="button" class="btn btn-primaryGreen reportList">Run
                                         Report <span class="glyphicon glyphicon-arrow-right"></span></a>
                                     <button type="button" class="btn btn-primary reportList">Edit Report <span
                                             class="glyphicon glyphicon-pencil"></span></button>
@@ -94,7 +94,7 @@
                                         <input type="text" style="margin-left:0px;" name="bean.quantity"
                                                class="form-control" id="value">
                                         <br>
-                                        <button type="submit" class="btn btn-primaryGreen manualDataSubmit">Submit <span
+                                        <button type="submit" onclick="gowait();" class="btn btn-primaryGreen manualDataSubmit">Submit <span
                                                 class="glyphicon glyphicon-arrow-right"/></button>
                                     </form>
 

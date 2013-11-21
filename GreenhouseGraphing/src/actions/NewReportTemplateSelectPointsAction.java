@@ -12,10 +12,10 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport{
     private MangoDAO dao;
     private List<String> manualDataTypes;
     private List<Sensor> sensors;
-    private List<Sensor> gW_sensors;
-    private List<Sensor> gL_sensors;
-    private List<Sensor> gT_sensors;
-    private List<Sensor> gE_sensors;
+    private List<Sensor> sensorsGW;
+    private List<Sensor> sensorsGL;
+    private List<Sensor> sensorsGT;
+    private List<Sensor> sensorsGE;
 
 
     public NewReportTemplateSelectPointsAction() {
@@ -25,8 +25,6 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport{
     @Override
     public String execute() throws Exception {
 
-        ///////////////////////////////////
-
         Category cat = new Category();
         cat.setName("greenhouseWater");
         Category tableCategory = dao.selectCategory(cat);
@@ -34,40 +32,32 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport{
         int categoryId = tableCategory.getId();
         cat.setId(categoryId);
 
-        gW_sensors = dao.selectDataPointsForCategory(cat);
-        System.out.println(gW_sensors);
+        Category cat2 = new Category();
+        cat2.setName("greenhouseLighting");
+        Category tableCategory2 = dao.selectCategory(cat2);
+        if (tableCategory2 == null) return "invalid";
+        int categoryId2 = tableCategory2.getId();
+        cat2.setId(categoryId2);
 
-        ///////////////////////////////////
+        Category cat3 = new Category();
+        cat3.setName("greenhouseTemperature");
+        Category tableCategory3 = dao.selectCategory(cat3);
+        if (tableCategory3 == null) return "invalid";
+        int categoryId3 = tableCategory3.getId();
+        cat3.setId(categoryId3);
 
-        cat.setName("greenhouseLighting");
-        tableCategory = dao.selectCategory(cat);
-        if (tableCategory == null) return "invalid";
-        categoryId = tableCategory.getId();
-        cat.setId(categoryId);
+        Category cat4 = new Category();
+        cat4.setName("greenhouseElectricity");
+        Category tableCategory4 = dao.selectCategory(cat4);
+        if (tableCategory4 == null) return "invalid";
+        int categoryId4 = tableCategory4.getId();
+        cat4.setId(categoryId4);
 
-        gL_sensors = dao.selectDataPointsForCategory(cat);
+        sensorsGW = dao.selectDataPointsForCategory(cat);
+        sensorsGL = dao.selectDataPointsForCategory(cat2);
+        sensorsGT = dao.selectDataPointsForCategory(cat3);
+        sensorsGE = dao.selectDataPointsForCategory(cat4);
 
-        ///////////////////////////////////
-
-        cat.setName("greenhouseTemperature");
-        tableCategory = dao.selectCategory(cat);
-        if (tableCategory == null) return "invalid";
-        categoryId = tableCategory.getId();
-        cat.setId(categoryId);
-
-        gT_sensors = dao.selectDataPointsForCategory(cat);
-
-        ///////////////////////////////////
-
-        cat.setName("greenhouseElectricity");
-        tableCategory = dao.selectCategory(cat);
-        if (tableCategory == null) return "invalid";
-        categoryId = tableCategory.getId();
-        cat.setId(categoryId);
-
-        gE_sensors = dao.selectDataPointsForCategory(cat);
-
-        ///////////////////////////////////
 
         manualDataTypes = dao.selectManualDataTypes();
         sensors = dao.getSensors();
@@ -90,37 +80,35 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport{
         this.sensors = sensors;
     }
 
-    public List<Sensor> getgE_sensors() {
-        return gE_sensors;
+    public List<Sensor> getSensorsGE() {
+        return sensorsGE;
     }
 
-    public void setgE_sensors(List<Sensor> gE_sensors) {
-        this.gE_sensors = gE_sensors;
+    public void setSensorsGE(List<Sensor> sensorsGE) {
+        this.sensorsGE = sensorsGE;
     }
 
-    public List<Sensor> getgT_sensors() {
-        return gT_sensors;
+    public List<Sensor> getSensorsGT() {
+        return sensorsGT;
     }
 
-    public void setgT_sensors(List<Sensor> gT_sensors) {
-        this.gT_sensors = gT_sensors;
+    public void setSensorsGT(List<Sensor> sensorsGT) {
+        this.sensorsGT = sensorsGT;
     }
 
-    public List<Sensor> getgL_sensors() {
-        return gL_sensors;
+    public List<Sensor> getSensorsGL() {
+        return sensorsGL;
     }
 
-    public void setgL_sensors(List<Sensor> gL_sensors) {
-        this.gL_sensors = gL_sensors;
+    public void setSensorsGL(List<Sensor> sensorsGL) {
+        this.sensorsGL = sensorsGL;
     }
 
-    public List<Sensor> getgW_sensors() {
-        return gW_sensors;
+    public List<Sensor> getSensorsGW() {
+        return sensorsGW;
     }
 
-    public void setgW_sensors(List<Sensor> gW_sensors) {
-        this.gW_sensors = gW_sensors;
+    public void setSensorsGW(List<Sensor> sensorsGW) {
+        this.sensorsGW = sensorsGW;
     }
-
-
 }

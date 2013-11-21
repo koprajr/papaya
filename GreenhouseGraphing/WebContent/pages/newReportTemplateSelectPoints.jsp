@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <head>
     <style type="text/css">
@@ -269,12 +269,11 @@
 <div id="greenhouseWater_List" class="row" style="display:none;">
     <div class="col-xs-12 col-sm-12">
         <div class="whiteBG" style="padding: 20px;">
-
-            <s:iterator value="gW_sensors" var="sensorW">
+            <s:iterator value="sensorsGW" var="w">
                 <div class="reportEntry">
-                    <h4>${sensorW.name}
+                    <h4>${w.name}
                         <div class="reportButtons">
-                            <a onclick="check('${sensorW.id}', '${sensorW.id}_input');" type="button"
+                            <a onclick="check('${w.id}', '${w.id}_input');" type="button"
                                class="btn btn-primaryGreen reportList" data-toggle="modal" data-target="#myModal">Add to
                                 template
                                 <span class="glyphicon glyphicon-plus"></span>
@@ -284,11 +283,9 @@
                 </div>
                 <!-- /.reportEntry-->
             </s:iterator>
-            <s:if test="%{gW_sensors.isEmpty()}">
+            <s:if test="%{sensorsGW.isEmpty()}">
                 <div class="reportEntry"><h4>Sorry there are no data sensors under this category!</h4></div>
             </s:if>
-
-
         </div>
     </div>
     <!-- /.col-xs-12 .col-sm-12-->
@@ -301,11 +298,11 @@
 <div id="greenhouseLight_List" class="row" style="display:none;">
     <div class="col-xs-12 col-sm-12">
         <div class="whiteBG" style="padding: 20px;">
-            <s:iterator value="gL_sensors" var="sensorL">
+            <s:iterator value="sensorsGL" var="l">
                 <div class="reportEntry">
-                    <h4>${sensorL.name}
+                    <h4>${l.name}
                         <div class="reportButtons">
-                            <a onclick="check('${sensorL.id}', '${sensorL.id}_input');" type="button"
+                            <a onclick="check('${l.id}', '${l.id}_input');" type="button"
                                class="btn btn-primaryGreen reportList" data-toggle="modal" data-target="#myModal">Add
                                 to template
                                 <span class="glyphicon glyphicon-plus"></span>
@@ -315,10 +312,9 @@
                 </div>
                 <!-- /.reportEntry-->
             </s:iterator>
-            <s:if test="%{gL_sensors.isEmpty()}">
+            <s:if test="%{sensorsGL.isEmpty()}">
                 <div class="reportEntry"><h4>Sorry there are no data sensors under this category!</h4></div>
             </s:if>
-
         </div>
     </div>
     <!-- /.col-xs-12 .col-sm-12-->
@@ -331,12 +327,11 @@
 <div id="greenhouseTemp_List" class="row" style="display:none;">
     <div class="col-xs-12 col-sm-12">
         <div class="whiteBG" style="padding: 20px;">
-
-            <s:iterator value="gT_sensors" var="sensorT">
+            <s:iterator value="sensorsGT" var="t">
                 <div class="reportEntry">
-                    <h4>${sensorT.name}
+                    <h4>${t.name}
                         <div class="reportButtons">
-                            <a onclick="check('${sensorT.id}', '${sensorT.id}_input');" type="button"
+                            <a onclick="check('${t.id}', '${t.id}_input');" type="button"
                                class="btn btn-primaryGreen reportList" data-toggle="modal" data-target="#myModal">Add
                                 to template
                                 <span class="glyphicon glyphicon-plus"></span>
@@ -346,10 +341,9 @@
                 </div>
                 <!-- /.reportEntry-->
             </s:iterator>
-            <s:if test="%{gT_sensors.isEmpty()}">
+            <s:if test="%{sensorsGT.isEmpty()}">
                 <div class="reportEntry"><h4>Sorry there are no data sensors under this category!</h4></div>
             </s:if>
-
         </div>
     </div>
     <!-- /.col-xs-12 .col-sm-12-->
@@ -362,12 +356,11 @@
 <div id="greenhouseElec_List" class="row" style="display:none;">
     <div class="col-xs-12 col-sm-12">
         <div class="whiteBG" style="padding: 20px;">
-
-            <s:iterator value="gE_sensors" var="sensorE">
+            <s:iterator value="sensorsGE" var="e">
                 <div class="reportEntry">
-                    <h4>${sensorE.name}
+                    <h4>${e.name}
                         <div class="reportButtons">
-                            <a onclick="check('${sensorE.id}', '${sensorE.id}_input');" type="button"
+                            <a onclick="check('${e.id}', '${e.id}_input');" type="button"
                                class="btn btn-primaryGreen reportList" data-toggle="modal" data-target="#myModal">Add
                                 to template
                                 <span class="glyphicon glyphicon-plus"></span>
@@ -377,10 +370,9 @@
                 </div>
                 <!-- /.reportEntry-->
             </s:iterator>
-            <s:if test="%{gE_sensors.isEmpty()}">
+            <s:if test="%{sensorsGE.isEmpty()}">
                 <div class="reportEntry"><h4>Sorry there are no data sensors under this category!</h4></div>
             </s:if>
-
         </div>
     </div>
     <!-- /.col-xs-12 .col-sm-12-->
@@ -414,7 +406,6 @@
                 </div>
                 <!-- /.panel-heading-->
                 <div class="panel-body">
-
                     <s:iterator value="manualDataTypes" var="md">
                         <div class="reportEntry">
                             <h4>${md}
@@ -428,7 +419,6 @@
                         </div>
                         <!-- /.reportEntry-->
                     </s:iterator>
-
                 </div>
                 <!-- /.panel .panel-default-->
             </div>
@@ -454,8 +444,8 @@
             <div id="${sensor.id}" class="checkbox" style="display:none;">
                 <label> <input id="${sensor.id}_input" type="checkbox" name="sensorIds"
                                value="${sensor.id}"> ${sensor.name}</label>
-                <span onclick="uncheck('${sensor.id}', '${sensor.id}_input');"
-                      class="glyphicon glyphicon-remove"></span>
+        <span onclick="uncheck('${sensor.id}', '${sensor.id}_input');"
+              class="glyphicon glyphicon-remove"></span>
             </div>
         </s:iterator>
         <s:iterator value="manualDataTypes" var="md">

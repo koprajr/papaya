@@ -34,29 +34,29 @@
 
             <!--GREENHOUSE GRAPHIC-->
             <map name="greenhouseMap">
-                <area href="${greenhouseWater}" shape="rect" coords="26, 59, 141, 97">
+                <area href="${greenhouseWater}" onclick="gowait();" shape="rect" coords="26, 59, 141, 97">
                 <!-- Water System Room 1 -->
-                <area href="${greenhouseLight}" shape="rect" coords="26, 102, 141, 140">
+                <area href="${greenhouseLight}" onclick="gowait();" shape="rect" coords="26, 102, 141, 140">
                 <!-- Lighting System Room 1 -->
-                <area href="${greenhouseTemp}" shape="rect" coords="25, 145, 139, 179">
+                <area href="${greenhouseTemp}" onclick="gowait();" shape="rect" coords="25, 145, 139, 179">
                 <!-- Temperature Control Room 1 -->
-                <area href="${greenhouseElec}" shape="rect" coords="24, 184, 140, 220">
+                <area href="${greenhouseElec}" onclick="gowait();" shape="rect" coords="24, 184, 140, 220">
                 <!-- Electricity Room 1 -->
-                <area href="${greenhouseWater}" shape="rect" coords="213, 61, 324, 96">
+                <area href="${greenhouseWater}" onclick="gowait();" shape="rect" coords="213, 61, 324, 96">
                 <!-- Water System Room 2 -->
-                <area href="${greenhouseLight}" shape="rect" coords="213, 103, 324, 139">
+                <area href="${greenhouseLight}" onclick="gowait();" shape="rect" coords="213, 103, 324, 139">
                 <!-- Lighting System Room 2 -->
-                <area href="${greenhouseTemp}" shape="rect" coords="213, 144, 324, 180">
+                <area href="${greenhouseTemp}" onclick="gowait();" shape="rect" coords="213, 144, 324, 180">
                 <!-- Temperature Control Room 2 -->
-                <area href="${greenhouseWater}" shape="rect" coords="395, 60, 507, 95">
+                <area href="${greenhouseWater}" onclick="gowait();" shape="rect" coords="395, 60, 507, 95">
                 <!-- Water System Room 3 -->
-                <area href="${greenhouseLight}" shape="rect" coords="395, 102, 508, 140">
+                <area href="${greenhouseLight}" onclick="gowait();" shape="rect" coords="395, 102, 508, 140">
                 <!-- Lighting System Room 3 -->
-                <area href="${greenhouseTemp}" shape="rect" coords="395, 144, 508, 179">
+                <area href="${greenhouseTemp}" onclick="gowait();" shape="rect" coords="395, 144, 508, 179">
                 <!-- Temperature Control Room 3 -->
-                <area href="${greenhouseElec}" shape="rect" coords="396, 185, 507, 221">
+                <area href="${greenhouseElec}" onclick="gowait();" shape="rect" coords="396, 185, 507, 221">
                 <!-- Electricity Room 3 -->
-                <area href="${greenhouseElec}" shape="rect" coords="432, 331, 541, 367">
+                <area href="${greenhouseElec}" onclick="gowait();" shape="rect" coords="432, 331, 541, 367">
                 <!-- Electricity Total -->
             </map>
 
@@ -65,11 +65,15 @@
 
             <div class="row visible-xs">
                 <div class="col-md-4 col-md-offset-4">
-                    <a href="${greenhouseWater}" type="button" class="btn btn-lg btn-primaryGreen btn-block">Water
+                    <a href="${greenhouseWater}" onclick="gowait();" type="button"
+                       class="btn btn-lg btn-primaryGreen btn-block">Water
                         System</a>
-                    <a href="${greenhouseLight}" type="button" class="btn btn-lg btn-primaryGreen btn-block">Lighting System</a>
-                    <a href="${greenhouseTemp}" type="button" class="btn btn-lg btn-primaryGreen btn-block">Temperature Control</a>
-                    <a href="${greenhouseElec}" type="button" class="btn btn-lg btn-primaryGreen btn-block">Electricity</a>
+                    <a href="${greenhouseLight}" onclick="gowait();" type="button"
+                       class="btn btn-lg btn-primaryGreen btn-block">Lighting System</a>
+                    <a href="${greenhouseTemp}" onclick="gowait();" type="button"
+                       class="btn btn-lg btn-primaryGreen btn-block">Temperature Control</a>
+                    <a href="${greenhouseElec}" onclick="gowait();" type="button"
+                       class="btn btn-lg btn-primaryGreen btn-block">Electricity</a>
                     <br>
                 </div>
                 <!-- /.col-md-4 .col-md-offset-4-->
