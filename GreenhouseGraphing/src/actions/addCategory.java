@@ -30,7 +30,7 @@ public class addCategory extends ActionSupport {
         switch (bean.getType()) {
             case 'M':
                 ManualDataType manualDataType = new ManualDataType();
-                manualDataType.setName(bean.getItem());
+                manualDataType.setName(bean.getItem().toUpperCase());
                 ManualDataType tableManualDataType = mangoDAO.selectManualDataType(manualDataType);
 
                 if (tableManualDataType == null) return "invalid";

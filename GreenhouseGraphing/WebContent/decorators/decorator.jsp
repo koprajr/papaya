@@ -107,7 +107,7 @@
                     <span><b>Notice:</b> Any unsaved data will be lost.</span>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
-                        <a onclick="gowait();" href="${logoutAction}" type="submit" class="btn btn-primaryGreen">Continue to Logout <span class="glyphicon glyphicon-arrow-right"></a>
+                        <a onclick="gowait();" href="${logoutAction}" type="submit" class="btn btn-primaryGreen">Continue to Logout <span class="glyphicon glyphicon-arrow-right"/></a>
                     </div>
                 </div><!-- /.modal-body -->
             </div><!-- /.modal-content -->

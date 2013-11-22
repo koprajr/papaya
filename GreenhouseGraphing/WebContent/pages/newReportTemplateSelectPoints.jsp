@@ -576,7 +576,7 @@
 <!-- /.col-xs-8 .col-sm-8-->
 
 <div id="chart-configuration-area" class="col-sm-4 reportTempCreation2" style="border-top:0px;">
-    <h4 class="borderBottom">Sensor / Data List
+    <h4 class="borderBottom" style="margin-top: 15px !important;">Sensor / Data List
         <small> to include in the report</small>
     </h4>
     <div class="senorListnoHeight">

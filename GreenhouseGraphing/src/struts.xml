@@ -100,7 +100,17 @@
             <result name="invalid">/pages/error.jsp</result>
         </action>
 
+        <action name="newManualDataType" class="actions.newManualDataType" method="execute">
+            <result name="success">/pages/success.jsp</result>
+            <result name="invalid">/pages/error.jsp</result>
+        </action>
+
         <action name="userPrivilegeChange" class="actions.PrivilegeChangeAction" method="execute">
+            <result name="success">/pages/success.jsp</result>
+            <result name="invalid">/pages/error.jsp</result>
+        </action>
+
+        <action name="AdminChangePassword" class="actions.AdminChangePassword" method="execute">
             <result name="success">/pages/success.jsp</result>
             <result name="invalid">/pages/error.jsp</result>
         </action>
@@ -114,6 +124,11 @@
         </action>
 
         <action name="insertManualData" class="actions.InsertManualDataAction" method="execute">
+            <result name="success">/pages/success.jsp</result>
+            <result name="invalid">/pages/error.jsp</result>
+        </action>
+
+        <action name="addCategory" class="actions.addCategory" method="execute">
             <result name="success">/pages/success.jsp</result>
             <result name="invalid">/pages/error.jsp</result>
         </action>
