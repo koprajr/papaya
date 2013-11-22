@@ -16,29 +16,27 @@
 <div class="container">
     <h1>Edit Report Template</h1>
     <hr>
-    <form role="form" action="" method="post">
+    <form role="form" action="updateReportTemplate" method="post">
         <div class="row">
             <div class="col-xs-4">
                 <h4>Report Template Name</h4>
-                <input class="form-control" type="text" name="template.name" autofocus>
+                <input class="form-control" type="text" name="template.name" value="${template.name}">
                 <h4>Report Template Description</h4>
-                <textarea class="form-control" name="template.description"></textarea>
+                <textarea class="form-control" name="template.description">${template.description}</textarea>
                 <hr>
                 <h4>Individual Sensors</h4>
                 <div class="sensorList">
                     <s:iterator value="sensors" var="sensor">
-                        <div class="checkbox">
-                            <label>
-                                <s:iterator value="templateSensorIds" var="id">
-                                    <s:if test="%{id==sensor.id}">
-                                        <input type="checkbox" name="sensorIds" value="${sensor.id}" checked> ${sensor.name}
-                                    </s:if>
-                                    <s:else>
-                                        <input type="checkbox" name="sensorIds" value="${sensor.id}"> ${sensor.name}
-                                    </s:else>
-                                </s:iterator>
-                            </label>
-                        </div>
+                    <div class="checkbox">
+                        <label>
+                            <s:if test="#sensor.id in {22, 24, 26}">
+                            <input type="checkbox" name="sensorIds" value="${sensor.id}" checked> ${sensor.name}
+                            </s:if>
+                            <s:else>
+                            <input type="checkbox" name="sensorIds" value="${sensor.id}"> ${sensor.name}
+                            </s:else>
+                        </label>
+                    </div>
                     </s:iterator>
                 </div>
             </div>
@@ -46,6 +44,45 @@
                 <h4 style="display: inline; padding-top: 5px;">Grouped Charts </h4>
                 <button id="chart-configuration-add" class="btn btn-default" type="button">Add Chart Configuration</button>
                 <hr>
+                <s:iterator value="template.chartConfigurations" var="cc">
+                    <div class="chart-configuration">
+                        <div class="form-group">
+                            <label>Chart Name</label>
+                            <input class="form-control" type="text" name="${cc.name}" value="${cc.name}">
+                        </div>
+                        <div class="form-group">
+                            <label>Type of Chart</label>
+                            <select class="form-control" name="configurationTypes">
+                                <s:if test="#cc.chartType == 'Line'">
+                                <option value="Line" selected>Line</option>
+                                <option value="Bar">Bar</option>
+                                <option value="Pie">Pie</option>
+                                </s:if>
+                                <s:elseif test="#cc.chartType == 'Bar'">
+                                <option value="Line">Line</option>
+                                <option value="Bar" selected>Bar</option>
+                                <option value="Pie">Pie</option>
+                                </s:elseif>
+                                <s:elseif test="#cc.chartType == 'Pie'">
+                                <option value="Line">Line</option>
+                                <option value="Bar">Bar</option>
+                                <option value="Pie" selected>Pie</option>
+                                </s:elseif>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>X- Label</label>
+                            <input class="form-control" type="text" name="${cc.xLabel}" value="${cc.xLabel}">
+                        </div>
+                        <div class="form-group">
+                            <label>Y- Label</label>
+                            <input class="form-control" type="text" name="${cc.yLabel}" value="${cc.yLabel}">
+                        </div>
+                        <label>Include selected sensors:</label>
+                        <div class="sensorList">
+                        </div>
+                    </div>
+                </s:iterator>
             </div>
         </div>
         <div class="row">
@@ -65,38 +102,31 @@
     // - LOGIC TO ADD A CHART CONFIGURATION
     $('#chart-configuration-add').on('click', (function() {
         $('#chart-configuration-area').append(
-                '<div class="chart-configuration"> \
-                    <div class="form-group"> \
-                        <label for="">Chart Name</label> \
-                        <input class="form-control" type="text" name="configurationNames"> \
-                    </div> \
-                    <div class="form-group"> \
-                        <label for="">Type of Chart</label> \
-                        <select class="form-control" name="configurationTypes"> \
-                            <option value="Line">Line</option> \
-                            <option value="Bar">Bar</option> \
-                            <option value="Pie">Pie</option> \
-                        </select> \
-                    </div> \
-                    <div class="form-group"> \
-                        <label for="">X- Label</label> \
-                        <input class="form-control" type="text" name="configurationXLabels"> \
-                    </div> \
-                    <div class="form-group"> \
-                        <label for="">Y- Label</label> \
-                        <input class="form-control" type="text" name="configurationYLabels"> \
-                    </div> \
-                    <label>Include selected sensors:</label> \
-                    <div class="sensorList"> \
-                        <s:iterator value="sensors" var="chartSensor"> \
-                        <div class="checkbox"> \
-                            <label> \
-                                <input type="checkbox" name="chartSensorIds[' + generatedChartCount + ']" value="${chartSensor.id}"> ${chartSensor.name} \
-                            </label> \
-                        </div> \
-                        </s:iterator> \
-                    </div> \
-                </div>'
+            '<div class="chart-configuration"> \
+                <div class="form-group"> \
+                    <label>Chart Name</label> \
+                    <input class="form-control" type="text" name="configurationNames"> \
+                </div> \
+                <div class="form-group"> \
+                    <label for="">Type of Chart</label> \
+                    <select class="form-control" name="configurationTypes"> \
+                        <option value="Line">Line</option> \
+                        <option value="Bar">Bar</option> \
+                        <option value="Pie">Pie</option> \
+                    </select> \
+                </div> \
+                <div class="form-group"> \
+                    <label>X- Label</label> \
+                    <input class="form-control" type="text" name="configurationXLabels"> \
+                </div> \
+                <div class="form-group"> \
+                    <label>Y- Label</label> \
+                    <input class="form-control" type="text" name="configurationYLabels"> \
+                </div> \
+                <label>Include selected sensors:</label> \
+                <div class="sensorList"> \
+                </div> \
+            </div>'
         );
         generatedChartCount += 1;
     }));

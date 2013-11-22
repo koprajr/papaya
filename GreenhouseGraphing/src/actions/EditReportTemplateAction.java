@@ -7,6 +7,7 @@ import models.Equation;
 import models.ReportTemplate;
 import models.Sensor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +26,14 @@ public class EditReportTemplateAction extends ActionSupport {
 
         // -- BEGIN TEST CODE
         template = dao.getReportTemplateByName("test template 5");
+
         sensors = dao.getSensors();
+        templateSensorIds = new ArrayList<Integer>();
+        if (template.getSensors() != null) {
+            for (Sensor s : template.getSensors()) {
+                templateSensorIds.add(s.getId());
+            }
+        }
         // -- END TEST CODE
 
         return SUCCESS;
