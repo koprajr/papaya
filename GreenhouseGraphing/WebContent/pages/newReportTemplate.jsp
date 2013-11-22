@@ -24,16 +24,18 @@
             <div class="col-sm-12">
     
                 <div class="page-header reportTempCreation">
-                    <h2>Create New Report Template</h2>
+                    <h2>Create Report Template</h2>
                 </div><!-- /.page-header-->
     
                 <div class="row reportTempCreation2">
                     <div class="col-sm-12">
-                        <form role="form" action="saveReportTemplate" class="reportTempCreation2Form" method="post" placeholder="">
+                        <form role="form" action="saveReportTemplate" class="reportTempCreation2Form" method="post">
                             <div class="row">
                                 <div class="col-sm-4">
                                     <h4 class="borderBottom" style="margin-top:0px !important;">Report Template Name</h4>
-                                    <input class="form-control" type="text" name="bean.name" value="${bean.name}">
+                                    <input class="form-control" type="text" name="template.name" autofocus>
+                                    <h4 class="borderBottom" style="margin-top:0px !important;">Report Template Description</h4>
+                                    <textarea class="form-control" name="template.description"></textarea>
                                     <h4 class="borderBottom">Individual Graphs</h4>
                                     <div class="sensorList">
                                         <s:iterator value="sensors" var="sensor">

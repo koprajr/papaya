@@ -576,9 +576,6 @@
 <!-- /.col-xs-8 .col-sm-8-->
 
 <div id="chart-configuration-area" class="col-sm-4 reportTempCreation2" style="border-top:0px;">
-    <h4 class="borderBottom" style="margin-top:20px !important;">Report Template Name</h4>
-    <input class="form-control" type="text" name="bean.name" autofocus>
-
     <h4 class="borderBottom">Sensor / Data List
         <small> to include in the report</small>
     </h4>
