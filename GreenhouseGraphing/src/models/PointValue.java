@@ -1,14 +1,15 @@
 package models;
 
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import utils.TimeUtils;
 
 public class PointValue {
 
 	private int dataPointId;
 	private double pointValue;
-	private BigInteger ts;
+	private long ts;
 	
 	public int getDataPointId() {
 		return dataPointId;
@@ -22,15 +23,14 @@ public class PointValue {
 	public void setPointValue(double pointValue) {
 		this.pointValue = pointValue;
 	}
-	public BigInteger getTs() {
+	public long getTs() {
 		return ts;
 	}
-	public void setTs(BigInteger ts) {
+	public void setTs(long ts) {
 		this.ts = ts;
 	}
 	public String getTimeStamp(){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy - kk:mm:ss");
-		return sdf.format(new Date(ts.longValue()));
+		return TimeUtils.epochTimeToTimeStamp(ts);
 	}
 	
 }

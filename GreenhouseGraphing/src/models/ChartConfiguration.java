@@ -1,7 +1,6 @@
 package models;
 
 import java.util.List;
-import java.util.Set;
 
 public class ChartConfiguration {
 
@@ -9,11 +8,11 @@ public class ChartConfiguration {
     private Integer reportTemplateId;
     private String name;
     private String xLabel;
-    private String yLabal;
+    private String yLabel;
     private String chartType;
     private List<Sensor> sensors;
-    private Set<Equation> equations;
-    private Set<ManualData> manualData;
+    private List<Equation> equations;
+    private List<ManualDataPoint> manualData;
 
     public Integer getId() {
         return id;
@@ -47,12 +46,12 @@ public class ChartConfiguration {
         this.xLabel = xLabel;
     }
 
-    public String getyLabal() {
-        return yLabal;
+    public String getyLabel() {
+        return yLabel;
     }
 
-    public void setyLabal(String yLabal) {
-        this.yLabal = yLabal;
+    public void setyLabel(String yLabel) {
+        this.yLabel = yLabel;
     }
 
     public String getChartType() {
@@ -71,19 +70,19 @@ public class ChartConfiguration {
         this.sensors = sensors;
     }
 
-    public Set<Equation> getEquations() {
+    public List<Equation> getEquations() {
         return equations;
     }
 
-    public void setEquations(Set<Equation> equations) {
+    public void setEquations(List<Equation> equations) {
         this.equations = equations;
     }
 
-    public Set<ManualData> getManualData() {
+    public List<ManualDataPoint> getManualData() {
         return manualData;
     }
 
-    public void setManualData(Set<ManualData> manualData) {
+    public void setManualData(List<ManualDataPoint> manualData) {
         this.manualData = manualData;
     }
 }

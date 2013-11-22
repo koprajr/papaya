@@ -16,16 +16,31 @@
 		<result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents" />
 	</resultMap>
 
-	<resultMap id="SensorMap" type="Sensor">
-		<result property="id" column="id"/>
-		<result property="data" column="data"/>
-	</resultMap>
-	
     <resultMap id="PrivilegeLevelMap" type="UserPriv">
         <result property="userId" column="userId" />
         <result property="level" column="level" />
     </resultMap>
-    
+
+    <resultMap id="ReportTemplateMap" type="ReportTemplate">
+        <result property="id" column="id"/>
+        <result property="name" column="title"/>
+        <result property="description" column="description"/>
+    </resultMap>
+
+    <resultMap id="ChartConfigurationMap" type="ChartConfiguration">
+        <result property="id" column="id"/>
+        <result property="reportTemplateId" column="reportTemplateId"/>
+        <result property="name" column="title"/>
+        <result property="xLabel" column="xAxis"/>
+        <result property="yLabel" column="yAxis"/>
+        <result property="chartType" column="type"/>
+    </resultMap>
+
+    <resultMap id="SensorMap" type="Sensor">
+		<result property="id" column="id"/>
+		<result property="data" column="data"/>
+	</resultMap>
+	
     <resultMap id="PointValueMap" type="PointValue">
         <result property="dataPointId" column="datapointid" />
         <result property="pointValue" column="pointValue" />
@@ -45,6 +60,15 @@
         <result property="id" column="id" />
     </resultMap>
 
+    <resultMap id="CategoryMap" type="Category">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+    </resultMap>
+
+    <!--
+            USER PRIVILEGE QUERIES
+    -->
+
     <select id="selectLevel" parameterType="User" resultType="UserPriv">
         select * from userprivileges where userId=#{id}
     </select>
@@ -52,6 +76,11 @@
     <update id="updatePrivilege" parameterType="UserPriv">
         update userprivileges set level=#{level} where userId=#{id}
     </update>
+
+
+    <!--
+            USER QUERIES
+    -->
 
 	<select id="selectUsers" resultType="User">
 		select * from users
@@ -78,6 +107,10 @@
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
 
+    <!--
+            MANUAL DATA POINT QUERIES
+    -->
+
     <insert id="insertManualData" parameterType="ManualData">
         insert into manualdatapointvalues (manualdatapointid, userid, pointvalue, ts)
         values (#{typeId},#{userId},#{value},#{timeStamp})
@@ -86,6 +119,11 @@
     <select id="selectManualDataType" parameterType="ManualDataType" resultType="ManualDataType">
         select * from manualdatapoints where name=#{name}
     </select>
+
+    <insert id="insertManualDataType" parameterType="ManualDataType">
+        insert into manualdatapoints (name)
+        values (#{name})
+    </insert>
 
     <select id="selectManualDataTypes" resultType="String">
         select name from manualdatapoints
@@ -102,5 +140,236 @@
 	<select id="selectPointValues" parameterType="SensorValueSelect" resultType="PointValue">
 		select * from pointvalues where dataPointId=#{id} and ts &lt; #{endTime} and ts &gt; #{startTime}
 	</select>
+
+
+    <!--
+        REPORT TEMPLATE QUERIES
+    -->
+
+    <insert id="createReportTemplate" parameterType="ReportTemplate">
+        insert into reportTemplates (name, description)
+        values (#{name}, #{description})
+    </insert>
+
+    <!--<resultMap id="reportTemplateDataPointAssoc" type="ReportTemplateDataPointAssoc">-->
+    <!--<result property="reportTemplateId" column="reportTemplateId"/>-->
+    <!--<result property="dataPointId" column="dataPointId"/>-->
+    <!--</resultMap>-->
+
+    <insert id="createReportTemplateDataPointAssoc" parameterType="ReportTemplateDataPointAssoc">
+        insert into reportTemplateDataPointAssoc (reportTemplateId, dataPointId)
+        values (#{reportTemplateId}, #{dataPointId})
+    </insert>
+
+    <insert id="createReportTemplateManualDataPointAssoc" parameterType="ReportTemplateManualDataPointAssoc">
+        insert into reportTemplateManualDataPointAssoc (reportTemplateId, manualDataPointId)
+        values (#{reportTemplateId}, #{manualDataPointId})
+    </insert>
+
+    <select id="selectReportTemplates" resultType="ReportTemplate">
+        select * from reportTemplates
+    </select>
+
+    <select id="getReportTemplateByName" parameterType="ReportTemplate" resultType="ReportTemplate">
+        select * from reportTemplates where name=#{name}
+    </select>
+
+    <select id="getDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="Sensor">
+        select id, data from reporttemplatedatapointassoc join datapoints on datapoints.id=reporttemplatedatapointassoc.datapointid where reporttemplateid=#{id}
+    </select>
+
+    <select id="getManualDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="ManualDataPoint">
+      select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
+    </select>
+
+    <delete id="deleteAllreportTemplateManualDataPointAssoc">
+        delete from reportTemplateManualDataPointAssoc
+    </delete>
+    <delete id="deleteAllReportTemplateDataPointAssoc">
+        delete from reportTemplateDataPointAssoc
+    </delete>
+    <delete id="deleteAllReportTemplates">
+        delete from reportTemplates
+    </delete>
+
+
+    <!--
+        CHART CONFIGURATION QUERIES
+    -->
+
+    <insert id="insertChartConfiguration" parameterType="ChartConfiguration">
+        insert into chartConfigurations (reportTemplateId, title, xAxis, yAxis, type)
+        values (#{reportTemplateId}, #{name}, #{xLabel}, #{yLabel}, #{chartType})
+    </insert>
+
+    <select id="getSensorsForChartConfig" parameterType="java.lang.Integer" resultType="Sensor">
+        select id, data from chartConfigurationDataPointAssoc join dataPoints on chartConfigurationDataPointAssoc.dataPointId = dataPoints.id where chartConfigurationId=#{id}
+    </select>
+
+    <select id="getChartConfigurationByReportTemplateId" parameterType="java.lang.Integer" resultMap="ChartConfigurationMap">
+        select * from chartConfigurations where reportTemplateId=#{id}
+    </select>
+
+    <select id="getChartConfigurationByName" parameterType="java.lang.String" resultMap="ChartConfigurationMap">
+        select * from chartConfigurations where title=#{title}
+    </select>
+
+    <insert id="insertChartConfigurationDataPointAssoc" parameterType="ChartConfigurationDataPointAssoc">
+        insert into chartConfigurationDataPointAssoc (chartConfigurationId, dataPointId)
+        values (#{chartConfigurationId}, #{dataPointId})
+    </insert>
+
+    <insert id="insertChartConfigurationManualDataPointAssoc" parameterType="ChartConfigurationManualDataPointAssoc">
+        insert into chartConfigurationManualDataPointAssoc (chartConfigurationId, manualDataPointId)
+        values (#{chartConfigurationId}, #{manualDataPointId})
+    </insert>
+
+    <select id="getManualDataPointsForChartConfig" parameterType="java.lang.Integer" resultType="ManualDataPoint">
+        select id, name from chartConfigurationManualDataPointAssoc join manualDataPoints on chartConfigurationManualDataPointAssoc.manualDataPointId = manualDataPoints.id where chartConfigurationId=#{id}
+    </select>
+
+    <delete id="deleteAllChartConfigDataPointAssoc">
+        delete from chartConfigurationDataPointAssoc
+    </delete>
+
+    <delete id="deleteAllChartConfigManualDataPointAssoc">
+        delete from chartConfigurationManualDataPointAssoc
+    </delete>
+
+    <delete id="deleteAllChartConfiguraitons">
+        delete from chartConfigurations
+    </delete>
+
+
+    <!--
+        MANUAL DATA POINT QUERIES
+    -->
+
+    <select id="selectManualDataPointByName" parameterType="String" resultType="ManualDataPoint">
+        select * from manualDataPoints where name=#{name}
+    </select>
+
+    <select id="selectManualDataPointById" parameterType="java.lang.Integer" resultType="ManualDataPoint">
+        select * from manualDataPoints where id=#{id}
+    </select>
+
+    <select id="selectManualDataPoints" resultType="ManualDataPoint">
+        select * from manualDataPoints
+    </select>
+
+    <insert id="insertManualDataPoint" parameterType="ManualDataPoint">
+        insert into manualDataPoints (name) values (#{name})
+    </insert>
+
+    <delete id="deleteManualDataPointByName" parameterType="java.lang.String">
+        delete from manualDataPoints where name=#{namee}
+    </delete>
+
+    <delete id="deleteManualDataPointById" parameterType="java.lang.Integer">
+        delete from manualDataPoints where id=#{id}
+    </delete>
+
+
+    <!--
+            CATEGORY QUERIES
+    -->
+
+    <insert id="insertCategory" parameterType="java.lang.String">
+        insert into categories (name)
+        values #{name}
+    </insert>
+
+    <delete id="deleteCategoryByName" parameterType="java.lang.String">
+        delete from categories where name=#{name}
+    </delete>
+
+    <delete id="deleteCategoryById" parameterType="java.lang.Integer">
+        delete from categories where id=#{id}
+    </delete>
+
+    <select id="selectCategories2" resultType="Category">
+        select * from categories
+    </select>
+
+   <!--DataPoint category-->
+    <insert id="categorizeDataPoint" parameterType="CategoryDataPointAssoc">
+        insert into categoryDataPointAssoc (categoryId, dataPointId)
+        values (#{categoryId}, #{dataPointId})
+    </insert>
+
+    <delete id="deleteCategoryDataPointAssoc" parameterType="CategoryDataPointAssoc">
+        delete from categoryDataPointAssoc where categoryDataPointAssoc.categoryId=#{categoryId} and categoryDataPointAssoc.dataPointId=#{dataPointId}
+    </delete>
+
+    <select id="selectDataPointsForCategory" parameterType="Category" resultType="Sensor">
+        select id, data from dataPoints join categoryDataPointAssoc on dataPoints.id = categoryDataPointAssoc.dataPointId
+        where categoryDataPointAssoc.categoryId=#{id}
+    </select>
+
+
+    <!--MDP category-->
+    <insert id="categorizeManualDataPoint" parameterType="CategoryManualDataPointAssoc">
+        insert into categoryManualDataPointAssoc (categoryId, manualDataPointId)
+        values (#{categoryId}, #{manualDataPointId})
+    </insert>
+    <delete id="deleteCategoryManualDataPointAssoc" parameterType="CategoryDataPointAssoc">
+        delete from categoryManualDataPointAssoc where categoryManualDataPointAssoc.categoryId=#{categoryId} and categoryManualDataPointAssoc.ManualDataPointId=#{manualDataPointId}
+    </delete>
+
+    <select id="selectManualDataPointsForCategory" parameterType="Category" resultType="ManualDataPoint">
+        select id, name from manualDataPoints join categoryManualDataPointAssoc on manualDataPoints.id=categoryManualDataPointAssoc.manualDataPointID
+        where categoryManualDataPointAssoc.categoryId=#{id}
+    </select>
+
+    <select id="selectManualDataPointTypesForCategory" parameterType="Category" resultType="String">
+        select name from manualDataPoints join categoryManualDataPointAssoc on manualDataPoints.id=categoryManualDataPointAssoc.manualDataPointID
+        where categoryManualDataPointAssoc.categoryId=#{id}
+    </select>
+
+    <!-- ReportTemplate category-->
+    <insert id="categorizeReportTemplate" parameterType="CategoryReportTemplateAssoc">
+        insert into categoryReportTemplateAssoc (categoryId, reportTemplateId)
+        values (#{categoryId}, #{reportTemplateId})
+    </insert>
+
+    <delete id="deleteCategoryReportTemplateAssoc" parameterType="CategoryReportTemplateAssoc">
+        delete from categoryReportTemplateAssoc where categoryReportTemplateAssoc.categoryId=#{categoryId} and categoryReportTemplateAssoc.reportTemplateId=#{reportTemplateId}
+    </delete>
+
+    <select id="selectReportTemplatesForCategory" parameterType="Category" resultType="ReportTemplate">
+        select id, name, description from reportTemplates join categoryReportTemplateAssoc on reportTemplates.id=categoryReportTemplateAssoc.reportTemplateId
+         where categoryReportTemplateAssoc.categoryId=#{id}
+    </select>
+
+
+    <select id="selectCategories" resultType="String">
+        select name from categories
+    </select>
+
+    <select id="selectCategory" resultType="Category" parameterType="Category">
+        select * from categories where name=#{name}
+    </select>
+
+    <select id="selectReportTemplate" resultType="ReportTemplate" parameterType="ReportTemplate">
+        select * from reporttemplates where name=#{name}
+    </select>
+
+    <insert id="insertCategoryManualData" parameterType="CategoryHelper">
+        insert into categorymanualdatapointassoc (categoryid, manualdatapointid)
+        values (#{categoryId}, #{dataId})
+    </insert>
+
+    <insert id="insertCategoryReportTemplate" parameterType="CategoryHelper">
+        insert into categoryreporttemplateassoc (categoryid, reporttemplateid)
+        values (#{categoryId}, #{dataId})
+    </insert>
+
+    <select id="selectCategoryManualData" parameterType="CategoryHelper" resultType="CategoryHelper">
+        select * from categorymanualdatapointassoc where categoryid=#{categoryId} AND manualdatapointid=#{dataId}
+    </select>
+
+    <select id="selectCategoryReportTemplate" parameterType="CategoryHelper" resultType="CategoryHelper">
+        select * from categoryreporttemplateassoc where categoryid=#{categoryId} AND reporttemplateid=#{dataId}
+    </select>
 	
 </mapper>
