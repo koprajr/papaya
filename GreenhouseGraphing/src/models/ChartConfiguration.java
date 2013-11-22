@@ -8,7 +8,7 @@ public class ChartConfiguration {
     private Integer reportTemplateId;
     private String name;
     private String xLabel;
-    private String yLabal;
+    private String yLabel;
     private String chartType;
     private List<Sensor> sensors;
     private List<Equation> equations;
@@ -46,12 +46,12 @@ public class ChartConfiguration {
         this.xLabel = xLabel;
     }
 
-    public String getyLabal() {
-        return yLabal;
+    public String getyLabel() {
+        return yLabel;
     }
 
-    public void setyLabal(String yLabal) {
-        this.yLabal = yLabal;
+    public void setyLabel(String yLabel) {
+        this.yLabel = yLabel;
     }
 
     public String getChartType() {

@@ -11,6 +11,9 @@
         <typeAlias type="models.PointValue" alias="PointValue" />
         <typeAlias type="models.ManualData" alias="ManualData" />
         <typeAlias type="models.ManualDataType" alias="ManualDataType" />
+        <typeAlias type="models.Category" alias="Category" />
+        <typeAlias type="models.ReportTemplate" alias="ReportTemplate" />
+        <typeAlias type="models.CategoryHelper" alias="CategoryHelper" />
         <typeAlias type="models.ReportTemplate" alias="ReportTemplate"/>
         <typeAlias type="models.associations.ReportTemplateDataPointAssoc" alias="ReportTemplateDataPointAssoc"/>
         <typeAlias type="models.associations.ReportTemplateManualDataPointAssoc" alias="ReportTemplateManualDataPointAssoc"/>
@@ -19,6 +22,9 @@
         <typeAlias type="models.ManualDataPoint" alias="ManualDataPoint"/>
         <typeAlias type="models.PointValue" alias="PointValue" />
         <typeAlias type="models.ChartConfiguration" alias="ChartConfiguration"/>
+        <typeAlias type="models.associations.categories.CategoryDataPointAssoc" alias="CategoryDataPointAssoc"/>
+        <typeAlias type="models.associations.categories.CategoryManualDataPointAssoc" alias="CategoryManualDataPointAssoc"/>
+        <typeAlias type="models.associations.categories.CategoryReportTemplateAssoc" alias="CategoryReportTemplateAssoc"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
