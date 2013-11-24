@@ -12,14 +12,14 @@ import java.math.BigInteger;
 public class ManualDataPointValueRequest {
 
     int ManualDataPointId;
-    BigInteger ts_start;
-    BigInteger ts_end;
+    long ts_start;
+    long ts_end;
 
 
     public ManualDataPointValueRequest() {
     }
 
-    public ManualDataPointValueRequest(int manualDataPointId, BigInteger ts_start, BigInteger ts_end) {
+    public ManualDataPointValueRequest(int manualDataPointId, long ts_start, long ts_end) {
         ManualDataPointId = manualDataPointId;
         this.ts_start = ts_start;
         this.ts_end = ts_end;
@@ -29,11 +29,11 @@ public class ManualDataPointValueRequest {
         return ManualDataPointId;
     }
 
-    public BigInteger getTs_start() {
+    public long getTs_start() {
         return ts_start;
     }
 
-    public BigInteger getTs_end() {
+    public long getTs_end() {
         return ts_end;
     }
 }

@@ -314,7 +314,7 @@ public class MangoDAO {
         }
     }
 
-    public List<ManualDataPointValue> getManualDataPointValuesForPointInRange(int manualDataPointId, BigInteger ts_start, BigInteger ts_end) {
+    public List<ManualDataPointValue> getManualDataPointValuesForPointInRange(int manualDataPointId, long ts_start, long ts_end) {
         return getManualDataPointValuesForPointInRange(new ManualDataPointValueRequest(manualDataPointId, ts_start, ts_end));
     }
 
