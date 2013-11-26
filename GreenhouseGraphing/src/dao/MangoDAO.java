@@ -1,10 +1,7 @@
 package dao;
 
 import models.*;
-import models.associations.ChartConfigurationDataPointAssoc;
-import models.associations.ChartConfigurationManualDataPointAssoc;
-import models.associations.ReportTemplateDataPointAssoc;
-import models.associations.ReportTemplateManualDataPointAssoc;
+import models.associations.*;
 import models.associations.categories.CategoryDataPointAssoc;
 import models.associations.categories.CategoryManualDataPointAssoc;
 import models.associations.categories.CategoryReportTemplateAssoc;
@@ -888,15 +885,74 @@ public class MangoDAO {
 
     }
 
-    public void deleteAllTemplateSensorAssoc(ReportTemplate template, List<Sensor> sensors) {
-        // TODO
+    /**
+     * Delete all associations between a template and a list of sensors.
+     *
+     * @param template The report template of interest.
+     * @param sensors  The list of sensors to delete associations for.
+     */
+    public void deleteAllTemplateDataPointAssoc(ReportTemplate template, List<Sensor> sensors) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            for (Sensor s : sensors) {
+                session.delete("dao.MangoMapper.deleteReportTemplateDataPointAssoc",
+                        new ReportTemplateDataPointAssoc(template.getId(), s.getId()));
+            }
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
     }
 
-    public void deleteAllChartConfigurationSensorAssoc(ChartConfiguration cc, List<Sensor> sensors) {
-        // TODO
+    /**
+     * Delete all associations between a chart configuration and a list of sensors.
+     *
+     * @param cc      The chart configuration of interest.
+     * @param sensors The list of sensors to delete associations for.
+     */
+    public void deleteAllChartConfigurationDataPointAssoc(ChartConfiguration cc, List<Sensor> sensors) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            for (Sensor s : sensors) {
+                session.delete("dao.MangoMapper.deleteChartConfigDataPointAssoc",
+                        new ChartConfigurationDataPointAssoc(cc.getId(), s.getId()));
+            }
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
     }
 
+    /**
+     * Delete all associations between a template and a list of chart configurations, along with deleting the chart
+     * configuration after the associations are removed.
+     *
+     * @param template            The template of interest.
+     * @param chartConfigurations The list of chart configurations to delete associations for.
+     */
     public void deleteAllTemplateChartConfigurationAssoc(ReportTemplate template, List<ChartConfiguration> chartConfigurations) {
-        // TODO
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            for (ChartConfiguration cc : chartConfigurations) {
+                session.delete("dao.MangoMapper.deleteTemplateChartConfigurationAssoc",
+                        new ReportTemplateChartConfigurationAssoc(template.getId(), cc.getId()));
+                session.delete("dao.MangoMapper.deleteChartConfiguration", cc.getId());
+            }
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
     }
 }

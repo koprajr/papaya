@@ -27,12 +27,12 @@ public class UpdateReportTemplateAction extends ActionSupport {
                 DELETE ALL EXISTING ASSOCIATIONS OF THIS REPORT TEMPLATE.
          */
         if (template.getSensors() != null) {
-            dao.deleteAllTemplateSensorAssoc(template, template.getSensors());
+            dao.deleteAllTemplateDataPointAssoc(template, template.getSensors());
         }
         if (template.getChartConfigurations() != null) {
             for (ChartConfiguration cc : template.getChartConfigurations()) {
                 if (cc.getSensors() != null) {
-                    dao.deleteAllChartConfigurationSensorAssoc(cc, cc.getSensors());
+                    dao.deleteAllChartConfigurationDataPointAssoc(cc, cc.getSensors());
                 }
             }
             dao.deleteAllTemplateChartConfigurationAssoc(template, template.getChartConfigurations());

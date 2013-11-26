@@ -1,16 +1,14 @@
 package models.associations;
 
-/**
- * Created with IntelliJ IDEA.
- * User: matthallman
- * Date: 11/14/13
- * Time: 2:51 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ReportTemplateChartConfigurationAssoc {
 
     long reportTemplateId;
     long chartConfigurationId;
+
+    public ReportTemplateChartConfigurationAssoc(long reportTemplateId, long chartConfigurationId) {
+        this.reportTemplateId = reportTemplateId;
+        this.chartConfigurationId = chartConfigurationId;
+    }
 
     public long getReportTemplateId() {
         return reportTemplateId;

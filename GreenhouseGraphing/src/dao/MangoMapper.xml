@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.MangoMapper">
 
-	<resultMap id="UserMap" type="User">
-		<result property="id" column="id" />
-		<result property="username" column="username" />
-		<result property="email" column="email" />
-		<result property="phone" column="phone" />
-		<result property="password" column="password" />
-		<result property="admin" column="admin" />
-		<result property="disabled" column="disabled" />
-		<result property="receiveAlarmEmails" column="receiveAlarmEmails" />
-		<result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents" />
-	</resultMap>
+    <resultMap id="UserMap" type="User">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="password" column="password"/>
+        <result property="admin" column="admin"/>
+        <result property="disabled" column="disabled"/>
+        <result property="receiveAlarmEmails" column="receiveAlarmEmails"/>
+        <result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents"/>
+    </resultMap>
 
     <resultMap id="PrivilegeLevelMap" type="UserPriv">
-        <result property="userId" column="userId" />
-        <result property="level" column="level" />
+        <result property="userId" column="userId"/>
+        <result property="level" column="level"/>
     </resultMap>
 
     <resultMap id="ReportTemplateMap" type="ReportTemplate">
@@ -37,32 +37,32 @@
     </resultMap>
 
     <resultMap id="SensorMap" type="Sensor">
-		<result property="id" column="id"/>
-		<result property="data" column="data"/>
-	</resultMap>
-	
+        <result property="id" column="id"/>
+        <result property="data" column="data"/>
+    </resultMap>
+
     <resultMap id="PointValueMap" type="PointValue">
-        <result property="dataPointId" column="datapointid" />
-        <result property="pointValue" column="pointValue" />
-        <result property="ts" column="ts" />
+        <result property="dataPointId" column="datapointid"/>
+        <result property="pointValue" column="pointValue"/>
+        <result property="ts" column="ts"/>
     </resultMap>
 
     <resultMap id="ManualDataMap" type="ManualData">
-        <result property="id" column="id" />
-        <result property="value" column="pointvalue" />
-        <result property="typeId" column="manualdatatypeId" />
-        <result property="userId" column="userId" />
-        <result property="timeStamp" column="ts" />
+        <result property="id" column="id"/>
+        <result property="value" column="pointvalue"/>
+        <result property="typeId" column="manualdatatypeId"/>
+        <result property="userId" column="userId"/>
+        <result property="timeStamp" column="ts"/>
     </resultMap>
 
     <resultMap id="ManualDataTypesMap" type="ManualDataType">
-        <result property="name" column="name" />
-        <result property="id" column="id" />
+        <result property="name" column="name"/>
+        <result property="id" column="id"/>
     </resultMap>
 
     <resultMap id="CategoryMap" type="Category">
-        <result property="id" column="id" />
-        <result property="name" column="name" />
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
     </resultMap>
 
     <!--
@@ -82,7 +82,7 @@
             USER QUERIES
     -->
 
-	<select id="selectUsers" resultType="User">
+    <select id="selectUsers" resultType="User">
 		select * from users
 	</select>
 
@@ -93,16 +93,16 @@
     <select id="selectUser" parameterType="User" resultType="User">
         select * from users where username=#{username}
     </select>
-	
-	<delete id="deleteUser" parameterType="User">
+
+    <delete id="deleteUser" parameterType="User">
 		delete from users where id=#{id}
 	</delete>
 
     <update id="updateUserPass" parameterType="User">
         update users set password=#{password} where id=#{id}
     </update>
-	
-	<insert id="createUser" parameterType="User">
+
+    <insert id="createUser" parameterType="User">
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
@@ -128,16 +128,16 @@
     <select id="selectManualDataTypes" resultType="String">
         select name from manualdatapoints
     </select>
-	
-	<select id="selectSensors" resultType="Sensor">
+
+    <select id="selectSensors" resultType="Sensor">
 		select * from datapoints
 	</select>
-	
-	<select id="selectSensor" parameterType="int" resultType="Sensor">
+
+    <select id="selectSensor" parameterType="int" resultType="Sensor">
 		select * from datapoints where id=#{id}
 	</select>
-	
-	<select id="selectPointValues" parameterType="SensorValueSelect" resultType="PointValue">
+
+    <select id="selectPointValues" parameterType="SensorValueSelect" resultType="PointValue">
 		select * from pointvalues where dataPointId=#{id} and ts &lt; #{endTime} and ts &gt; #{startTime}
 	</select>
 
@@ -150,11 +150,6 @@
         insert into reportTemplates (name, description)
         values (#{name}, #{description})
     </insert>
-
-    <!--<resultMap id="reportTemplateDataPointAssoc" type="ReportTemplateDataPointAssoc">-->
-    <!--<result property="reportTemplateId" column="reportTemplateId"/>-->
-    <!--<result property="dataPointId" column="dataPointId"/>-->
-    <!--</resultMap>-->
 
     <insert id="createReportTemplateDataPointAssoc" parameterType="ReportTemplateDataPointAssoc">
         insert into reportTemplateDataPointAssoc (reportTemplateId, dataPointId)
@@ -179,15 +174,27 @@
     </select>
 
     <select id="getManualDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="ManualDataPoint">
-      select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
+        select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
     </select>
 
-    <delete id="deleteAllreportTemplateManualDataPointAssoc">
+    <delete id="deleteTemplateChartConfigurationAssoc" parameterType="ReportTemplateChartConfigurationAssoc">
+        delete from reportTemplateChartConfigurationAssoc
+        where       reportTemplateId=#{reportTemplateId} and chartConfigurationId=#{chartConfigurationId}
+    </delete>
+
+    <delete id="deleteAllReportTemplateManualDataPointAssoc">
         delete from reportTemplateManualDataPointAssoc
     </delete>
+
     <delete id="deleteAllReportTemplateDataPointAssoc">
         delete from reportTemplateDataPointAssoc
     </delete>
+
+    <delete id="deleteReportTemplateDataPointAssoc" parameterType="ReportTemplateDataPointAssoc">
+        delete from reportTemplateDataPointAssoc
+        where       reportTemplateId=#{reportTemplateId} and chartConfigurationId=#{reportTemplateId}
+    </delete>
+
     <delete id="deleteAllReportTemplates">
         delete from reportTemplates
     </delete>
@@ -206,7 +213,8 @@
         select id, data from chartConfigurationDataPointAssoc join dataPoints on chartConfigurationDataPointAssoc.dataPointId = dataPoints.id where chartConfigurationId=#{id}
     </select>
 
-    <select id="getChartConfigurationByReportTemplateId" parameterType="java.lang.Integer" resultMap="ChartConfigurationMap">
+    <select id="getChartConfigurationByReportTemplateId" parameterType="java.lang.Integer"
+            resultMap="ChartConfigurationMap">
         select * from chartConfigurations where reportTemplateId=#{id}
     </select>
 
@@ -232,11 +240,16 @@
         delete from chartConfigurationDataPointAssoc
     </delete>
 
+    <delete id="deleteChartConfigDataPointAssoc" parameterType="ChartConfigurationDataPointAssoc">
+        delete from chartConfigurationDataPointAssoc
+        where       chartConfigurationId=#{chartConfigurationId} and dataPointId=#{dataPointId}
+    </delete>
+
     <delete id="deleteAllChartConfigManualDataPointAssoc">
         delete from chartConfigurationManualDataPointAssoc
     </delete>
 
-    <delete id="deleteAllChartConfiguraitons">
+    <delete id="deleteAllChartConfigurations">
         delete from chartConfigurations
     </delete>
 
@@ -291,7 +304,7 @@
         select * from categories
     </select>
 
-   <!--DataPoint category-->
+    <!--DataPoint category-->
     <insert id="categorizeDataPoint" parameterType="CategoryDataPointAssoc">
         insert into categoryDataPointAssoc (categoryId, dataPointId)
         values (#{categoryId}, #{dataPointId})
@@ -371,5 +384,5 @@
     <select id="selectCategoryReportTemplate" parameterType="CategoryHelper" resultType="CategoryHelper">
         select * from categoryreporttemplateassoc where categoryid=#{categoryId} AND reporttemplateid=#{dataId}
     </select>
-	
+
 </mapper>
