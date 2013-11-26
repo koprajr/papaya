@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <head>
     <style type="text/css">
         .chart-configuration {
-            float:         left;
-            border:        1px solid lightgrey;
-            padding:       15px;
-            margin:        1px;
+            float: left;
+            border: 1px solid lightgrey;
+            padding: 15px;
+            margin: 1px;
         }
     </style>
 </head>
@@ -25,61 +25,68 @@
                 <textarea class="form-control" name="template.description">${template.description}</textarea>
                 <hr>
                 <h4>Individual Sensors</h4>
+
                 <div class="sensorList">
-                    <s:iterator value="sensors" var="sensor">
-                    <div class="checkbox">
-                        <label>
-                            <s:if test="#sensor.id in {22, 24, 26}">
-                            <input type="checkbox" name="sensorIds" value="${sensor.id}" checked> ${sensor.name}
-                            </s:if>
-                            <s:else>
-                            <input type="checkbox" name="sensorIds" value="${sensor.id}"> ${sensor.name}
-                            </s:else>
-                        </label>
-                    </div>
+                    <s:iterator value="template.sensors" var="sensor">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="sensorIds" value="${sensor.id}" checked> ${sensor.name}
+                            </label>
+                        </div>
                     </s:iterator>
                 </div>
             </div>
             <div id="chart-configuration-area" class="col-xs-8">
                 <h4 style="display: inline; padding-top: 5px;">Grouped Charts </h4>
-                <button id="chart-configuration-add" class="btn btn-default" type="button">Add Chart Configuration</button>
+                <button id="chart-configuration-add" class="btn btn-default" type="button">Add Chart Configuration
+                </button>
                 <hr>
-                <s:iterator value="template.chartConfigurations" var="cc">
+                <s:iterator value="template.chartConfigurations" var="cc" status="status">
                     <div class="chart-configuration">
                         <div class="form-group">
                             <label>Chart Name</label>
-                            <input class="form-control" type="text" name="${cc.name}" value="${cc.name}">
+                            <input class="form-control" type="text" name="configurationNames" value="${cc.name}">
                         </div>
                         <div class="form-group">
                             <label>Type of Chart</label>
                             <select class="form-control" name="configurationTypes">
                                 <s:if test="#cc.chartType == 'Line'">
-                                <option value="Line" selected>Line</option>
-                                <option value="Bar">Bar</option>
-                                <option value="Pie">Pie</option>
+                                    <option value="Line" selected>Line</option>
+                                    <option value="Bar">Bar</option>
+                                    <option value="Pie">Pie</option>
                                 </s:if>
                                 <s:elseif test="#cc.chartType == 'Bar'">
-                                <option value="Line">Line</option>
-                                <option value="Bar" selected>Bar</option>
-                                <option value="Pie">Pie</option>
+                                    <option value="Line">Line</option>
+                                    <option value="Bar" selected>Bar</option>
+                                    <option value="Pie">Pie</option>
                                 </s:elseif>
                                 <s:elseif test="#cc.chartType == 'Pie'">
-                                <option value="Line">Line</option>
-                                <option value="Bar">Bar</option>
-                                <option value="Pie" selected>Pie</option>
+                                    <option value="Line">Line</option>
+                                    <option value="Bar">Bar</option>
+                                    <option value="Pie" selected>Pie</option>
                                 </s:elseif>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>X- Label</label>
-                            <input class="form-control" type="text" name="${cc.xLabel}" value="${cc.xLabel}">
+                            <input class="form-control" type="text" name="configurationXLabels" value="${cc.xLabel}">
                         </div>
                         <div class="form-group">
                             <label>Y- Label</label>
-                            <input class="form-control" type="text" name="${cc.yLabel}" value="${cc.yLabel}">
+                            <input class="form-control" type="text" name="configurationYLabels" value="${cc.yLabel}">
                         </div>
                         <label>Include selected sensors:</label>
+
                         <div class="sensorList">
+                            <s:iterator value="template.sensors" var="sensor">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"
+                                               name="chartSensorIds[<s:property value="%{#status.index}" />]"
+                                               value="${sensor.id}" checked> ${sensor.name}
+                                    </label>
+                                </div>
+                            </s:iterator>
                         </div>
                     </div>
                 </s:iterator>
@@ -98,33 +105,40 @@
 
 <script type="text/javascript">
     // - GLOBAL VARIABLES
-    var generatedChartCount = 0;
+    var generatedChartCount = ${template.chartConfigurations.size()};
     // - LOGIC TO ADD A CHART CONFIGURATION
-    $('#chart-configuration-add').on('click', (function() {
+    $('#chart-configuration-add').on('click', (function () {
         $('#chart-configuration-area').append(
-            '<div class="chart-configuration"> \
-                <div class="form-group"> \
-                    <label>Chart Name</label> \
-                    <input class="form-control" type="text" name="configurationNames"> \
-                </div> \
-                <div class="form-group"> \
-                    <label for="">Type of Chart</label> \
-                    <select class="form-control" name="configurationTypes"> \
-                        <option value="Line">Line</option> \
-                        <option value="Bar">Bar</option> \
-                        <option value="Pie">Pie</option> \
-                    </select> \
-                </div> \
-                <div class="form-group"> \
-                    <label>X- Label</label> \
-                    <input class="form-control" type="text" name="configurationXLabels"> \
-                </div> \
-                <div class="form-group"> \
-                    <label>Y- Label</label> \
-                    <input class="form-control" type="text" name="configurationYLabels"> \
-                </div> \
-                <label>Include selected sensors:</label> \
-                <div class="sensorList"> \
+                '<div class="chart-configuration"> \
+                    <div class="form-group"> \
+                        <label>Chart Name</label> \
+                        <input class="form-control" type="text" name="configurationNames"> \
+                    </div> \
+                    <div class="form-group"> \
+                        <label for="">Type of Chart</label> \
+                        <select class="form-control" name="configurationTypes"> \
+                            <option value="Line">Line</option> \
+                            <option value="Bar">Bar</option> \
+                            <option value="Pie">Pie</option> \
+                        </select> \
+                    </div> \
+                    <div class="form-group"> \
+                        <label>X- Label</label> \
+                        <input class="form-control" type="text" name="configurationXLabels"> \
+                    </div> \
+                    <div class="form-group"> \
+                        <label>Y- Label</label> \
+                        <input class="form-control" type="text" name="configurationYLabels"> \
+                    </div> \
+                    <label>Include selected sensors:</label> \
+                    <div class="sensorList"> \
+                        <s:iterator value="template.sensors" var="sensor"> \
+                    <div class="checkbox"> \
+                        <label> \
+                            <input type="checkbox" name="chartSensorIds[' + generatedChartCount + ']" value="${sensor.id}"> ${sensor.name} \
+                        </label> \
+                    </div> \
+                    </s:iterator> \
                 </div> \
             </div>'
         );
