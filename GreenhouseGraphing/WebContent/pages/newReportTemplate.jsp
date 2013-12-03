@@ -32,8 +32,8 @@
                         <form role="form" action="saveReportTemplate" class="reportTempCreation2Form" method="post">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <h4 class="borderBottom" style="margin-top:0px !important;">Report Template Name</h4>
-                                    <input class="form-control" type="text" name="template.name">
+                                    <h4 class="borderBottom" style="margin-top:0px !important;">Report Template Name *</h4>
+                                    <input class="form-control" type="text" name="template.name" required="">
                                     <h4 class="borderBottom">Report Template Description</h4>
                                     <textarea class="form-control" name="template.description"></textarea>
                                     <h4 class="borderBottom">Individual Graphs</h4>
@@ -85,6 +85,7 @@
 
                             <div class="row">
                                 <div class="col-sm-4 col-sm-offset-4">
+                                    <br><br><span style="font-size: 11px; text-align: center; display:block;">Fields marked with an * are required</span>
                                     <br><button type="submit" class="btn btn-block btn-primaryGreen">Save Report Template
                                         <span class="glyphicon glyphicon-arrow-right"></span></button><br>
                                 </div>

@@ -29,11 +29,11 @@
                     <form role="form" action="AdminChangePassword" method="post">
                         <!--ONE OF THESE FOR EACH MANUAL DATAPOINT-->
                         <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" name="bean.username" class="form-control" id="username" placeholder="">
-                            <br><label>Password</label><br>
-                            <input type="password" name="bean.newPass" class="form-control" id="password"
-                                   placeholder="">
+                            <span style="font-size: 11px;">Fields marked with an * are required</span><br><br>
+                            <label for="username">Username *</label>
+                            <input type="text" name="bean.username" class="form-control" id="username" placeholder="" required="">
+                            <br><label>Password *</label><br>
+                            <input type="password" name="bean.newPass" class="form-control" id="password" placeholder="" required="">
 
                         </div>
                         <!-- /.form-group-->
