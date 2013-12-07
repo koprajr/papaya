@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class ReportTemplateTest {
     @Test
-    public void testGetIndividualSensors() throws Exception {
+    public void testGetSensors() throws Exception {
 
     }
 
@@ -49,8 +49,7 @@ public class ReportTemplateTest {
         ChartConfiguration chartConfiguration = testTemplate1PulledFromDB.getChartConfigurations().iterator().next();
         Assert.assertEquals("chartName", chartConfiguration.getName());
         Assert.assertEquals("x label", chartConfiguration.getxLabel());
-        Assert.assertEquals("y label", chartConfiguration.getyLabal());
-
+        Assert.assertEquals("y label", chartConfiguration.getyLabel());
     }
 
     @Test
@@ -58,7 +57,6 @@ public class ReportTemplateTest {
         MangoDAO dao = new MangoDAO();
         List<ReportTemplate> reportTemplates = dao.getAllReportTemplates();
         System.out.println(reportTemplates);  // TODO: make this test better. Just used debugger to see result.
-
     }
 
     private ReportTemplate getTestTemplate_1() {
@@ -92,7 +90,7 @@ public class ReportTemplateTest {
         chartConfig.setSensors(new ArrayList<Sensor>(sensors));
         chartConfig.setName("chartName");
         chartConfig.setxLabel("x label");
-        chartConfig.setyLabal("y label");
+        chartConfig.setyLabel("y label");
         chartConfig.setChartType("plot");
 //        chartConfig.setEquations();
         chartConfig.setManualData(new ArrayList<ManualDataPoint>(manualDataPoints));
@@ -102,7 +100,4 @@ public class ReportTemplateTest {
 
         return testTemplate_1;
     }
-
-
-
 }

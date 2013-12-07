@@ -10,6 +10,7 @@
     </div><!-- /.container -->
 </div><!-- /.container-breadcrumb -->
 
+<!--MAIN CONTENT AREA-->
 <div class="container container-main">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
@@ -19,7 +20,7 @@
                 <br>
                 <input type="password" name="bean.password" class="form-control" placeholder="Password">
                 <br>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<button onclick="gowait();" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 			</form>
 		</div>
 	</div>
