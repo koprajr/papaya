@@ -274,7 +274,7 @@ public class MangoDAO {
         List<ManualDataPointValue> values = null;
         try {
             session = factory.openSession();
-            values = session.selectList("dao.MangoMapper.selectManualDataPointValuesForPointInRange", request);
+            values = session.selectList("dao.MangoMapper.getManualDataPointValuesForPointInRange", request);
         } finally {
             if (session != null)
                 session.close();
@@ -557,6 +557,21 @@ public class MangoDAO {
     }
 
 
+    
+    public List<ManualDataPointValue> getManualDataPointValues(int id){
+    	SqlSession session = null;
+        List<ManualDataPointValue> manuDataPointValues = null;
+        try {
+            session = factory.openSession();
+            manuDataPointValues =  session.selectList("dao.MangoMapper.getManualDataPointValues", id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return manuDataPointValues;
+    }
 
 
     //TODO: FOR TESTING ONLY.

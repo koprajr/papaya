@@ -17,6 +17,7 @@
         <typeAlias type="models.associations.ChartConfigurationDataPointAssoc" alias="ChartConfigurationDataPointAssoc"/>
         <typeAlias type="models.associations.ChartConfigurationManualDataPointAssoc" alias="ChartConfigurationManualDataPointAssoc"/>
         <typeAlias type="models.ManualDataPoint" alias="ManualDataPoint"/>
+        <typeAlias type="models.ManualDataPointValue" alias="ManualDataPointValue"/>
         <typeAlias type="models.PointValue" alias="PointValue" />
         <typeAlias type="models.ChartConfiguration" alias="ChartConfiguration"/>
 	</typeAliases>

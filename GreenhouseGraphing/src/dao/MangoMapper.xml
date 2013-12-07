@@ -39,6 +39,14 @@
         <result property="userId" column="userId" />
         <result property="timeStamp" column="ts" />
     </resultMap>
+    
+    <resultMap id="ManualDataPointValueMap" type="ManualDataPointValue">
+        <result property="id" column="id" />
+        <result property="value" column="pointvalue" />
+        <result property="typeId" column="manualdatatypeId" />
+        <result property="userId" column="userId" />
+        <result property="timeStamp" column="ts" />
+    </resultMap>
 
     <resultMap id="ManualDataTypesMap" type="ManualDataType">
         <result property="name" column="name" />
@@ -171,7 +179,9 @@
     </select>
 
 
-
+	<select id="getManualDataPointValues" parameterType="java.lang.Integer" resultType="ManualDataPointValue">
+		select * from manualdatapointvalues where manualdatapointid=#{id}
+	</select>
 
 
 

@@ -2,6 +2,8 @@ package models;
 
 import java.math.BigInteger;
 
+import utils.TimeUtils;
+
 /**
  * Created with IntelliJ IDEA.
  * User: matthallman
@@ -41,7 +43,7 @@ public class ManualDataPointValue {
     public void setUserId(int userId) {
         this.userId = userId;
     }
-
+    
     public Double getPointValue() {
         return pointValue;
     }
@@ -54,6 +56,10 @@ public class ManualDataPointValue {
         return ts;
     }
 
+    public String getPrettyTs(){
+    	return TimeUtils.epochTimeToTimeStamp(ts.longValue());
+    }
+    
     public void setTs(BigInteger ts) {
         this.ts = ts;
     }

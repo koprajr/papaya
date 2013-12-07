@@ -351,3 +351,7 @@ footer .copyright {
 #sensorInfo {
 	display: none;
 }
+
+#manualDataInfo {
+	display: none;
+}

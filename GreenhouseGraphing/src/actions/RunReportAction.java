@@ -32,27 +32,26 @@ public class RunReportAction {
 			preprocessSensors();
 
 			manualData = template.getManualData();
-//			prepocessManualData();
-			//TODO: wait until the dao is sorted out...
-
+			System.err.println(manualData.size());
+			prepocessManualData();
+			System.err.println("done preprocessing");
 		}
 
 		return "success";
 
 	}
 
-//	private void prepocessManualData() {
-//		for (ManualDataPoint m : manualData) {
-//			List<ManualDataPointValue> values = dao
-//					.getManualDataPointValuesForPointInRange(m.getId()/*,
-//							TimeUtils.timeStampToEpochTime(start),
-//							TimeUtils.timeStampToEpochTime(end)*/);
-//			
-//			System.err.println(values.size());
-//			
-//			m.setValues(values);
-//		}
-//	}
+	private void prepocessManualData() {
+		for (ManualDataPoint m : manualData){
+			List<ManualDataPointValue> manuals = dao.getManualDataPointValues(m.getId());
+			
+			for (ManualDataPointValue val : manuals){
+				System.err.println(val.getPointValue());
+			}
+			
+			m.setValues(manuals);
+		}
+	}
 
 	private void preprocessSensors() {
 		for (Sensor s : sensors) {
@@ -104,6 +103,10 @@ public class RunReportAction {
 
 	public ReportTemplate getTemplate() {
 		return template;
+	}
+
+	public List<ManualDataPoint> getManualData() {
+		return manualData;
 	}
 
 }

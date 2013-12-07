@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
 <script type="text/javascript" src="js/runReport.js"></script>
@@ -30,19 +31,50 @@
 		<div id="sensors"></div>
 
 		<h3>Manual Data</h3>
-		<div id="manualData">manual data stuff goes here...</div>
+		<div id="manualData"></div>
 
 		<h3>Charts</h3>
 		<div id="charts">complex charts go here...</div>
 
 	</s:if>
 
+	<div id="manualDataInfo">
+		<s:if test="%{manualData != null}">
+			not null
+			<s:iterator value="manualData" var="man">
+				<div class="manualChart">
+					<h2 class="manualDataName">${man.name}</h2>
+					<div class="col-md-3">
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th>Value</th>
+									<th>Timestamp</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${man.values}" var="n">
+									<tr>
+										<td class="value">${n.pointValue}</td>
+										<td class="ts">${n.prettyTs}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+			</s:iterator>
+		</s:if>
+	</div>
+
 	<div id="sensorInfo">
 		<!-- this is hidden -->
 		<s:if test="%{sensors != null}">
 			not null
 			<s:iterator value="sensors" var="sensor">
-				<div class="charttable">
+				<div class="sensorChart">
 					<h2 class="sensorName">${sensor.name}</h2>
 					<div class="col-md-3">
 						<table class="table table-condensed">
