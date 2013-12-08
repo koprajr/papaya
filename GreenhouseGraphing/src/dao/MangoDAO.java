@@ -292,7 +292,7 @@ public class MangoDAO {
         List<ManualDataPointValue> values = null;
         try {
             session = factory.openSession();
-            values = session.selectList("dao.MangoMapper.selectManualDataPointValuesForPointInRange", request);
+            values = session.selectList("dao.MangoMapper.getManualDataPointValuesForPointInRange", request);
         } finally {
             if (session != null)
                 session.close();
@@ -332,7 +332,7 @@ public class MangoDAO {
         }
     }
 
-    public List<ManualDataPointValue> getManualDataPointValuesForPointInRange(int manualDataPointId, BigInteger ts_start, BigInteger ts_end) {
+    public List<ManualDataPointValue> getManualDataPointValuesForPointInRange(int manualDataPointId, long ts_start, long ts_end) {
         return getManualDataPointValuesForPointInRange(new ManualDataPointValueRequest(manualDataPointId, ts_start, ts_end));
     }
 
@@ -586,6 +586,24 @@ public class MangoDAO {
         }
     }
 
+    
+    public List<ManualDataPointValue> getManualDataPointValues(int id){
+    	SqlSession session = null;
+        List<ManualDataPointValue> manuDataPointValues = null;
+        try {
+            session = factory.openSession();
+            manuDataPointValues =  session.selectList("dao.MangoMapper.getManualDataPointValues", id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return manuDataPointValues;
+    }
+
+
+    //TODO: FOR TESTING ONLY.
     public void deleteAllReportTemplates() {
         SqlSession session = null;
         List<Sensor> sensors = null;
