@@ -34,9 +34,27 @@
 		<div id="manualData"></div>
 
 		<h3>Charts</h3>
-		<div id="charts">complex charts go here...</div>
+		<div id="charts"></div>
 
 	</s:if>
+	
+	<div id="chartInfo">
+		<s:if test="%{charts != null}">
+			
+			<c:forEach items="${charts}" var="chart">
+				<h2 class="chartTitle">${chart.name}</h2>
+				<c:forEach items="${chart.sensors}" var="sensor">
+					<div class="chartSensor" name="${sensor.name}">
+						<c:forEach items="${sensor.values}" var="val">
+							${val.pointValue}, 
+						</c:forEach>
+					</div>
+
+				</c:forEach>
+			</c:forEach>
+			
+		</s:if>
+	</div>
 
 	<div id="manualDataInfo">
 		<s:if test="%{manualData != null}">

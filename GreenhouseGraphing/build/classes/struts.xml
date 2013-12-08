@@ -155,6 +155,10 @@
             <result name="success">/pages/success.jsp</result>
         </action>
 
+		<action name="runReport" class="actions.RunReportAction">
+			<result name="success">/pages/runReport.jsp</result>
+		</action>
+
 	</package>
 
 </struts>

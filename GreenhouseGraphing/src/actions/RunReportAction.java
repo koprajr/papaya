@@ -4,6 +4,7 @@ import java.util.List;
 
 import utils.DataUtils;
 import utils.TimeUtils;
+import models.ChartConfiguration;
 import models.ManualDataPoint;
 import models.ManualDataPointValue;
 import models.PointValue;
@@ -21,6 +22,7 @@ public class RunReportAction {
 	private String start, end;
 	private List<Sensor> sensors;
 	private List<ManualDataPoint> manualData;
+	private List <ChartConfiguration> charts;
 
 	public String execute() {
 		dao = new MangoDAO();
@@ -29,12 +31,17 @@ public class RunReportAction {
 			template = dao.getReportTemplateByName(reportName);
 
 			sensors = template.getSensors();
-			preprocessSensors();
+			preprocessSensors(sensors);
 
 			manualData = template.getManualData();
-			System.err.println(manualData.size());
 			prepocessManualData();
-			System.err.println("done preprocessing");
+
+			charts = template.getChartConfigurations();
+			
+			for (ChartConfiguration c : charts){
+				preprocessSensors(c.getSensors());
+			}
+			
 		}
 
 		return "success";
@@ -45,16 +52,12 @@ public class RunReportAction {
 		for (ManualDataPoint m : manualData){
 			List<ManualDataPointValue> manuals = dao.getManualDataPointValues(m.getId());
 			
-			for (ManualDataPointValue val : manuals){
-				System.err.println(val.getPointValue());
-			}
-			
 			m.setValues(manuals);
 		}
 	}
 
-	private void preprocessSensors() {
-		for (Sensor s : sensors) {
+	private void preprocessSensors(List<Sensor> sensorList) {
+		for (Sensor s : sensorList) {
 			List<PointValue> dataPoints = dao
 					.getPointValues(new SensorValueSelect(s.getId(), TimeUtils
 							.timeStampToEpochTime(start), TimeUtils
@@ -107,6 +110,14 @@ public class RunReportAction {
 
 	public List<ManualDataPoint> getManualData() {
 		return manualData;
+	}
+
+	public List <ChartConfiguration> getCharts() {
+		return charts;
+	}
+
+	public void setCharts(List <ChartConfiguration> charts) {
+		this.charts = charts;
 	}
 
 }
