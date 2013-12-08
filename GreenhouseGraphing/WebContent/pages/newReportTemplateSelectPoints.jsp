@@ -582,7 +582,7 @@
     <div class="senorListnoHeight">
         <s:iterator value="sensors" var="sensor">
             <div id="${sensor.id}" class="checkbox" style="display:none;">
-                <label> <input id="${sensor.id}_input" type="checkbox" name="sensorIds" value="${sensor.id}"> ${sensor.name}</label>
+                <label> <input id="${sensor.id}_input" type="checkbox" name="sensorIds" value="${sensor.id}">${sensor.name}</label>
                 <span onclick="uncheck('${sensor.id}', '${sensor.id}_input');" class="glyphicon glyphicon-remove"></span>
             </div>
         </s:iterator>

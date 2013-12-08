@@ -51,8 +51,10 @@
                                 <div class="reportButtons">
                                     <a href="${runReport}" onclick="gowait();"type="button" class="btn btn-primaryGreen reportList">Run
                                         Report <span class="glyphicon glyphicon-arrow-right"></span></a>
-                                    <button type="button" class="btn btn-primary reportList">Edit Report <span
-                                            class="glyphicon glyphicon-pencil"></span></button>
+                                    <s:if test='#session.level=="admin"'>
+                                        <button type="button" class="btn btn-primary reportList">Edit Report <span
+                                                class="glyphicon glyphicon-pencil"></span></button>
+                                    </s:if>
                                 </div>
                             </h4>
 
@@ -60,7 +62,7 @@
                         <!-- /.reportEntry-->
                     </s:iterator>
                     <s:if test="%{reportTemplates.isEmpty()}">
-                        <div class="reportEntry"><h4>Sorry there are no report templates under the category "${reportListBean.system}"!</h4></div>
+                        <div class="reportEntry"><h4>Sorry there are no report templates under the category "${reportListBean.system}!"</h4></div>
                     </s:if>
 
                 </div>

@@ -35,23 +35,24 @@ public class SaveReportTemplateAction extends ActionSupport {
 
         // -- Compose the chart configurations.
         List<ChartConfiguration> chartConfigurations = new ArrayList<ChartConfiguration>();
-        for (int i = 0; i < configurationNames.size(); i++) {
-            ChartConfiguration cc = new ChartConfiguration();
-            cc.setName(configurationNames.get(i));
-            cc.setChartType(configurationTypes.get(i));
-            cc.setxLabel(configurationXLabels.get(i));
-            cc.setyLabel(configurationYLabels.get(i));
-            // -- Associate the selected sensors with the associated chart configuration.
-            List<Sensor> chartSensors = new ArrayList<Sensor>();
-            if (chartSensorIds != null) {
-                for (String id : chartSensorIds.get(i)) {
-                    chartSensors.add(dao.getSensor(Integer.parseInt(id)));
+        if (configurationNames != null) {
+            for (int i = 0; i < configurationNames.size(); i++) {
+                ChartConfiguration cc = new ChartConfiguration();
+                cc.setName(configurationNames.get(i));
+                cc.setChartType(configurationTypes.get(i));
+                cc.setxLabel(configurationXLabels.get(i));
+                cc.setyLabel(configurationYLabels.get(i));
+                // -- Associate the selected sensors with the associated chart configuration.
+                List<Sensor> chartSensors = new ArrayList<Sensor>();
+                if (chartSensorIds != null) {
+                    for (String id : chartSensorIds.get(i)) {
+                        chartSensors.add(dao.getSensor(Integer.parseInt(id)));
+                    }
                 }
+                cc.setSensors(chartSensors);
+                chartConfigurations.add(cc);
             }
-            cc.setSensors(chartSensors);
-            chartConfigurations.add(cc);
         }
-
         // - Associate chart configurations with the template.
         template.setChartConfigurations(chartConfigurations);
 
@@ -114,4 +115,5 @@ public class SaveReportTemplateAction extends ActionSupport {
     public void setChartSensorIds(List<List<String>> chartSensorIds) {
         this.chartSensorIds = chartSensorIds;
     }
+
 }

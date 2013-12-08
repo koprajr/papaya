@@ -33,8 +33,10 @@ public class RunReportAction {
 			sensors = template.getSensors();
 			preprocessSensors(sensors);
 
+            System.out.println(template.getManualData());
+
 			manualData = template.getManualData();
-			prepocessManualData();
+			preprocessManualData(manualData);
 
 			charts = template.getChartConfigurations();
 			
@@ -48,12 +50,11 @@ public class RunReportAction {
 
 	}
 
-	private void prepocessManualData() {
-		for (ManualDataPoint m : manualData){
-			List<ManualDataPointValue> manuals = dao.getManualDataPointValues(m.getId());
-			
-			m.setValues(manuals);
-		}
+	private void preprocessManualData(List<ManualDataPoint> manualData) {
+        for (ManualDataPoint m : manualData){
+            List<ManualDataPointValue> manuals = dao.getManualDataPointValues(m.getId());
+            m.setValues(manuals);
+        }
 	}
 
 	private void preprocessSensors(List<Sensor> sensorList) {

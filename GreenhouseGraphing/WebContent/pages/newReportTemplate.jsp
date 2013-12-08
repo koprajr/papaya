@@ -40,7 +40,7 @@
                                     <s:if test="%{sensors.isEmpty()}">
                                         <h5>There are no data sensors included in this report template!</h5>
                                     </s:if>
-                                    <s:else>
+                                    <s:else>-Test
                                         <div class="sensorList">
                                             <s:iterator value="sensors" var="sensor">
                                                 <div class="checkbox">
@@ -63,13 +63,18 @@
                                         <%--</div>--%>
                                     <%--</s:iterator>--%>
                                     <h4 class="borderBottom">Manual Data</h4>
-                                    <s:iterator value="manualData" var="md">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="manualIds" value="${md}"> ${md}
-                                            </label>
-                                        </div>
-                                    </s:iterator>
+                                    <s:if test="%{manualData.isEmpty()}">
+                                        <h5>There are no manual data types included in this report template!</h5>
+                                    </s:if>
+                                    <s:else>
+                                        <s:iterator value="manualData" var="md">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="manualIds" value="${md}"> ${md}
+                                                </label>
+                                            </div>
+                                        </s:iterator>
+                                    </s:else>
                                 </div>
 
                                 <div id="chart-configuration-area" class="col-sm-8">
@@ -139,6 +144,8 @@
                 </div>'
             );
             generatedChartCount += 1;
+
         }));
     </script>
+
 </body>
