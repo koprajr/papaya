@@ -3,6 +3,7 @@ package actions;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
 import models.ChartConfiguration;
+import models.ManualDataPoint;
 import models.ReportTemplate;
 import models.Sensor;
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class SaveReportTemplateAction extends ActionSupport {
     private ReportTemplate template;
     private List<Integer> sensorIds;
+    private List<String> manualIds;
     private List<String> configurationNames;
     private List<String> configurationTypes;
     private List<String> configurationXLabels;
@@ -32,6 +34,15 @@ public class SaveReportTemplateAction extends ActionSupport {
             }
         }
         template.setSensors(individualSensors);
+
+        List<ManualDataPoint> manualData = new ArrayList<ManualDataPoint>();
+        if (manualIds != null) {
+            for (String name : manualIds) {
+                manualData.add(dao.selectManualDataTypesByName(name));
+            }
+        }
+        template.setManualData(manualData);
+
 
         // -- Compose the chart configurations.
         List<ChartConfiguration> chartConfigurations = new ArrayList<ChartConfiguration>();
@@ -116,4 +127,11 @@ public class SaveReportTemplateAction extends ActionSupport {
         this.chartSensorIds = chartSensorIds;
     }
 
+    public List<String> getManualIds() {
+        return manualIds;
+    }
+
+    public void setManualIds(List<String> manualIds) {
+        this.manualIds = manualIds;
+    }
 }

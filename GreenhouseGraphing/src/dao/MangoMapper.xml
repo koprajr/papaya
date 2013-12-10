@@ -136,6 +136,10 @@
     <select id="selectManualDataTypes" resultType="String">
         select name from manualdatapoints
     </select>
+
+    <select id="selectManualDataTypesByName" parameterType="String" resultType="ManualDataPoint">
+        select * from manualdatapoints where name=#{name}
+    </select>
 	
 	<select id="selectSensors" resultType="Sensor">
 		select * from datapoints

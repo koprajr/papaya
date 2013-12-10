@@ -193,7 +193,21 @@ public class MangoDAO {
         }
         return manualDataTypes;
     }
-	
+
+    public ManualDataPoint selectManualDataTypesByName(String name) {
+        SqlSession session = null;
+        List<ManualDataPoint> manualDataType = null;
+        try {
+            session = factory.openSession();
+            manualDataType = session.selectList("dao.MangoMapper.selectManualDataTypesByName", name);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return manualDataType != null ? manualDataType.get(0) : null;
+    }
+
 	public List<Sensor> getSensors(){
 		SqlSession session = null;
 		List<Sensor> sensors = null;
@@ -527,7 +541,7 @@ public class MangoDAO {
                 }
             }
 
-            // Manudal Data Points Associations.
+            // Manual Data Points Associations.
             if (reportTemplate.getManualData() != null) {
                 for (ManualDataPoint mdp : reportTemplate.getManualData()) {
                     session.insert("dao.MangoMapper.createReportTemplateManualDataPointAssoc", new ReportTemplateManualDataPointAssoc(reportTemplate.getId(), mdp.getId()));

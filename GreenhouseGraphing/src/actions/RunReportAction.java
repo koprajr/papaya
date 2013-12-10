@@ -31,33 +31,30 @@ public class RunReportAction {
 			template = dao.getReportTemplateByName(reportName);
 
 			sensors = template.getSensors();
-			preprocessSensors(sensors);
+            preSensors(sensors);
 
             System.out.println(template.getManualData());
 
 			manualData = template.getManualData();
-			preprocessManualData(manualData);
+            preManualData(manualData);
 
 			charts = template.getChartConfigurations();
 			
 			for (ChartConfiguration c : charts){
-				preprocessSensors(c.getSensors());
+                preSensors(c.getSensors());
 			}
-			
 		}
-
 		return "success";
-
 	}
 
-	private void preprocessManualData(List<ManualDataPoint> manualData) {
+	private void preManualData(List<ManualDataPoint> manualData) {
         for (ManualDataPoint m : manualData){
             List<ManualDataPointValue> manuals = dao.getManualDataPointValues(m.getId());
             m.setValues(manuals);
         }
 	}
 
-	private void preprocessSensors(List<Sensor> sensorList) {
+	private void preSensors(List<Sensor> sensorList) {
 		for (Sensor s : sensorList) {
 			List<PointValue> dataPoints = dao
 					.getPointValues(new SensorValueSelect(s.getId(), TimeUtils

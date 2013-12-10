@@ -45,6 +45,12 @@ function generateMultiCharts(){
 				text : 'Units'
 			}
 		},
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
 		series : alltogether
 	});
 	
@@ -82,6 +88,12 @@ function generateManualCharts(){
 					text : 'Units'
 				}
 			},
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
 			series : [ {
 				name : manualName,
 				data : values
@@ -123,6 +135,12 @@ function generateSensorCharts(){
 					text : 'Units'
 				}
 			},
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
 			series : [ {
 				name : sensorName,
 				data : values

@@ -3,6 +3,7 @@
 
 <head>
 <script type="text/javascript" src="js/runReport.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
 </head>
 
 <div class="container">

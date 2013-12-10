@@ -45,15 +45,18 @@
                         <s:url action="runReport" var="runReport">
                             <s:param name="reportName">${r.name}</s:param>
                         </s:url>
+                        <s:url action="editReportTemplateSelectPoints" var="editReport">
+                            <s:param name="reportEditName">${r.name}</s:param>
+                        </s:url>
 
                         <div class="reportEntry">
                             <h4>${r.name}
                                 <div class="reportButtons">
-                                    <a href="${runReport}" onclick="gowait();"type="button" class="btn btn-primaryGreen reportList">Run
+                                    <a href="${runReport}" onclick="gowait();" type="button" class="btn btn-primaryGreen reportList">Run
                                         Report <span class="glyphicon glyphicon-arrow-right"></span></a>
                                     <s:if test='#session.level=="admin"'>
-                                        <button type="button" class="btn btn-primary reportList">Edit Report <span
-                                                class="glyphicon glyphicon-pencil"></span></button>
+                                    <a href="${editReport}" onclick="gowait();" type="button" class="btn btn-primary reportList">Edit Report <span
+                                                class="glyphicon glyphicon-pencil"></span></a>
                                     </s:if>
                                 </div>
                             </h4>
@@ -98,6 +101,10 @@
                                         <br>
                                         <input type="text" style="margin-left:0px;" name="bean.quantity"
                                                class="form-control" id="value">
+                                        <br><br>
+                                        <label for="value">Date / Time</label>
+                                        <br>
+                                        <s:textfield name="start" placeholder="Start" cssClass="datepicker" />
                                         <br>
                                         <button type="submit" onclick="gowait();" class="btn btn-primaryGreen manualDataSubmit">Submit <span
                                                 class="glyphicon glyphicon-arrow-right"/></button>

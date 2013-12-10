@@ -40,7 +40,7 @@
                                     <s:if test="%{sensors.isEmpty()}">
                                         <h5>There are no data sensors included in this report template!</h5>
                                     </s:if>
-                                    <s:else>-Test
+                                    <s:else>
                                         <div class="sensorList">
                                             <s:iterator value="sensors" var="sensor">
                                                 <div class="checkbox">

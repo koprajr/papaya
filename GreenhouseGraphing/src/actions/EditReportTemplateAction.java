@@ -25,7 +25,7 @@ public class EditReportTemplateAction extends ActionSupport {
         MangoDAO dao = new MangoDAO();
 
         // -- BEGIN TEST CODE
-        template = dao.getReportTemplateByName("test tesmplate 6");
+        template = dao.getReportTemplateByName("Greenhouse Water Spray");
 
         sensors = dao.getSensors();
         templateSensorIds = new ArrayList<Integer>();
