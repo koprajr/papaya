@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -12,6 +14,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class ManualDataPoint {
     private int id;
     private String name; // eg. "Pounds of lettuce added to the greenhouse"
+    private List<ManualDataPointValue> values;
 
     public ManualDataPoint() {
     }
@@ -57,4 +60,12 @@ public class ManualDataPoint {
     public int hashCode() {
         return new HashCodeBuilder().append(id).build();
     }
+
+	public List<ManualDataPointValue> getValues() {
+		return values;
+	}
+
+	public void setValues(List<ManualDataPointValue> values) {
+		this.values = values;
+	}
 }

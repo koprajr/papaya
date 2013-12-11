@@ -23,16 +23,17 @@
                 <div class="col-md-4 col-md-offset-4">
                     <form role="form" action="userPrivilegeChange" method="post">
                         <!--ONE OF THESE FOR EACH MANUAL DATAPOINT-->
+                        <span style="font-size: 11px;">Fields marked with an * are required</span><br><br>
                         <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" name="bean.username" class="form-control" id="username" placeholder="">
-                            <br><label>Privilege Level</label><br>
+                            <label for="username">Username *</label>
+                            <input type="text" name="bean.username" class="form-control" id="username" placeholder="" required="">
+                            <br><label>Privilege Level *</label><br>
                             <input type="radio" name="bean.level" value="A">Administrator<br>
                             <input type="radio" name="bean.level" value="R">Researcher<br>
-                            <input type="radio" name="bean.level" value="S">Student
+                            <input type="radio" name="bean.level" value="S" checked="checked">Student
 
                         </div><!-- /.form-group-->
-                        <button type="submit" class="btn btn-primaryGreen manualDataSubmit">Submit  <span class="glyphicon glyphicon-arrow-right"/></button>
+                        <button type="submit" class="btn btn-primaryGreen manualDataSubmit">Submit  <span class="glyphicon glyphicon-arrow-right"></span></button>
                     </form>
                 </div><!-- /.panel .panel-default-->
             </div><!-- /.panel .panel-default-->

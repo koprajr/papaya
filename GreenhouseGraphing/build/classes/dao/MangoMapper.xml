@@ -136,10 +136,6 @@
     <select id="selectManualDataTypes" resultType="String">
         select name from manualdatapoints
     </select>
-
-    <select id="selectManualDataTypesByName" parameterType="String" resultType="ManualDataPoint">
-        select * from manualdatapoints where name=#{name}
-    </select>
 	
 	<select id="selectSensors" resultType="Sensor">
 		select * from datapoints
@@ -162,6 +158,11 @@
         insert into reportTemplates (name, description)
         values (#{name}, #{description})
     </insert>
+
+    <!--<resultMap id="reportTemplateDataPointAssoc" type="ReportTemplateDataPointAssoc">-->
+    <!--<result property="reportTemplateId" column="reportTemplateId"/>-->
+    <!--<result property="dataPointId" column="dataPointId"/>-->
+    <!--</resultMap>-->
 
     <insert id="createReportTemplateDataPointAssoc" parameterType="ReportTemplateDataPointAssoc">
         insert into reportTemplateDataPointAssoc (reportTemplateId, dataPointId)
@@ -189,27 +190,17 @@
       select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
     </select>
 
+
 	<select id="getManualDataPointValues" parameterType="java.lang.Integer" resultType="ManualDataPointValue">
 		select * from manualdatapointvalues where manualdatapointid=#{id}
 	</select>
 
-    <delete id="deleteTemplateChartConfigurationAssoc" parameterType="ReportTemplateChartConfigurationAssoc">
-        delete from ReportTemplateChartConfigurationAssoc
-        where       reportTemplateId=#{reportTemplateId} and chartConfigurationId=#{chartConfigurationId}
-    </delete>
-
-    <delete id="deleteAllReportTemplateManualDataPointAssoc">
+    <delete id="deleteAllreportTemplateManualDataPointAssoc">
         delete from reportTemplateManualDataPointAssoc
     </delete>
     <delete id="deleteAllReportTemplateDataPointAssoc">
         delete from reportTemplateDataPointAssoc
     </delete>
-
-    <delete id="deleteReportTemplateDataPointAssoc" parameterType="ReportTemplateDataPointAssoc">
-        delete from reportTemplateDataPointAssoc
-        where       reportTemplateId=#{reportTemplateId} and chartConfigurationId=#{reportTemplateId}
-    </delete>
-
     <delete id="deleteAllReportTemplates">
         delete from reportTemplates
     </delete>
@@ -254,16 +245,11 @@
         delete from chartConfigurationDataPointAssoc
     </delete>
 
-    <delete id="deleteChartConfigDataPointAssoc" parameterType="ChartConfigurationDataPointAssoc">
-        delete from chartConfigurationDataPointAssoc
-        where       chartConfigurationId=#{chartConfigurationId} and dataPointId=#{dataPointId}
-    </delete>
-
     <delete id="deleteAllChartConfigManualDataPointAssoc">
         delete from chartConfigurationManualDataPointAssoc
     </delete>
 
-    <delete id="deleteAllChartConfigurations">
+    <delete id="deleteAllChartConfiguraitons">
         delete from chartConfigurations
     </delete>
 
