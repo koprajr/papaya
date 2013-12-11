@@ -178,7 +178,7 @@
     </select>
 
     <delete id="deleteTemplateChartConfigurationAssoc" parameterType="ReportTemplateChartConfigurationAssoc">
-        delete from reportTemplateChartConfigurationAssoc
+        delete from ReportTemplateChartConfigurationAssoc
         where       reportTemplateId=#{reportTemplateId} and chartConfigurationId=#{chartConfigurationId}
     </delete>
 
