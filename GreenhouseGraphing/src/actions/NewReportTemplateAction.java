@@ -37,11 +37,6 @@ public class NewReportTemplateAction extends ActionSupport {
         sensors = new ArrayList<Sensor>();
         manualData = new ArrayList<String>();
 
-        equations.add(new SampleEquation(new Long(1), "Equation 1's Name"));
-        equations.add(new SampleEquation(new Long(2), "Equation 2's Name"));
-        equations.add(new SampleEquation(new Long(3), "Equation 3's Name"));
-
-        // END - TESTING CODE
 
         if (!cBox.isEmpty() && cBox != null) {
             for (Integer s : cBox) {
@@ -57,34 +52,28 @@ public class NewReportTemplateAction extends ActionSupport {
 
         return SUCCESS;
     }
+
     public void setSensorIds(String[] sensorIdsS) {
         for (String sensorIds : sensorIdsS) {
             try {
-            id = Integer.parseInt(sensorIds);
-            cBox.add(id);
-            }
-            catch (NumberFormatException nfe)
-            {
+                id = Integer.parseInt(sensorIds);
+                cBox.add(id);
+            } catch (NumberFormatException nfe) {
                 System.out.println("ERROR-----------------------------------------------------------------------------------");
-            }
-            catch (NullPointerException npe)
-            {
+            } catch (NullPointerException npe) {
                 System.out.println("ERROR-----------------------------------------------------------------------------------");
             }
             //cBox.add(testSensor);
         }
     }
+
     public void setManualIds(String[] manualIdsS) {
         for (String manualIds : manualIdsS) {
             try {
                 mBox.add(manualIds);
-            }
-            catch (NumberFormatException nfe)
-            {
+            } catch (NumberFormatException nfe) {
                 System.out.println("ERROR-----------------------------------------------------------------------------------");
-            }
-            catch (NullPointerException npe)
-            {
+            } catch (NullPointerException npe) {
                 System.out.println("ERROR-----------------------------------------------------------------------------------");
             }
         }

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.MangoMapper">
 
-	<resultMap id="UserMap" type="User">
-		<result property="id" column="id" />
-		<result property="username" column="username" />
-		<result property="email" column="email" />
-		<result property="phone" column="phone" />
-		<result property="password" column="password" />
-		<result property="admin" column="admin" />
-		<result property="disabled" column="disabled" />
-		<result property="receiveAlarmEmails" column="receiveAlarmEmails" />
-		<result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents" />
-	</resultMap>
+    <resultMap id="UserMap" type="User">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="password" column="password"/>
+        <result property="admin" column="admin"/>
+        <result property="disabled" column="disabled"/>
+        <result property="receiveAlarmEmails" column="receiveAlarmEmails"/>
+        <result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents"/>
+    </resultMap>
 
     <resultMap id="PrivilegeLevelMap" type="UserPriv">
-        <result property="userId" column="userId" />
-        <result property="level" column="level" />
+        <result property="userId" column="userId"/>
+        <result property="level" column="level"/>
     </resultMap>
 
     <resultMap id="ReportTemplateMap" type="ReportTemplate">
@@ -37,40 +37,45 @@
     </resultMap>
 
     <resultMap id="SensorMap" type="Sensor">
-		<result property="id" column="id"/>
-		<result property="data" column="data"/>
-	</resultMap>
-	
+        <result property="id" column="id"/>
+        <result property="data" column="data"/>
+    </resultMap>
+
     <resultMap id="PointValueMap" type="PointValue">
-        <result property="dataPointId" column="datapointid" />
-        <result property="pointValue" column="pointValue" />
-        <result property="ts" column="ts" />
+        <result property="dataPointId" column="datapointid"/>
+        <result property="pointValue" column="pointValue"/>
+        <result property="ts" column="ts"/>
     </resultMap>
 
     <resultMap id="ManualDataMap" type="ManualData">
-        <result property="id" column="id" />
-        <result property="value" column="pointvalue" />
-        <result property="typeId" column="manualdatatypeId" />
-        <result property="userId" column="userId" />
-        <result property="timeStamp" column="ts" />
+        <result property="id" column="id"/>
+        <result property="value" column="pointvalue"/>
+        <result property="typeId" column="manualdatatypeId"/>
+        <result property="userId" column="userId"/>
+        <result property="timeStamp" column="ts"/>
     </resultMap>
-    
+
+    <resultMap id="ManualDataPointMap" type="ManualDataPoint">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
     <resultMap id="ManualDataPointValueMap" type="ManualDataPointValue">
-        <result property="id" column="id" />
-        <result property="value" column="pointvalue" />
-        <result property="typeId" column="manualdatatypeId" />
-        <result property="userId" column="userId" />
-        <result property="timeStamp" column="ts" />
+        <result property="id" column="id"/>
+        <result property="value" column="pointvalue"/>
+        <result property="typeId" column="manualdatatypeId"/>
+        <result property="userId" column="userId"/>
+        <result property="timeStamp" column="ts"/>
     </resultMap>
 
     <resultMap id="ManualDataTypesMap" type="ManualDataType">
-        <result property="name" column="name" />
-        <result property="id" column="id" />
+        <result property="name" column="name"/>
+        <result property="id" column="id"/>
     </resultMap>
 
     <resultMap id="CategoryMap" type="Category">
-        <result property="id" column="id" />
-        <result property="name" column="name" />
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
     </resultMap>
 
     <!--
@@ -90,9 +95,9 @@
             USER QUERIES
     -->
 
-	<select id="selectUsers" resultType="User">
-		select * from users
-	</select>
+    <select id="selectUsers" resultType="User">
+        select * from users
+    </select>
 
     <select id="insertUser" parameterType="User">
         insert into users values (6,#{username},#{password},'research@mango.com','','N','N', 0, 0,'',0,'N')
@@ -101,19 +106,20 @@
     <select id="selectUser" parameterType="User" resultType="User">
         select * from users where username=#{username}
     </select>
-	
-	<delete id="deleteUser" parameterType="User">
-		delete from users where id=#{id}
-	</delete>
+
+    <delete id="deleteUser" parameterType="User">
+        delete from users where id=#{id}
+    </delete>
 
     <update id="updateUserPass" parameterType="User">
         update users set password=#{password} where id=#{id}
     </update>
-	
-	<insert id="createUser" parameterType="User">
-		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
-		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
-	</insert>
+
+    <insert id="createUser" parameterType="User">
+        insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
+        values
+        (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
+    </insert>
 
     <!--
             MANUAL DATA POINT QUERIES
@@ -140,18 +146,18 @@
     <select id="selectManualDataTypesByName" parameterType="String" resultType="ManualDataPoint">
         select * from manualdatapoints where name=#{name}
     </select>
-	
-	<select id="selectSensors" resultType="Sensor">
-		select * from datapoints
-	</select>
-	
-	<select id="selectSensor" parameterType="int" resultType="Sensor">
-		select * from datapoints where id=#{id}
-	</select>
-	
-	<select id="selectPointValues" parameterType="SensorValueSelect" resultType="PointValue">
-		select * from pointvalues where dataPointId=#{id} and ts &lt; #{endTime} and ts &gt; #{startTime}
-	</select>
+
+    <select id="selectSensors" resultType="Sensor">
+        select * from datapoints
+    </select>
+
+    <select id="selectSensor" parameterType="int" resultType="Sensor">
+        select * from datapoints where id=#{id}
+    </select>
+
+    <select id="selectPointValues" parameterType="SensorValueSelect" resultType="PointValue">
+        select * from pointvalues where dataPointId=#{id} and ts &lt; #{endTime} and ts &gt; #{startTime}
+    </select>
 
 
     <!--
@@ -182,20 +188,22 @@
     </select>
 
     <select id="getDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="Sensor">
-        select id, data from reporttemplatedatapointassoc join datapoints on datapoints.id=reporttemplatedatapointassoc.datapointid where reporttemplateid=#{id}
+        select id, data from reporttemplatedatapointassoc join datapoints on
+        datapoints.id=reporttemplatedatapointassoc.datapointid where reporttemplateid=#{id}
     </select>
 
     <select id="getManualDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="ManualDataPoint">
-      select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
+        select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on
+        manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
     </select>
 
-	<select id="getManualDataPointValues" parameterType="java.lang.Integer" resultType="ManualDataPointValue">
-		select * from manualdatapointvalues where manualdatapointid=#{id}
-	</select>
+    <select id="getManualDataPointValues" parameterType="java.lang.Integer" resultType="ManualDataPointValue">
+        select * from manualdatapointvalues where manualdatapointid=#{id}
+    </select>
 
     <delete id="deleteTemplateChartConfigurationAssoc" parameterType="ReportTemplateChartConfigurationAssoc">
         delete from ReportTemplateChartConfigurationAssoc
-        where       reportTemplateId=#{reportTemplateId} and chartConfigurationId=#{chartConfigurationId}
+        where reportTemplateId=#{reportTemplateId} and chartConfigurationId=#{chartConfigurationId}
     </delete>
 
     <delete id="deleteAllReportTemplateManualDataPointAssoc">
@@ -207,7 +215,7 @@
 
     <delete id="deleteReportTemplateDataPointAssoc" parameterType="ReportTemplateDataPointAssoc">
         delete from reportTemplateDataPointAssoc
-        where       reportTemplateId=#{reportTemplateId} and chartConfigurationId=#{reportTemplateId}
+        where reportTemplateId=#{reportTemplateId} and chartConfigurationId=#{reportTemplateId}
     </delete>
 
     <delete id="deleteAllReportTemplates">
@@ -225,10 +233,12 @@
     </insert>
 
     <select id="getSensorsForChartConfig" parameterType="java.lang.Integer" resultType="Sensor">
-        select id, data from chartConfigurationDataPointAssoc join dataPoints on chartConfigurationDataPointAssoc.dataPointId = dataPoints.id where chartConfigurationId=#{id}
+        select id, data from chartConfigurationDataPointAssoc join dataPoints on
+        chartConfigurationDataPointAssoc.dataPointId = dataPoints.id where chartConfigurationId=#{id}
     </select>
 
-    <select id="getChartConfigurationByReportTemplateId" parameterType="java.lang.Integer" resultMap="ChartConfigurationMap">
+    <select id="getChartConfigurationByReportTemplateId" parameterType="java.lang.Integer"
+            resultMap="ChartConfigurationMap">
         select * from chartConfigurations where reportTemplateId=#{id}
     </select>
 
@@ -247,7 +257,8 @@
     </insert>
 
     <select id="getManualDataPointsForChartConfig" parameterType="java.lang.Integer" resultType="ManualDataPoint">
-        select id, name from chartConfigurationManualDataPointAssoc join manualDataPoints on chartConfigurationManualDataPointAssoc.manualDataPointId = manualDataPoints.id where chartConfigurationId=#{id}
+        select id, name from chartConfigurationManualDataPointAssoc join manualDataPoints on
+        chartConfigurationManualDataPointAssoc.manualDataPointId = manualDataPoints.id where chartConfigurationId=#{id}
     </select>
 
     <delete id="deleteAllChartConfigDataPointAssoc">
@@ -256,7 +267,7 @@
 
     <delete id="deleteChartConfigDataPointAssoc" parameterType="ChartConfigurationDataPointAssoc">
         delete from chartConfigurationDataPointAssoc
-        where       chartConfigurationId=#{chartConfigurationId} and dataPointId=#{dataPointId}
+        where chartConfigurationId=#{chartConfigurationId} and dataPointId=#{dataPointId}
     </delete>
 
     <delete id="deleteAllChartConfigManualDataPointAssoc">
@@ -318,18 +329,20 @@
         select * from categories
     </select>
 
-   <!--DataPoint category-->
+    <!--DataPoint category-->
     <insert id="categorizeDataPoint" parameterType="CategoryDataPointAssoc">
         insert into categoryDataPointAssoc (categoryId, dataPointId)
         values (#{categoryId}, #{dataPointId})
     </insert>
 
     <delete id="deleteCategoryDataPointAssoc" parameterType="CategoryDataPointAssoc">
-        delete from categoryDataPointAssoc where categoryDataPointAssoc.categoryId=#{categoryId} and categoryDataPointAssoc.dataPointId=#{dataPointId}
+        delete from categoryDataPointAssoc where categoryDataPointAssoc.categoryId=#{categoryId} and
+        categoryDataPointAssoc.dataPointId=#{dataPointId}
     </delete>
 
     <select id="selectDataPointsForCategory" parameterType="Category" resultType="Sensor">
-        select id, data from dataPoints join categoryDataPointAssoc on dataPoints.id = categoryDataPointAssoc.dataPointId
+        select id, data from dataPoints join categoryDataPointAssoc on dataPoints.id =
+        categoryDataPointAssoc.dataPointId
         where categoryDataPointAssoc.categoryId=#{id}
     </select>
 
@@ -340,16 +353,19 @@
         values (#{categoryId}, #{manualDataPointId})
     </insert>
     <delete id="deleteCategoryManualDataPointAssoc" parameterType="CategoryDataPointAssoc">
-        delete from categoryManualDataPointAssoc where categoryManualDataPointAssoc.categoryId=#{categoryId} and categoryManualDataPointAssoc.ManualDataPointId=#{manualDataPointId}
+        delete from categoryManualDataPointAssoc where categoryManualDataPointAssoc.categoryId=#{categoryId} and
+        categoryManualDataPointAssoc.ManualDataPointId=#{manualDataPointId}
     </delete>
 
     <select id="selectManualDataPointsForCategory" parameterType="Category" resultType="ManualDataPoint">
-        select id, name from manualDataPoints join categoryManualDataPointAssoc on manualDataPoints.id=categoryManualDataPointAssoc.manualDataPointID
+        select id, name from manualDataPoints join categoryManualDataPointAssoc on
+        manualDataPoints.id=categoryManualDataPointAssoc.manualDataPointID
         where categoryManualDataPointAssoc.categoryId=#{id}
     </select>
 
     <select id="selectManualDataPointTypesForCategory" parameterType="Category" resultType="String">
-        select name from manualDataPoints join categoryManualDataPointAssoc on manualDataPoints.id=categoryManualDataPointAssoc.manualDataPointID
+        select name from manualDataPoints join categoryManualDataPointAssoc on
+        manualDataPoints.id=categoryManualDataPointAssoc.manualDataPointID
         where categoryManualDataPointAssoc.categoryId=#{id}
     </select>
 
@@ -360,12 +376,14 @@
     </insert>
 
     <delete id="deleteCategoryReportTemplateAssoc" parameterType="CategoryReportTemplateAssoc">
-        delete from categoryReportTemplateAssoc where categoryReportTemplateAssoc.categoryId=#{categoryId} and categoryReportTemplateAssoc.reportTemplateId=#{reportTemplateId}
+        delete from categoryReportTemplateAssoc where categoryReportTemplateAssoc.categoryId=#{categoryId} and
+        categoryReportTemplateAssoc.reportTemplateId=#{reportTemplateId}
     </delete>
 
     <select id="selectReportTemplatesForCategory" parameterType="Category" resultType="ReportTemplate">
-        select id, name, description from reportTemplates join categoryReportTemplateAssoc on reportTemplates.id=categoryReportTemplateAssoc.reportTemplateId
-         where categoryReportTemplateAssoc.categoryId=#{id}
+        select id, name, description from reportTemplates join categoryReportTemplateAssoc on
+        reportTemplates.id=categoryReportTemplateAssoc.reportTemplateId
+        where categoryReportTemplateAssoc.categoryId=#{id}
     </select>
 
 
@@ -398,5 +416,5 @@
     <select id="selectCategoryReportTemplate" parameterType="CategoryHelper" resultType="CategoryHelper">
         select * from categoryreporttemplateassoc where categoryid=#{categoryId} AND reporttemplateid=#{dataId}
     </select>
-	
+
 </mapper>

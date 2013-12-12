@@ -10,19 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateReportTemplateAction extends ActionSupport {
-
-    private ReportTemplate template;
+    private String templateName;
+    private String templateDescription;
     private List<Integer> sensorIds;
+    private List<Integer> manualDataIds;
     private List<String> configurationNames;
     private List<String> configurationTypes;
     private List<String> configurationXLabels;
     private List<String> configurationYLabels;
     private List<List<String>> chartSensorIds;
+    private List<List<String>> chartManualDataIds;
 
     @Override
     public String execute() throws Exception {
 
         MangoDAO dao = new MangoDAO();
+        ReportTemplate template = new ReportTemplate();
         /*
                 DELETE ALL EXISTING ASSOCIATIONS OF THIS REPORT TEMPLATE.
          */
@@ -76,12 +79,20 @@ public class UpdateReportTemplateAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public ReportTemplate getTemplate() {
-        return template;
+    public String getTemplateName() {
+        return templateName;
     }
 
-    public void setTemplate(ReportTemplate template) {
-        this.template = template;
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
+    }
+
+    public String getTemplateDescription() {
+        return templateDescription;
+    }
+
+    public void setTemplateDescription(String templateDescription) {
+        this.templateDescription = templateDescription;
     }
 
     public List<Integer> getSensorIds() {
@@ -90,6 +101,14 @@ public class UpdateReportTemplateAction extends ActionSupport {
 
     public void setSensorIds(List<Integer> sensorIds) {
         this.sensorIds = sensorIds;
+    }
+
+    public List<Integer> getManualDataIds() {
+        return manualDataIds;
+    }
+
+    public void setManualDataIds(List<Integer> manualDataIds) {
+        this.manualDataIds = manualDataIds;
     }
 
     public List<String> getConfigurationNames() {
@@ -130,5 +149,13 @@ public class UpdateReportTemplateAction extends ActionSupport {
 
     public void setChartSensorIds(List<List<String>> chartSensorIds) {
         this.chartSensorIds = chartSensorIds;
+    }
+
+    public List<List<String>> getChartManualDataIds() {
+        return chartManualDataIds;
+    }
+
+    public void setChartManualDataIds(List<List<String>> chartManualDataIds) {
+        this.chartManualDataIds = chartManualDataIds;
     }
 }

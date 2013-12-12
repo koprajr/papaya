@@ -30,7 +30,9 @@
 <div class="container container-main">
 <div class="row row-offcanvas row-offcanvas-right">
 
-<form role="form" action="newReportTemplate.action" class="reportTempCreation1Form" method="post" placeholder="">
+<form role="form" action="editReportTemplate.action" class="reportTempCreation1Form" method="post" placeholder="">
+
+<input type="hidden" name="templateName" value="${template.name}">
 
 <div class="col-sm-8">
 <div class="page-header reportTempCreation">
@@ -580,25 +582,31 @@
         <small> to include in the report</small>
     </h4>
     <div class="senorListnoHeight">
-        <s:iterator value="sensors" var="sensor">
-            <div id="${sensor.id}" class="checkbox" style="display:none;">
-                <label> <input id="${sensor.id}_input" type="checkbox" name="sensorIds" value="${sensor.id}">${sensor.name}</label>
-                <span onclick="uncheck('${sensor.id}', '${sensor.id}_input');" class="glyphicon glyphicon-remove"></span>
+        <s:iterator value="template.sensors" var="sensor">
+            <div id="${sensor.id}" class="checkbox">
+                    <%--<div id="${sensor.id}" class="checkbox" style="display:none;">--%>
+                <label> <input id="${sensor.id}_input" type="checkbox" name="sensorIds" value="${sensor.id}"
+                               checked>${sensor.name}</label>
+                    <%--<span onclick="uncheck('${sensor.id}', '${sensor.id}_input');" class="glyphicon glyphicon-remove"></span>--%>
             </div>
         </s:iterator>
-        <s:iterator value="manualDataTypes" var="md">
-            <div id="${md}" class="checkbox" style="display:none;">
-                <label> <input id="${md}_input" type="checkbox" name="manualIds" value="${md}"> ${md}</label>
-                <span onclick="uncheck('${md}', '${md}_input');" class="glyphicon glyphicon-remove"></span>
-            </div>
-        </s:iterator>
-        <s:iterator value="manualDataTypesSelected" var="ms">
-            <span>${ms.name}</span>
+        <%--<hr>--%>
+        <%--<s:iterator value="manualDataTypes" var="md">--%>
+        <%--<div id="${md}" class="checkbox" style="display:none;">--%>
+        <%--<label> <input id="${md}_input" type="checkbox" name="manualIds" value="${md}"> ${md}</label>--%>
+        <%--<span onclick="uncheck('${md}', '${md}_input');" class="glyphicon glyphicon-remove"></span>--%>
+        <%--</div>--%>
+        <%--</s:iterator>--%>
+        <hr>
+        <s:iterator value="template.manualData" var="data">
+            <label><input id="${data.id}_input" type="checkbox" name="manualIds" value="${data.id}" checked>${data.name}
+            </label>
         </s:iterator>
     </div>
 
     <br>
-    <button type="submit" style="margin-top:25px;" class="btn btn-block btn-primaryGreen">Continue to Graph Specification
+    <button type="submit" style="margin-top:25px;" class="btn btn-block btn-primaryGreen">Continue to Graph
+        Specification
         <span class="glyphicon glyphicon-arrow-right"></span></button>
     <br>
 </div>
@@ -609,13 +617,13 @@
 <!--/.container .container-main-->
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         <s:iterator value="manualDataTypesSelected" var="mds">
-            check('${mds.name}', '${mds.name}_input');
+        check('${mds.name}', '${mds.name}_input');
         </s:iterator>
 
         <s:iterator value="sensorsSelected" var="ss">
-            check('${ss.id}', '${ss.id}_input');
+        check('${ss.id}', '${ss.id}_input');
         </s:iterator>
     })
 

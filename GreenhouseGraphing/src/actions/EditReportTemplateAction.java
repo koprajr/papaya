@@ -3,7 +3,7 @@ package actions;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
 import models.ChartConfiguration;
-import models.Equation;
+import models.ManualDataPoint;
 import models.ReportTemplate;
 import models.Sensor;
 
@@ -12,31 +12,52 @@ import java.util.List;
 import java.util.Set;
 
 public class EditReportTemplateAction extends ActionSupport {
+
+    private String templateName;
+    private List<Integer> sensorIds;
+    private List<Integer> manualIds;
+
     private ReportTemplate template;
-    private List<Integer> templateSensorIds;
     private Set<ChartConfiguration> chartConfigurations;
     private List<Sensor> sensors;
-    private Set<Equation> equations;
-    private Set<Object> manualData;
+    private List<ManualDataPoint> manualData;
 
     @Override
     public String execute() throws Exception {
 
         MangoDAO dao = new MangoDAO();
+        template = dao.getReportTemplateByName(templateName);
 
-        // -- BEGIN TEST CODE
-        template = dao.getReportTemplateByName("Greenhouse Water Spray");
-
-        sensors = dao.getSensors();
-        templateSensorIds = new ArrayList<Integer>();
-        if (template.getSensors() != null) {
-            for (Sensor s : template.getSensors()) {
-                templateSensorIds.add(s.getId());
+        sensors = new ArrayList<Sensor>();
+        if (sensorIds != null) {
+            for (Integer id : sensorIds) {
+                sensors.add(dao.getSensor(id));
             }
         }
-        // -- END TEST CODE
+        manualData = new ArrayList<ManualDataPoint>();
+        if (manualIds != null) {
+            for (Integer id : manualIds) {
+                manualData.add(dao.selectManualDataPointById(id));
+            }
+        }
 
         return SUCCESS;
+    }
+
+    public List<Integer> getManualIds() {
+        return manualIds;
+    }
+
+    public void setManualIds(List<Integer> manualIds) {
+        this.manualIds = manualIds;
+    }
+
+    public String getTemplateName() {
+        return templateName;
+    }
+
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
     }
 
     public ReportTemplate getTemplate() {
@@ -47,12 +68,12 @@ public class EditReportTemplateAction extends ActionSupport {
         this.template = template;
     }
 
-    public List<Integer> getTemplateSensorIds() {
-        return templateSensorIds;
+    public List<Integer> getSensorIds() {
+        return sensorIds;
     }
 
-    public void setTemplateSensorIds(List<Integer> templateSensorIds) {
-        this.templateSensorIds = templateSensorIds;
+    public void setSensorIds(List<Integer> sensorIds) {
+        this.sensorIds = sensorIds;
     }
 
     public Set<ChartConfiguration> getChartConfigurations() {
@@ -71,19 +92,11 @@ public class EditReportTemplateAction extends ActionSupport {
         this.sensors = sensors;
     }
 
-    public Set<Equation> getEquations() {
-        return equations;
-    }
-
-    public void setEquations(Set<Equation> equations) {
-        this.equations = equations;
-    }
-
-    public Set<Object> getManualData() {
+    public List<ManualDataPoint> getManualData() {
         return manualData;
     }
 
-    public void setManualData(Set<Object> manualData) {
+    public void setManualData(List<ManualDataPoint> manualData) {
         this.manualData = manualData;
     }
 }
