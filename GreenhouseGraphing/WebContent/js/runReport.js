@@ -116,7 +116,7 @@ function generateSensorCharts(){
 				text : sensorName
 			},
 			xAxis : {
-//			 categories : labels
+			 categories : labels
 			},
 			yAxis : {
 				title : {
