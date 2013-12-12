@@ -9,49 +9,50 @@
 
 	<s:form action="sensorSelect" method="get">
 		<div class="sensorList">
-			<s:iterator value="sensorIds" var="n">
+			<s:iterator value="sensors" var="n">
 				<input type="checkbox" name="selectedSensors" value="${n.id}" /> ${n.name} <br />
 			</s:iterator>
 		</div>
-		
+
 		<div>
-			<s:textfield name="start" placeholder="Start" cssClass="datepicker"/>
-			<s:textfield name="end" placeholder="End" cssClass="datepicker"/>
+			<s:textfield name="start" placeholder="Start" cssClass="datepicker" />
+			<s:textfield name="end" placeholder="End" cssClass="datepicker" />
 		</div>
 
 		<s:submit cssClass="btn btn-primary" />
 
 	</s:form>
 
-	<hr />
-
-	<h2>${sensor.name}</h2>
-
-	<div class="row">
-		<div class="col-md-3">
-			<table class="table table-condensed">
-				<thead>
-					<tr>
-						<th>Value</th>
-						<th>Timestamp</th>
-					</tr>
-				</thead>
-				<tbody>
-					<s:iterator value="values" var="n">
+	<s:if test="%{selectedSensors != null}">
+		<hr />
+		<div class="row">
+			<h2 id="sensorName">${sensor.name}</h2>
+			<div class="col-md-3">
+				<table class="table table-condensed" id="datatable">
+					<thead>
 						<tr>
-							<td class="value">${n.pointValue}</td>
-							<td class="ts">${n.timeStamp}</td>
+							<th>Value</th>
+							<th>Timestamp</th>
 						</tr>
-					</s:iterator>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<s:iterator value="values" var="n">
+							<tr>
+								<td class="value">${n.pointValue}</td>
+								<td class="ts">${n.timeStamp}</td>
+							</tr>
+						</s:iterator>
+					</tbody>
+				</table>
+
+			</div>
+
+			<div class="col-md-9">
+				<div id="container" style="width: 100%; height: 400px;"></div>
+				<canvas id="myChart" width="900px" height="500px"></canvas>
+			</div>
 
 		</div>
-
-		<div class="col-md-9">
-			<canvas id="myChart" width="900" height=600></canvas>
-		</div>
-
-	</div>
+	</s:if>
 
 </div>
