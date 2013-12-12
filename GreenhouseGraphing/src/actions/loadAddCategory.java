@@ -18,7 +18,7 @@ public class loadAddCategory extends ActionSupport {
 
     public loadAddCategory() {
         mangoDAO = new MangoDAO();
-        categories = mangoDAO.selectCategories();
+        //categories = mangoDAO.selectCategories();
     }
 
     public String execute() {

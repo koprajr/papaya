@@ -27,7 +27,7 @@ public class ReportListAndManualDataAction extends ActionSupport {
 
     public String execute() {
 
-        if (!category.equals("overallSystem"))  {
+      /*  if (!category.equals("overallSystem"))  {
             Category testCategory = new Category();
             testCategory.setName(category);
             Category tableCategory = mangoDAO.selectCategory(testCategory);
@@ -44,7 +44,7 @@ public class ReportListAndManualDataAction extends ActionSupport {
         }
 
         reportListBean.setSystem(name);
-
+        */
         return "success";
     }
 

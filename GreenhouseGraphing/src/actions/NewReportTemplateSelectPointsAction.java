@@ -27,7 +27,7 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport{
 
     @Override
     public String execute() throws Exception {
-
+        /*
         Category cat = new Category();
         cat.setName("greenhouseWater");
         Category tableCategory = dao.selectCategory(cat);
@@ -87,7 +87,7 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport{
 
         manualDataTypes = dao.selectManualDataTypes();
         sensors = dao.getSensors();
-
+          */
         return SUCCESS;
     }
 
