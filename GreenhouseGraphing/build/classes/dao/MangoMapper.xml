@@ -188,6 +188,7 @@
 
     <select id="getManualDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="ManualDataPoint">
       select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
+      where reporttemplateid=#{id}
     </select>
 
 

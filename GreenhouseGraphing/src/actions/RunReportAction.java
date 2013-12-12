@@ -30,6 +30,8 @@ public class RunReportAction {
 		if (start != null && end != null) {
 			template = dao.getReportTemplateByName(reportName);
 
+			System.err.println(template.getId());
+			
 			sensors = template.getSensors();
 			preprocessSensors(sensors);
 
@@ -50,8 +52,10 @@ public class RunReportAction {
 
 	private void prepocessManualData() {
 		for (ManualDataPoint m : manualData){
-			List<ManualDataPointValue> manuals = dao.getManualDataPointValues(m.getId());
 			
+			System.err.println(m.getName());
+			
+			List<ManualDataPointValue> manuals = dao.getManualDataPointValues(m.getId());
 			m.setValues(manuals);
 		}
 	}
