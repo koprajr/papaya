@@ -1,18 +1,17 @@
 package models;
 
-import java.util.List;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.util.List;
 
 
 /**
  * A class that represents a type of manual data.
  * Corresponds to the manualDataPoint table.
- *
  */
 public class ManualDataPoint {
-    private int id;
+    private Integer id;
     private String name; // eg. "Pounds of lettuce added to the greenhouse"
     private List<ManualDataPointValue> values;
 
@@ -28,11 +27,11 @@ public class ManualDataPoint {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -61,11 +60,11 @@ public class ManualDataPoint {
         return new HashCodeBuilder().append(id).build();
     }
 
-	public List<ManualDataPointValue> getValues() {
-		return values;
-	}
+    public List<ManualDataPointValue> getValues() {
+        return values;
+    }
 
-	public void setValues(List<ManualDataPointValue> values) {
-		this.values = values;
-	}
+    public void setValues(List<ManualDataPointValue> values) {
+        this.values = values;
+    }
 }

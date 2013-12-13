@@ -1,73 +1,30 @@
 package models;
 
 import dao.MangoDAO;
-import junit.framework.Assert;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 
 public class ReportTemplateTest {
-    @Test
-    public void testGetSensors() throws Exception {
 
-    }
+    private MangoDAO dao;
+    private ReportTemplate defaultTemplate;
 
-    @Test
-    public void testGetEquations() throws Exception {
+    @Before
+    public void setUp() throws Exception {
+        dao = new MangoDAO();
 
-    }
-
-    @Test
-    public void testGetManualData() throws Exception {
-
-    }
-
-    @Test
-    public void testGetChartConfigurations() throws Exception {
-
-    }
-
-    @Test
-    public void testCreateReportTemplate() throws Exception {
-
-        MangoDAO dao = new MangoDAO();
-        dao.deleteAllReportTemplates();
-
-        ReportTemplate testTemplate_1 = getTestTemplate_1();
-        dao.createReportTemplate(testTemplate_1);
-
-
-        ReportTemplate testTemplate1PulledFromDB = dao.getReportTemplateByName(testTemplate_1.getName());
-
-        Assert.assertEquals(testTemplate_1.getName(), testTemplate1PulledFromDB.getName());
-        Assert.assertEquals(testTemplate_1.getDescription(), testTemplate_1.getDescription());
-        Assert.assertEquals(testTemplate_1.getSensors().size(), testTemplate1PulledFromDB.getSensors().size());
-        Assert.assertEquals(testTemplate_1.getManualData().size(), testTemplate1PulledFromDB.getManualData().size());
-        ChartConfiguration chartConfiguration = testTemplate1PulledFromDB.getChartConfigurations().iterator().next();
-        Assert.assertEquals("chartName", chartConfiguration.getName());
-        Assert.assertEquals("x label", chartConfiguration.getxLabel());
-        Assert.assertEquals("y label", chartConfiguration.getyLabel());
-    }
-
-    @Test
-    public void testSelectAllReportTemplates() throws Exception{
-        MangoDAO dao = new MangoDAO();
-        List<ReportTemplate> reportTemplates = dao.getAllReportTemplates();
-        System.out.println(reportTemplates);  // TODO: make this test better. Just used debugger to see result.
-    }
-
-    private ReportTemplate getTestTemplate_1() {
         List<Sensor> sensors = new ArrayList<Sensor>();
-        Set<Equation> equations = new HashSet<Equation>();
         List<ManualDataPoint> manualDataPoints = new ArrayList<ManualDataPoint>();
         List<ChartConfiguration> chartConfigurations = new ArrayList<ChartConfiguration>();
 
-        ReportTemplate testTemplate_1 = new ReportTemplate();
-        testTemplate_1.setName("test template 1");
-        testTemplate_1.setDescription("a description");
+        defaultTemplate.setName("test template 100");
+        defaultTemplate.setDescription("a description");
 
         // Add sensors to this report.
         Sensor s = new Sensor();
@@ -75,29 +32,68 @@ public class ReportTemplateTest {
         sensors.add(s);
         s = new Sensor();
         s.setId(23);
-
         sensors.add(s);
-        testTemplate_1.setSensors(sensors);
-
+        defaultTemplate.setSensors(sensors);
 
         // Add Manual data points to this report.
         ManualDataPoint mdp = new ManualDataPoint(1, "");
         manualDataPoints.add(mdp);
-        testTemplate_1.setManualData(manualDataPoints);
+        defaultTemplate.setManualData(manualDataPoints);
 
-
+        // Add Chart configuration.
         ChartConfiguration chartConfig = new ChartConfiguration();
-        chartConfig.setSensors(new ArrayList<Sensor>(sensors));
-        chartConfig.setName("chartName");
+        chartConfig.setSensors(sensors);
+        chartConfig.setName("test configuration 100");
         chartConfig.setxLabel("x label");
         chartConfig.setyLabel("y label");
-        chartConfig.setChartType("plot");
-//        chartConfig.setEquations();
-        chartConfig.setManualData(new ArrayList<ManualDataPoint>(manualDataPoints));
+        chartConfig.setChartType("bar");
+        chartConfig.setManualData(manualDataPoints);
         chartConfigurations.add(chartConfig);
-        testTemplate_1.setChartConfigurations(chartConfigurations);
-
-
-        return testTemplate_1;
+        defaultTemplate.setChartConfigurations(chartConfigurations);
     }
+
+    @After
+    public void tearDown() throws Exception {
+        dao = null;
+        defaultTemplate = null;
+    }
+
+    @Test
+    public void testCreateReportTemplate() throws Exception {
+
+        // Save template to database.
+        dao.createReportTemplate(defaultTemplate);
+
+        // Load same template from database.
+        ReportTemplate t1 = dao.getReportTemplateByName(defaultTemplate.getName());
+
+        assertEquals(defaultTemplate.getName(), t1.getName());
+        assertEquals(defaultTemplate.getDescription(), t1.getDescription());
+        assertEquals(defaultTemplate.getSensors().size(), t1.getSensors().size());
+        assertEquals(defaultTemplate.getManualData().size(), t1.getManualData().size());
+
+        ChartConfiguration defaultConfig = defaultTemplate.getChartConfigurations().iterator().next();
+        ChartConfiguration cc1 = t1.getChartConfigurations().iterator().next();
+        assertEquals(defaultConfig.getName(), cc1.getName());
+        assertEquals(defaultConfig.getxLabel(), cc1.getxLabel());
+        assertEquals(defaultConfig.getyLabel(), cc1.getyLabel());
+    }
+
+    /*
+        Test the following functions (database queries):
+
+            + MangoDAO.deleteAllTemplateDataPointAssoc()
+            + MangoDAO.deleteAllChartConfigurationDataPointAssoc()
+            + MangoDAO.deleteAllTemplateChartConfigurationAssoc()
+     */
+    @Test
+    public void testEditReportTemplate() throws Exception {
+    }
+
+    @Test
+    public void testSelectAllReportTemplates() throws Exception {
+        List<ReportTemplate> reportTemplates = dao.getAllReportTemplates();
+        System.out.println(reportTemplates);  // TODO: make this test better. Just used debugger to see result.
+    }
+
 }

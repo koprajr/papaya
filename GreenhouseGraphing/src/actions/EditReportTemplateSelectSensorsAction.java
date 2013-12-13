@@ -4,13 +4,18 @@ import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
 import models.Category;
 import models.ManualDataPoint;
+import models.ReportTemplate;
 import models.Sensor;
 
 import java.util.List;
 
-public class NewReportTemplateSelectPointsAction extends ActionSupport {
+public class EditReportTemplateSelectSensorsAction extends ActionSupport {
 
     private MangoDAO dao;
+    private String reportEditName;
+    private ReportTemplate template;
+    private List<Sensor> sensorsSelected;
+    private List<ManualDataPoint> manualDataTypesSelected;
     private List<String> manualDataTypes;
     private List<ManualDataPoint> manualDataPoints;
     private List<Sensor> sensors;
@@ -23,12 +28,17 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport {
     private List<Sensor> sensorsO;
 
 
-    public NewReportTemplateSelectPointsAction() {
+    public EditReportTemplateSelectSensorsAction() {
         dao = new MangoDAO();
     }
 
     @Override
     public String execute() throws Exception {
+
+        template = dao.getReportTemplateByName(reportEditName);
+        sensorsSelected = template.getSensors();
+        manualDataTypesSelected = template.getManualData();
+
 
         Category cat = new Category();
         cat.setName("greenhouseWater");
@@ -88,9 +98,9 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport {
         sensorsO = dao.selectDataPointsForCategory(cat7);
 
         manualDataTypes = dao.selectManualDataTypes();
-        manualDataPoints = dao.selectManualDataPoints();
-        sensors = dao.getSensors();
 
+        manualDataPoints = dao.getManualDataPoints();
+        sensors = dao.getSensors();
         return SUCCESS;
     }
 
@@ -172,5 +182,37 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport {
 
     public void setSensorsD(List<Sensor> sensorsD) {
         this.sensorsD = sensorsD;
+    }
+
+    public String getReportEditName() {
+        return reportEditName;
+    }
+
+    public void setReportEditName(String reportEditName) {
+        this.reportEditName = reportEditName;
+    }
+
+    public ReportTemplate getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(ReportTemplate template) {
+        this.template = template;
+    }
+
+    public List<Sensor> getSensorsSelected() {
+        return sensorsSelected;
+    }
+
+    public void setSensorsSelected(List<Sensor> sensorsSelected) {
+        this.sensorsSelected = sensorsSelected;
+    }
+
+    public List<ManualDataPoint> getManualDataTypesSelected() {
+        return manualDataTypesSelected;
+    }
+
+    public void setManualDataTypesSelected(List<ManualDataPoint> manualDataTypesSelected) {
+        this.manualDataTypesSelected = manualDataTypesSelected;
     }
 }

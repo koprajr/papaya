@@ -40,9 +40,10 @@
                 <div class="col-md-4 col-md-offset-4">
                     <form role="form" action="newManualDataType" method="post">
                         <!--ONE OF THESE FOR EACH MANUAL DATAPOINT-->
+                        <span style="font-size: 11px;">Fields marked with an * are required</span><br><br>
                         <div class="form-group">
-                            <label for="type">Type name</label>
-                            <input type="text" name="bean.name" class="form-control" id="type" placeholder="">
+                            <label for="type">Type name *</label>
+                            <input type="text" name="bean.name" class="form-control" id="type" placeholder="" required="">
                         </div>
                         <!-- /.form-group-->
                         <button type="submit" class="btn btn-primaryGreen manualDataSubmit">Submit <span

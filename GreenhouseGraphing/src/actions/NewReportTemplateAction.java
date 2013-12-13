@@ -12,6 +12,8 @@ import java.util.Set;
 public class NewReportTemplateAction extends ActionSupport {
     private ReportTemplate reportTemplate;
     private Set<ChartConfiguration> chartConfigurations;
+    private List<Integer> manualDataIds;
+    private List<ManualDataPoint> manualDataPoints;
 
     private MangoDAO dao;
     private List<Sensor> sensors;
@@ -31,17 +33,20 @@ public class NewReportTemplateAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+
+        manualDataPoints = new ArrayList<ManualDataPoint>();
+        if (manualDataIds != null) {
+            for (Integer id : manualDataIds) {
+                manualDataPoints.add(dao.selectManualDataPointById(id));
+            }
+        }
+
         // BEING - Testing Code
         //sensors = dao.getSensors();
         equations = new HashSet<Equation>();
         sensors = new ArrayList<Sensor>();
         manualData = new ArrayList<String>();
 
-        equations.add(new SampleEquation(new Long(1), "Equation 1's Name"));
-        equations.add(new SampleEquation(new Long(2), "Equation 2's Name"));
-        equations.add(new SampleEquation(new Long(3), "Equation 3's Name"));
-
-        // END - TESTING CODE
 
         if (!cBox.isEmpty() && cBox != null) {
             for (Integer s : cBox) {
@@ -57,34 +62,44 @@ public class NewReportTemplateAction extends ActionSupport {
 
         return SUCCESS;
     }
+
+    public List<ManualDataPoint> getManualDataPoints() {
+        return manualDataPoints;
+    }
+
+    public void setManualDataPoints(List<ManualDataPoint> manualDataPoints) {
+        this.manualDataPoints = manualDataPoints;
+    }
+
+    public List<Integer> getManualDataIds() {
+        return manualDataIds;
+    }
+
+    public void setManualDataIds(List<Integer> manualDataIds) {
+        this.manualDataIds = manualDataIds;
+    }
+
     public void setSensorIds(String[] sensorIdsS) {
         for (String sensorIds : sensorIdsS) {
             try {
-            id = Integer.parseInt(sensorIds);
-            cBox.add(id);
-            }
-            catch (NumberFormatException nfe)
-            {
+                id = Integer.parseInt(sensorIds);
+                cBox.add(id);
+            } catch (NumberFormatException nfe) {
                 System.out.println("ERROR-----------------------------------------------------------------------------------");
-            }
-            catch (NullPointerException npe)
-            {
+            } catch (NullPointerException npe) {
                 System.out.println("ERROR-----------------------------------------------------------------------------------");
             }
             //cBox.add(testSensor);
         }
     }
+
     public void setManualIds(String[] manualIdsS) {
         for (String manualIds : manualIdsS) {
             try {
                 mBox.add(manualIds);
-            }
-            catch (NumberFormatException nfe)
-            {
+            } catch (NumberFormatException nfe) {
                 System.out.println("ERROR-----------------------------------------------------------------------------------");
-            }
-            catch (NullPointerException npe)
-            {
+            } catch (NullPointerException npe) {
                 System.out.println("ERROR-----------------------------------------------------------------------------------");
             }
         }
