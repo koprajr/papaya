@@ -538,9 +538,11 @@ public class MangoDAO {
                 }
             }
 
-            for (ChartConfiguration chartConfig : reportTemplate.getChartConfigurations()) {
-                chartConfig.setReportTemplateId(reportTemplate.getId());
-                insertChartConfiguration(chartConfig);
+            if (reportTemplate.getChartConfigurations() != null) {
+                for (ChartConfiguration chartConfig : reportTemplate.getChartConfigurations()) {
+                    chartConfig.setReportTemplateId(reportTemplate.getId());
+                    insertChartConfiguration(chartConfig);
+                }
             }
             session.commit();
         } catch (Exception e) {

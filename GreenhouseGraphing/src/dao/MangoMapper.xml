@@ -188,7 +188,10 @@
     </select>
 
     <select id="getManualDataPointsForReportTemplate" parameterType="ReportTemplate" resultType="ManualDataPoint">
-      select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
+        select id, name
+        from reportTemplateManualDataPointAssoc join manualDataPoints
+        on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
+        where reportTemplateId=#{id}
     </select>
 
     <select id="getManualDataPointValues" parameterType="java.lang.Integer" resultType="ManualDataPointValue">
