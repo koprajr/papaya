@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Set;
 
 public class EditReportTemplateAction extends ActionSupport {
-
+    private MangoDAO dao;
     private String templateName;
     private List<Integer> sensorIds;
-    private List<Integer> manualIds;
+    private List<Integer> manualDataIds;
 
     private ReportTemplate template;
     private Set<ChartConfiguration> chartConfigurations;
@@ -24,8 +24,6 @@ public class EditReportTemplateAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-
-        MangoDAO dao = new MangoDAO();
         template = dao.getReportTemplateByName(templateName);
 
         sensors = new ArrayList<Sensor>();
@@ -35,8 +33,8 @@ public class EditReportTemplateAction extends ActionSupport {
             }
         }
         manualData = new ArrayList<ManualDataPoint>();
-        if (manualIds != null) {
-            for (Integer id : manualIds) {
+        if (manualDataIds != null) {
+            for (Integer id : manualDataIds) {
                 manualData.add(dao.selectManualDataPointById(id));
             }
         }
@@ -44,12 +42,16 @@ public class EditReportTemplateAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public List<Integer> getManualIds() {
-        return manualIds;
+    public EditReportTemplateAction() {
+        dao = new MangoDAO();
     }
 
-    public void setManualIds(List<Integer> manualIds) {
-        this.manualIds = manualIds;
+    public List<Integer> getManualDataIds() {
+        return manualDataIds;
+    }
+
+    public void setManualDataIds(List<Integer> manualDataIds) {
+        this.manualDataIds = manualDataIds;
     }
 
     public String getTemplateName() {

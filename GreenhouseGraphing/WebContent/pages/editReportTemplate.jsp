@@ -20,14 +20,16 @@
         <div class="row">
             <div class="col-xs-4">
                 <h4>Report Template Name</h4>
+                <input type="hidden" name="oldTemplateName" value="${template.name}">
                 <input class="form-control" type="text" name="templateName" value="${template.name}">
                 <h4>Report Template Description</h4>
                 <textarea class="form-control" name="templateDescription">${template.description}</textarea>
                 <h4>Individual Sensors</h4>
+
                 <div class="sensorList">
                     <s:iterator value="sensors" var="sensor">
                         <div class="checkbox">
-                        <label>
+                            <label>
                                 <input type="checkbox" name="sensorIds" value="${sensor.id}" checked> ${sensor.name}
                             </label>
                         </div>
@@ -85,10 +87,8 @@
                             <input class="form-control" type="text" name="configurationYLabels" value="${cc.yLabel}">
                         </div>
                             <%--
-
-                                    TODO: How do I iterate over the "sensors" and "manualData" lists twice??
-                                    See Issue Here:  http://stackoverflow.com/questions/6111248/iterate-twice-on-values
-
+                                    TODO: HOW DO I ITERATE OVER THE "SENSORS" AND "MANUALDATAPOINTS" LISTS TWICE"??
+                                    SEE ISSUE HERE:  http://stackoverflow.com/questions/6111248/iterate-twice-on-values
                             --%>
                         <label>Include selected sensors:</label>
 

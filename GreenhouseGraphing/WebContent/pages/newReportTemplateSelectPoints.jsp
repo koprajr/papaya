@@ -537,7 +537,7 @@
 
 <!-- ---------------------------------------------------------------------------------------- -->
 
-<s:if test="%{manualDataTypes.isEmpty()}">
+<s:if test="%{manualDataPoints.isEmpty()}">
 </s:if>
 <s:else>
     <!--MANUAL ENTER DATA-->
@@ -549,11 +549,11 @@
                 </div>
                 <!-- /.panel-heading-->
                 <div class="panel-body">
-                    <s:iterator value="manualDataTypes" var="md">
+                    <s:iterator value="manualDataPoints" var="md">
                         <div class="reportEntry">
-                            <h4>${md}
+                            <h4>${md.name}
                                 <div class="reportButtons">
-                                    <a onclick="check('${md}', '${md}_input');" type="button"
+                                    <a onclick="check('${md.name}', '${md.name}_input');" type="button"
                                        class="btn btn-primaryGreen reportList">Add to template
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </a>
@@ -586,10 +586,12 @@
                 <span onclick="uncheck('${sensor.id}', '${sensor.id}_input');" class="glyphicon glyphicon-remove"></span>
             </div>
         </s:iterator>
-        <s:iterator value="manualDataTypes" var="md">
-            <div id="${md}" class="checkbox" style="display:none;">
-                <label> <input id="${md}_input" type="checkbox" name="manualIds" value="${md}"> ${md}</label>
-                <span onclick="uncheck('${md}', '${md}_input');" class="glyphicon glyphicon-remove"></span>
+        <hr>
+        <s:iterator value="manualDataPoints" var="md">
+            <div id="${md.name}" class="checkbox" style="display:none;">
+                <label> <input id="${md.name}_input" type="checkbox" name="manualDataIds" value="${md.id}"> ${md.name}
+                </label>
+                <span onclick="uncheck('${md.name}', '${md.name}_input');" class="glyphicon glyphicon-remove"></span>
             </div>
         </s:iterator>
     </div>

@@ -3,6 +3,7 @@ package actions;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
 import models.ChartConfiguration;
+import models.ManualDataPoint;
 import models.ReportTemplate;
 import models.Sensor;
 
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateReportTemplateAction extends ActionSupport {
+    private MangoDAO dao;
+    private String oldTemplateName;
     private String templateName;
     private String templateDescription;
     private List<Integer> sensorIds;
@@ -23,37 +26,68 @@ public class UpdateReportTemplateAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-
-        MangoDAO dao = new MangoDAO();
-        ReportTemplate template = new ReportTemplate();
         /*
-                DELETE ALL EXISTING ASSOCIATIONS OF THIS REPORT TEMPLATE.
+                DELETE REPORT TEMPLATE AND EXISTING ASSOCIATIONS.
          */
-        if (template.getSensors() != null) {
-            dao.deleteAllTemplateDataPointAssoc(template, template.getSensors());
-        }
-        if (template.getChartConfigurations() != null) {
-            for (ChartConfiguration cc : template.getChartConfigurations()) {
-                if (cc.getSensors() != null) {
-                    dao.deleteAllChartConfigurationDataPointAssoc(cc, cc.getSensors());
+        ReportTemplate tempTemplate = dao.getReportTemplateByName(oldTemplateName);
+        if (tempTemplate != null) {
+            if (tempTemplate.getChartConfigurations() != null) {
+                for (ChartConfiguration cc : tempTemplate.getChartConfigurations()) {
+                    // - Delete chart configuration and sensor associations.
+                    if (cc.getSensors() != null) {
+                        dao.deleteAllChartConfigurationDataPointAssoc(cc, cc.getSensors());
+                    }
+                    // - Delete chart configuration and manual data point associations.
+                    if (cc.getManualData() != null) {
+                        dao.deleteAllChartConfigurationManualDataPointAssoc(cc, cc.getManualData());
+                    }
                 }
             }
-            dao.deleteAllTemplateChartConfigurationAssoc(template, template.getChartConfigurations());
+
+            // - Delete the report template and sensor associations.
+            if (tempTemplate.getSensors() != null) {
+                dao.deleteAllTemplateDataPointAssoc(tempTemplate, tempTemplate.getSensors());
+            }
+
+            // - Delete the report template and manual data associations.
+            if (tempTemplate.getManualData() != null) {
+                dao.deleteAllTemplateManualDataPointAssoc(tempTemplate, tempTemplate.getManualData());
+            }
+
+            // - Delete the report template and associated chart configurations.
+            if (tempTemplate.getChartConfigurations() != null) {
+                dao.deleteAllTemplateChartConfigurationAssoc(tempTemplate, tempTemplate.getChartConfigurations());
+            }
+
+            dao.deleteReportTemplateById(tempTemplate.getId());
         }
 
         /*
                 SAVE THE NEW DATA FOR THIS REPORT TEMPLATE.
          */
-        // Associate the selected individual sensors with the template.
+        ReportTemplate template = new ReportTemplate();
+        template.setName(templateName);
+        template.setDescription(templateDescription);
+
+        // - Associate the selected individual sensors with the template.
         List<Sensor> individualSensors = new ArrayList<Sensor>();
         if (sensorIds != null) {
             for (Integer id : sensorIds) {
                 individualSensors.add(dao.getSensor(id));
             }
+            template.setSensors(individualSensors);
         }
-        template.setSensors(individualSensors);
 
-        // Compose the chart configurations.
+        // - Associate the select individual manual data with the template.
+        List<ManualDataPoint> individualManualData = new ArrayList<ManualDataPoint>();
+        if (manualDataIds != null) {
+            for (Integer id : manualDataIds) {
+                individualManualData.add(dao.selectManualDataPointById(id));
+            }
+            template.setManualData(individualManualData);
+        }
+
+        // - Compose the chart configurations.
         List<ChartConfiguration> chartConfigurations = new ArrayList<ChartConfiguration>();
         for (int i = 0; i < configurationNames.size(); i++) {
             ChartConfiguration cc = new ChartConfiguration();
@@ -61,14 +95,22 @@ public class UpdateReportTemplateAction extends ActionSupport {
             cc.setChartType(configurationTypes.get(i));
             cc.setxLabel(configurationXLabels.get(i));
             cc.setyLabel(configurationYLabels.get(i));
-            // -- Associate the selected sensors with the associated chart configuration.
+            // - Associate the selected sensors with the associated chart configuration.
             List<Sensor> chartSensors = new ArrayList<Sensor>();
             if (chartSensorIds != null) {
                 for (String id : chartSensorIds.get(i)) {
                     chartSensors.add(dao.getSensor(Integer.parseInt(id)));
                 }
+                cc.setSensors(chartSensors);
             }
-            cc.setSensors(chartSensors);
+            // - Associate the selected manual data with the associated chart configuration.
+            List<ManualDataPoint> chartManualData = new ArrayList<ManualDataPoint>();
+            if (manualDataIds != null) {
+                for (String id : chartManualDataIds.get(i)) {
+                    chartManualData.add(dao.selectManualDataPointById(Integer.parseInt(id)));
+                }
+                cc.setManualData(chartManualData);
+            }
             chartConfigurations.add(cc);
         }
 
@@ -77,6 +119,19 @@ public class UpdateReportTemplateAction extends ActionSupport {
 
         dao.createReportTemplate(template);
         return SUCCESS;
+    }
+
+    public UpdateReportTemplateAction() {
+        super();
+        dao = new MangoDAO();
+    }
+
+    public String getOldTemplateName() {
+        return oldTemplateName;
+    }
+
+    public void setOldTemplateName(String oldTemplateName) {
+        this.oldTemplateName = oldTemplateName;
     }
 
     public String getTemplateName() {

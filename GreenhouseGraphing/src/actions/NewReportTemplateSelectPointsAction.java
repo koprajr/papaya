@@ -2,15 +2,17 @@ package actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
-import models.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import models.Category;
+import models.ManualDataPoint;
+import models.Sensor;
 
-public class NewReportTemplateSelectPointsAction extends ActionSupport{
+import java.util.List;
+
+public class NewReportTemplateSelectPointsAction extends ActionSupport {
 
     private MangoDAO dao;
     private List<String> manualDataTypes;
+    private List<ManualDataPoint> manualDataPoints;
     private List<Sensor> sensors;
     private List<Sensor> sensorsGW;
     private List<Sensor> sensorsGL;
@@ -86,9 +88,18 @@ public class NewReportTemplateSelectPointsAction extends ActionSupport{
         sensorsO = dao.selectDataPointsForCategory(cat7);
 
         manualDataTypes = dao.selectManualDataTypes();
+        manualDataPoints = dao.selectManualDataPoints();
         sensors = dao.getSensors();
 
         return SUCCESS;
+    }
+
+    public List<ManualDataPoint> getManualDataPoints() {
+        return manualDataPoints;
+    }
+
+    public void setManualDataPoints(List<ManualDataPoint> manualDataPoints) {
+        this.manualDataPoints = manualDataPoints;
     }
 
     public List<String> getManualDataTypes() {

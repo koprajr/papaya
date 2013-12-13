@@ -12,6 +12,8 @@ import java.util.Set;
 public class NewReportTemplateAction extends ActionSupport {
     private ReportTemplate reportTemplate;
     private Set<ChartConfiguration> chartConfigurations;
+    private List<Integer> manualDataIds;
+    private List<ManualDataPoint> manualDataPoints;
 
     private MangoDAO dao;
     private List<Sensor> sensors;
@@ -31,6 +33,14 @@ public class NewReportTemplateAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+
+        manualDataPoints = new ArrayList<ManualDataPoint>();
+        if (manualDataIds != null) {
+            for (Integer id : manualDataIds) {
+                manualDataPoints.add(dao.selectManualDataPointById(id));
+            }
+        }
+
         // BEING - Testing Code
         //sensors = dao.getSensors();
         equations = new HashSet<Equation>();
@@ -51,6 +61,22 @@ public class NewReportTemplateAction extends ActionSupport {
         }
 
         return SUCCESS;
+    }
+
+    public List<ManualDataPoint> getManualDataPoints() {
+        return manualDataPoints;
+    }
+
+    public void setManualDataPoints(List<ManualDataPoint> manualDataPoints) {
+        this.manualDataPoints = manualDataPoints;
+    }
+
+    public List<Integer> getManualDataIds() {
+        return manualDataIds;
+    }
+
+    public void setManualDataIds(List<Integer> manualDataIds) {
+        this.manualDataIds = manualDataIds;
     }
 
     public void setSensorIds(String[] sensorIdsS) {

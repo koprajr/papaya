@@ -8,43 +8,43 @@ import models.ReportTemplate;
 import models.Sensor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SaveReportTemplateAction extends ActionSupport {
+    private MangoDAO dao;
     private ReportTemplate template;
     private List<Integer> sensorIds;
-    private List<String> manualIds;
+    private List<Integer> manualDataIds;
     private List<String> configurationNames;
     private List<String> configurationTypes;
     private List<String> configurationXLabels;
     private List<String> configurationYLabels;
     private List<List<String>> chartSensorIds;
+    private List<List<String>> chartManualDataIds;
+
 
     @Override
     public String execute() throws Exception {
 
-        MangoDAO dao = new MangoDAO();
-
-        // -- Associate the selected individual sensors with the template.
+        // - Associate the selected individual sensors with the template.
         List<Sensor> individualSensors = new ArrayList<Sensor>();
         if (sensorIds != null) {
             for (Integer id : sensorIds) {
                 individualSensors.add(dao.getSensor(id));
             }
+            template.setSensors(individualSensors);
         }
-        template.setSensors(individualSensors);
 
+        // - Associate the selected indivisual data with the template.
         List<ManualDataPoint> manualData = new ArrayList<ManualDataPoint>();
-        if (manualIds != null) {
-            for (String name : manualIds) {
-                manualData.add(dao.selectManualDataTypesByName(name));
+        if (manualDataIds != null) {
+            for (Integer id : manualDataIds) {
+                manualData.add(dao.selectManualDataPointById(id));
             }
+            template.setManualData(manualData);
         }
-        template.setManualData(manualData);
 
-
-        // -- Compose the chart configurations.
+        // - Compose the chart configurations.
         List<ChartConfiguration> chartConfigurations = new ArrayList<ChartConfiguration>();
         if (configurationNames != null) {
             for (int i = 0; i < configurationNames.size(); i++) {
@@ -53,22 +53,36 @@ public class SaveReportTemplateAction extends ActionSupport {
                 cc.setChartType(configurationTypes.get(i));
                 cc.setxLabel(configurationXLabels.get(i));
                 cc.setyLabel(configurationYLabels.get(i));
-                // -- Associate the selected sensors with the associated chart configuration.
+                // - Associate the selected sensors with the associated chart configuration.
                 List<Sensor> chartSensors = new ArrayList<Sensor>();
                 if (chartSensorIds != null) {
                     for (String id : chartSensorIds.get(i)) {
                         chartSensors.add(dao.getSensor(Integer.parseInt(id)));
                     }
+                    cc.setSensors(chartSensors);
                 }
-                cc.setSensors(chartSensors);
+                // - Associate the select manual data with the associated chart configuration.
+                List<ManualDataPoint> chartManualData = new ArrayList<ManualDataPoint>();
+                if (chartManualDataIds != null) {
+                    for (String id : chartManualDataIds.get(i)) {
+                        chartManualData.add(dao.selectManualDataPointById(Integer.parseInt(id)));
+                    }
+                    cc.setManualData(chartManualData);
+                }
+
                 chartConfigurations.add(cc);
             }
+            // - Associate chart configurations with the template.
+            template.setChartConfigurations(chartConfigurations);
         }
-        // - Associate chart configurations with the template.
-        template.setChartConfigurations(chartConfigurations);
 
         dao.createReportTemplate(template);
         return SUCCESS;
+    }
+
+    public SaveReportTemplateAction() {
+        super();
+        dao = new MangoDAO();
     }
 
     public ReportTemplate getTemplate() {
@@ -127,11 +141,19 @@ public class SaveReportTemplateAction extends ActionSupport {
         this.chartSensorIds = chartSensorIds;
     }
 
-    public List<String> getManualIds() {
-        return manualIds;
+    public List<Integer> getManualDataIds() {
+        return manualDataIds;
     }
 
-    public void setManualIds(List<String> manualIds) {
-        this.manualIds = manualIds;
+    public void setManualDataIds(List<Integer> manualDataIds) {
+        this.manualDataIds = manualDataIds;
+    }
+
+    public List<List<String>> getChartManualDataIds() {
+        return chartManualDataIds;
+    }
+
+    public void setChartManualDataIds(List<List<String>> chartManualDataIds) {
+        this.chartManualDataIds = chartManualDataIds;
     }
 }

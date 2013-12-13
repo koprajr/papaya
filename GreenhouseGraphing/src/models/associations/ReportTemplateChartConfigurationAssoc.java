@@ -2,10 +2,10 @@ package models.associations;
 
 public class ReportTemplateChartConfigurationAssoc {
 
-    long reportTemplateId;
-    long chartConfigurationId;
+    Integer reportTemplateId;
+    Integer chartConfigurationId;
 
-    public ReportTemplateChartConfigurationAssoc(long reportTemplateId, long chartConfigurationId) {
+    public ReportTemplateChartConfigurationAssoc(Integer reportTemplateId, Integer chartConfigurationId) {
         this.reportTemplateId = reportTemplateId;
         this.chartConfigurationId = chartConfigurationId;
     }
@@ -14,7 +14,7 @@ public class ReportTemplateChartConfigurationAssoc {
         return reportTemplateId;
     }
 
-    public void setReportTemplateId(long reportTemplateId) {
+    public void setReportTemplateId(Integer reportTemplateId) {
         this.reportTemplateId = reportTemplateId;
     }
 
@@ -22,7 +22,7 @@ public class ReportTemplateChartConfigurationAssoc {
         return chartConfigurationId;
     }
 
-    public void setChartConfigurationId(long chartConfigurationId) {
+    public void setChartConfigurationId(Integer chartConfigurationId) {
         this.chartConfigurationId = chartConfigurationId;
     }
 }

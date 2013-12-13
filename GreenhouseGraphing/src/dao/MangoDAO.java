@@ -1,7 +1,10 @@
 package dao;
 
 import models.*;
-import models.associations.*;
+import models.associations.ChartConfigurationDataPointAssoc;
+import models.associations.ChartConfigurationManualDataPointAssoc;
+import models.associations.ReportTemplateDataPointAssoc;
+import models.associations.ReportTemplateManualDataPointAssoc;
 import models.associations.categories.CategoryDataPointAssoc;
 import models.associations.categories.CategoryManualDataPointAssoc;
 import models.associations.categories.CategoryReportTemplateAssoc;
@@ -375,11 +378,11 @@ public class MangoDAO {
             temp_reportTemplate.setName(name);
             ReportTemplate templateFromDB = session.selectOne("dao.MangoMapper.getReportTemplateByName", temp_reportTemplate);
 
-            List<ManualDataPoint> manualDataPoints = session.selectList("dao.MangoMapper.getManualDataPointsForReportTemplate", templateFromDB);
-            templateFromDB.setManualData(manualDataPoints);
-
             List<Sensor> sensors = session.selectList("dao.MangoMapper.getDataPointsForReportTemplate", templateFromDB);
             templateFromDB.setSensors(sensors);
+
+            List<ManualDataPoint> manualDataPoints = session.selectList("dao.MangoMapper.getManualDataPointsForReportTemplate", templateFromDB);
+            templateFromDB.setManualData(manualDataPoints);
 
             List<ChartConfiguration> chartConfigurations = getChartConfigsForReportTemplateId(templateFromDB.getId());
             templateFromDB.setChartConfigurations(chartConfigurations);
@@ -915,6 +918,63 @@ public class MangoDAO {
     }
 
     /**
+     * Delete a report template.
+     *
+     * @param id  The id of the report template to delete.
+     */
+    public void deleteReportTemplateById(Integer id) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.delete("dao.MangoMapper.deleteReportTemplateById", id);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    /**
+     * Delete a report template.
+     *
+     * @param name The name of the report template to delete.
+     */
+    public void deleteReportTemplateByName(String name) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.delete("dao.MangoMapper.deleteReportTemplateByName", name);
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    /**
+     * Select all manual data points from the database.
+     *
+     * @return a list of manual data points.
+     */
+    public List<ManualDataPoint> selectManualDataPoints() {
+        SqlSession session = null;
+        List<ManualDataPoint> manualDataPoints = null;
+        try {
+            session = factory.openSession();
+            manualDataPoints = session.selectList("dao.MangoMapper.selectManualDataPoints");
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return manualDataPoints;
+    }
+
+    /**
      * Delete all associations between a template and a list of sensors.
      *
      * @param template The report template of interest.
@@ -927,6 +987,23 @@ public class MangoDAO {
             for (Sensor s : sensors) {
                 session.delete("dao.MangoMapper.deleteReportTemplateDataPointAssoc",
                         new ReportTemplateDataPointAssoc(template.getId(), s.getId()));
+            }
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    public void deleteAllTemplateManualDataPointAssoc(ReportTemplate template, List<ManualDataPoint> manualData) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            for (ManualDataPoint data : manualData) {
+                session.delete("dao.MangoMapper.deleteReportTemplateManualDataPointAssoc",
+                        new ReportTemplateManualDataPointAssoc(template.getId(), data.getId()));
             }
             session.commit();
         } catch (Exception e) {
@@ -961,6 +1038,29 @@ public class MangoDAO {
     }
 
     /**
+     * Delete all associations between a chart configuration and a list of manual data points.
+     *
+     * @param cc          The chart configuration of interest.
+     * @param manualData  The list of manual data to delete associations for.
+     */
+    public void deleteAllChartConfigurationManualDataPointAssoc(ChartConfiguration cc, List<ManualDataPoint> manualData) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            for (ManualDataPoint data : manualData) {
+                session.delete("dao.MangoMapper.deleteChartConfigManualDataPointAssoc",
+                        new ChartConfigurationManualDataPointAssoc(cc.getId(), data.getId()));
+            }
+            session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null)
+                session.close();
+        }
+    }
+
+    /**
      * Delete all associations between a template and a list of chart configurations, along with deleting the chart
      * configuration after the associations are removed.
      *
@@ -972,9 +1072,7 @@ public class MangoDAO {
         try {
             session = factory.openSession();
             for (ChartConfiguration cc : chartConfigurations) {
-                session.delete("dao.MangoMapper.deleteTemplateChartConfigurationAssoc",
-                        new ReportTemplateChartConfigurationAssoc(template.getId(), cc.getId()));
-                session.delete("dao.MangoMapper.deleteChartConfiguration", cc.getId());
+                session.delete("dao.MangoMapper.deleteChartConfiguration", template.getId());
             }
             session.commit();
         } catch (Exception e) {
