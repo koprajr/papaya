@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.MangoMapper">
 
-    <resultMap id="UserMap" type="User">
-        <result property="id" column="id"/>
-        <result property="username" column="username"/>
-        <result property="email" column="email"/>
-        <result property="phone" column="phone"/>
-        <result property="password" column="password"/>
-        <result property="admin" column="admin"/>
-        <result property="disabled" column="disabled"/>
-        <result property="receiveAlarmEmails" column="receiveAlarmEmails"/>
-        <result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents"/>
-    </resultMap>
+	<resultMap id="UserMap" type="User">
+		<result property="id" column="id" />
+		<result property="username" column="username" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="password" column="password" />
+		<result property="admin" column="admin" />
+		<result property="disabled" column="disabled" />
+		<result property="receiveAlarmEmails" column="receiveAlarmEmails" />
+		<result property="receiveOwnAuditEvents" column="receiveOwnAuditEvents" />
+	</resultMap>
 
     <resultMap id="PrivilegeLevelMap" type="UserPriv">
-        <result property="userId" column="userId"/>
-        <result property="level" column="level"/>
+        <result property="userId" column="userId" />
+        <result property="level" column="level" />
     </resultMap>
 
     <resultMap id="ReportTemplateMap" type="ReportTemplate">
@@ -37,45 +37,40 @@
     </resultMap>
 
     <resultMap id="SensorMap" type="Sensor">
-        <result property="id" column="id"/>
-        <result property="data" column="data"/>
-    </resultMap>
-
+		<result property="id" column="id"/>
+		<result property="data" column="data"/>
+	</resultMap>
+	
     <resultMap id="PointValueMap" type="PointValue">
-        <result property="dataPointId" column="datapointid"/>
-        <result property="pointValue" column="pointValue"/>
-        <result property="ts" column="ts"/>
+        <result property="dataPointId" column="datapointid" />
+        <result property="pointValue" column="pointValue" />
+        <result property="ts" column="ts" />
     </resultMap>
 
     <resultMap id="ManualDataMap" type="ManualData">
-        <result property="id" column="id"/>
-        <result property="value" column="pointvalue"/>
-        <result property="typeId" column="manualdatatypeId"/>
-        <result property="userId" column="userId"/>
-        <result property="timeStamp" column="ts"/>
+        <result property="id" column="id" />
+        <result property="value" column="pointvalue" />
+        <result property="typeId" column="manualdatatypeId" />
+        <result property="userId" column="userId" />
+        <result property="timeStamp" column="ts" />
     </resultMap>
-
-    <resultMap id="ManualDataPointMap" type="ManualDataPoint">
-        <result property="id" column="id"/>
-        <result property="name" column="name"/>
-    </resultMap>
-
+    
     <resultMap id="ManualDataPointValueMap" type="ManualDataPointValue">
-        <result property="id" column="id"/>
-        <result property="value" column="pointvalue"/>
-        <result property="typeId" column="manualdatatypeId"/>
-        <result property="userId" column="userId"/>
-        <result property="timeStamp" column="ts"/>
+        <result property="id" column="id" />
+        <result property="value" column="pointvalue" />
+        <result property="typeId" column="manualdatatypeId" />
+        <result property="userId" column="userId" />
+        <result property="timeStamp" column="ts" />
     </resultMap>
 
     <resultMap id="ManualDataTypesMap" type="ManualDataType">
-        <result property="name" column="name"/>
-        <result property="id" column="id"/>
+        <result property="name" column="name" />
+        <result property="id" column="id" />
     </resultMap>
 
     <resultMap id="CategoryMap" type="Category">
-        <result property="id" column="id"/>
-        <result property="name" column="name"/>
+        <result property="id" column="id" />
+        <result property="name" column="name" />
     </resultMap>
 
     <!--
@@ -95,9 +90,9 @@
             USER QUERIES
     -->
 
-    <select id="selectUsers" resultType="User">
-        select * from users
-    </select>
+	<select id="selectUsers" resultType="User">
+		select * from users
+	</select>
 
     <select id="insertUser" parameterType="User">
         insert into users values (6,#{username},#{password},'research@mango.com','','N','N', 0, 0,'',0,'N')
