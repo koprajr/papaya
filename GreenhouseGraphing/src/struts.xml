@@ -54,6 +54,11 @@
             <result name="invalid">/pages/generic.jsp</result>
         </action>
 
+        <action name="goTo_newUsers" class="actions.IndexAction" method="execute">
+            <result name="success">/pages/users.jsp</result>
+            <result name="invalid">/pages/generic.jsp</result>
+        </action>
+
         <action name="goTo_researcherPrivileges" class="actions.IndexAction" method="execute">
             <result name="success">/pages/researcherPrivileges.jsp</result>
             <result name="invalid">/pages/generic.jsp</result>

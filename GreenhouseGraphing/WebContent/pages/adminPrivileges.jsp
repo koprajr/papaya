@@ -19,8 +19,9 @@
             </div><!-- /.page-header-->
             <div class="row">
                 <div class="col-md-4" style="margin-bottom:30px;">
-                    <a href="#"><img src="img/user-add.jpg" class="img-rounded"></a>
-                    <a href="#">Add Users</a>
+                    <s:url action="goTo_newUsers" var="newUsers_Action" />
+                    <a href="${newUsers_Action}"><img src="img/user-add.jpg" class="img-rounded"></a>
+                    <a href="${newUsers_Action}">Add Users</a>
 
                 </div><!-- /.panel .panel-default-->
                 <div class="col-md-4" style="margin-bottom:30px;">

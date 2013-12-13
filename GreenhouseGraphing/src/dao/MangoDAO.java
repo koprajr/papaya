@@ -795,6 +795,21 @@ public class MangoDAO {
         }
         return mdps;
     }
+
+    public Category selectCategory(Category category) {
+        SqlSession session = null;
+        Category categoryFromTable = null;
+        try {
+            session = factory.openSession();
+            categoryFromTable = session.selectOne("dao.MangoMapper.selectCategory", category);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return categoryFromTable;
+    }
+
     public List<String> selectManualDataPointTypesForCategory(Category category) {
         SqlSession session = null;
         List<String> mdps =  null;
@@ -843,20 +858,6 @@ public class MangoDAO {
             }
         }
         return categories;
-    }
-
-    public Category selectCategory(Category category) {
-        SqlSession session = null;
-        Category categoryFromTable = null;
-        try {
-            session = factory.openSession();
-            categoryFromTable = session.selectOne("dao.MangoMapper.selectCategory", category);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        return categoryFromTable;
     }
 
     public ReportTemplate selectReportTemplate(ReportTemplate reportTemplate) {
