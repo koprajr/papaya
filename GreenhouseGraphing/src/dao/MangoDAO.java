@@ -46,6 +46,20 @@ public class MangoDAO {
         }
         return userPriv;
     }
+
+    public void deletePriv(UserPriv userPriv) {
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            System.out.println("YESSSSS");
+            session.delete("dao.MangoMapper.deleteLevel", userPriv);
+            session.commit();
+        } finally {
+            if (session != null){
+                session.close();
+            }
+        }
+    }
 	
 	public List<User> getUsers(){
 		SqlSession session = null;
@@ -75,11 +89,26 @@ public class MangoDAO {
         return userFromTable;
     }
 
-    public void insertUser(User user) {
+    public User selectUser(User user){
+        SqlSession session = null;
+        User userFromTable = null;
+        try {
+            session = factory.openSession();
+            userFromTable = session.selectOne("dao.MangoMapper.selectUser2", user);
+        } finally {
+            if (session != null){
+                session.close();
+            }
+        }
+        return userFromTable;
+    }
+
+    public void insertUser(User user, UserPriv userPriv) {
         SqlSession session = null;
         try {
             session = factory.openSession();
             session.insert("dao.MangoMapper.insertUser", user);
+            session.insert("dao.MangoMapper.insertLevel", userPriv);
             session.commit();
         } finally {
             if (session != null) {
@@ -126,6 +155,19 @@ public class MangoDAO {
 			}
 		}
 	}
+
+    public void insertLevel(UserPriv userPriv){
+        SqlSession session = null;
+        try {
+            session = factory.openSession();
+            session.insert("dao.MangoMapper.insertLevel", userPriv);
+            session.commit();
+        } finally {
+            if (session != null){
+                session.close();
+            }
+        }
+    }
 
     public void updateLevel(UserPriv userPriv) {
         SqlSession session = null;

@@ -85,6 +85,14 @@
         update userprivileges set level=#{level} where userId=#{id}
     </update>
 
+    <insert id="insertLevel" parameterType="UserPriv">
+        insert into userprivileges values (#{id},#{level})
+    </insert>
+
+    <delete id="deleteLevel" parameterType="UserPriv">
+        delete from userprivileges where userId=#{id}
+    </delete>
+
 
     <!--
             USER QUERIES
@@ -101,6 +109,10 @@
     <select id="selectUser" parameterType="User" resultType="User">
         select * from users where username=#{username}
     </select>
+
+    <select id="selectUser2" parameterType="User" resultType="User">
+        select * from users where id=#{id}
+    </select>
 	
 	<delete id="deleteUser" parameterType="User">
 		delete from users where id=#{id}
@@ -114,6 +126,8 @@
 		insert into users (username,email, phone,password,admin,disabled,receiveAlarmEmails,receiveOwnAuditEvents)
 		values (#{username},#{email},#{phone},#{password},#{admin},#{disabled},#{receiveAlarmEmails},#{receiveOwnAuditEvents})
 	</insert>
+
+
 
     <!--
             MANUAL DATA POINT QUERIES
