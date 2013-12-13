@@ -80,7 +80,6 @@
                         </ul>
                         <ul class="nav navbar-nav visible-xs"> <!-- Add: class="active"  to the page the browser is currently on-->
                             <s:if test='#session.level=="admin"'>
-                            	<li><a onclick="gowait();" href="${reportListAndManualData}">Run a Report</a></li>
                                 <li><a onclick="gowait();" href="${template}">Create Report Template</a></li>
                                 <li><a onclick="gowait();" href="${adminPrivileges_Action}">Administrative Privileges</a></li> <!-- *only for Administrators* -->
                             </s:if>

@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
 import models.Login;
 import models.User;
+import models.UserPriv;
 import org.apache.commons.codec.binary.Base64;
 
 import java.nio.charset.Charset;
@@ -33,7 +34,12 @@ public class InsertUserAction extends ActionSupport {
         testUser.setPassword(hash);
         } catch (NoSuchAlgorithmException e){}
 
-        mangoDao.insertUser(testUser);
+        UserPriv userPriv = new UserPriv();
+        userPriv.setId(testUser.getId());
+        System.out.println("YESSSSSSSSS");
+        userPriv.setLevel('S');
+
+        mangoDao.insertUser(testUser, userPriv);
 
         return "success";
     }
