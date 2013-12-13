@@ -1,18 +1,11 @@
 package models.associations;
 
-/**
- * Created with IntelliJ IDEA.
- * User: matthallman
- * Date: 11/14/13
- * Time: 2:49 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ReportTemplateManualDataPointAssoc {
 
-    long reportTemplateId;
-    long manualDataPointId;
+    Integer reportTemplateId;
+    Integer manualDataPointId;
 
-    public ReportTemplateManualDataPointAssoc(long reportTemplateId, long manualDataPointId) {
+    public ReportTemplateManualDataPointAssoc(Integer reportTemplateId, Integer manualDataPointId) {
         this.reportTemplateId = reportTemplateId;
         this.manualDataPointId = manualDataPointId;
     }
@@ -21,7 +14,7 @@ public class ReportTemplateManualDataPointAssoc {
         return reportTemplateId;
     }
 
-    public void setReportTemplateId(long reportTemplateId) {
+    public void setReportTemplateId(Integer reportTemplateId) {
         this.reportTemplateId = reportTemplateId;
     }
 
@@ -29,7 +22,7 @@ public class ReportTemplateManualDataPointAssoc {
         return manualDataPointId;
     }
 
-    public void setManualDataPointId(long manualDataPointId) {
+    public void setManualDataPointId(Integer manualDataPointId) {
         this.manualDataPointId = manualDataPointId;
     }
 }

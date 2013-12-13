@@ -19,7 +19,7 @@
         <ol class="breadcrumb "> <!--add class "hide" to get rid of breadcrumbs-->
             <s:url action="index" var="homeUrl"/>
             <li><a href="${homeUrl}">Home</a></li>
-            <li class="active">Create Report Template</li>
+            <li class="active">Edit Report Template</li>
         </ol>
     </div>
     <!-- /.container-->
@@ -30,11 +30,13 @@
 <div class="container container-main">
 <div class="row row-offcanvas row-offcanvas-right">
 
-<form role="form" action="newReportTemplate.action" class="reportTempCreation1Form" method="post" placeholder="">
+<form role="form" action="editReportTemplate.action" class="reportTempCreation1Form" method="post" placeholder="">
+
+<input type="hidden" name="templateName" value="${template.name}">
 
 <div class="col-sm-8">
 <div class="page-header reportTempCreation">
-    <h2>Create New Report Template</h2>
+    <h2>Edit Report Template</h2>
 </div>
 <!-- /.page-header-->
 
@@ -582,22 +584,24 @@
     <div class="senorListnoHeight">
         <s:iterator value="sensors" var="sensor">
             <div id="${sensor.id}" class="checkbox" style="display:none;">
-                <label> <input id="${sensor.id}_input" type="checkbox" name="sensorIds" value="${sensor.id}">${sensor.name}</label>
-                <span onclick="uncheck('${sensor.id}', '${sensor.id}_input');" class="glyphicon glyphicon-remove"></span>
+                <label> <input id="${sensor.id}_input" type="checkbox" name="sensorIds"
+                               value="${sensor.id}">${sensor.name}</label>
+                <span onclick="uncheck('${sensor.id}', '${sensor.id}_input');"
+                      class="glyphicon glyphicon-remove"></span>
             </div>
         </s:iterator>
         <hr>
         <s:iterator value="manualDataPoints" var="md">
             <div id="${md.name}" class="checkbox" style="display:none;">
-                <label> <input id="${md.name}_input" type="checkbox" name="manualDataIds" value="${md.id}"> ${md.name}
+                <label> <input id="${md.name}_input" type="checkbox" name="manualDataIds" value="${md.id}">${md.name}
                 </label>
                 <span onclick="uncheck('${md.name}', '${md.name}_input');" class="glyphicon glyphicon-remove"></span>
             </div>
         </s:iterator>
     </div>
-
     <br>
-    <button type="submit" style="margin-top:25px;" class="btn btn-block btn-primaryGreen">Continue to Graph Specification
+    <button type="submit" style="margin-top:25px;" class="btn btn-block btn-primaryGreen">Continue to Graph
+        Specification
         <span class="glyphicon glyphicon-arrow-right"></span></button>
     <br>
 </div>
@@ -608,6 +612,16 @@
 <!--/.container .container-main-->
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        <s:iterator value="manualDataTypesSelected" var="mds">
+        check('${mds.name}', '${mds.name}_input');
+        </s:iterator>
+
+        <s:iterator value="sensorsSelected" var="ss">
+        check('${ss.id}', '${ss.id}_input');
+        </s:iterator>
+    })
+
     function showHideDiv(div_id, showOrHide) {
         if (showOrHide == 0) {
             //document.getElementById( div_id ).style.visibility="visible";

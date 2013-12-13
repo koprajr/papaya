@@ -26,19 +26,24 @@ public class ReportListAndManualDataAction extends ActionSupport {
     }
 
     public String execute() {
-        Category testCategory = new Category();
-        testCategory.setName(category);
-        Category tableCategory = mangoDAO.selectCategory(testCategory);
-        if (tableCategory == null) return "invalid";
-        int categoryId = tableCategory.getId();
-        testCategory.setId(categoryId);
 
-        manualDataTypes = mangoDAO.selectManualDataPointTypesForCategory(testCategory);
-        reportTemplates = mangoDAO.selectReportTemplatesForCategory(testCategory);
+        if (!category.equals("overallSystem"))  {
+            Category testCategory = new Category();
+            testCategory.setName(category);
+            Category tableCategory = mangoDAO.selectCategory(testCategory);
+            if (tableCategory == null) return "invalid";
+            int categoryId = tableCategory.getId();
+            testCategory.setId(categoryId);
+
+            manualDataTypes = mangoDAO.selectManualDataPointTypesForCategory(testCategory);
+            reportTemplates = mangoDAO.selectReportTemplatesForCategory(testCategory);
+        }
+        else {
+            manualDataTypes = mangoDAO.selectManualDataTypes();
+            reportTemplates = mangoDAO.getAllReportTemplates();
+        }
+
         reportListBean.setSystem(name);
-
-//        manualDataTypes = mangoDAO.selectManualDataTypes();
-//        reportTemplates = mangoDAO.getAllReportTemplates();
 
         return "success";
     }

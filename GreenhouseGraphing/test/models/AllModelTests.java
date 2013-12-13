@@ -5,7 +5,6 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        ChartConfigurationTest.class,
         EquationTest.class,
         LoginTest.class,
         ReportTemplateTest.class,
