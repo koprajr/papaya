@@ -21,7 +21,7 @@ public class addCategory extends ActionSupport {
     }
 
     public String execute() {
-
+         /*
         if (bean.getItem() == null) return "invalid";
         Category tableCategory;
         CategoryHelper tableCategoryHelper;
@@ -62,7 +62,7 @@ public class addCategory extends ActionSupport {
 
                 return "invalid";
         }
-
+           */
         return "success";
     }
 

@@ -844,7 +844,6 @@ public class MangoDAO {
         }
         return filledInReports;
     }
-	
 
     public List<String> selectCategories() {
         SqlSession session = null;
@@ -929,4 +928,5 @@ public class MangoDAO {
         return tableCategoryHelper;
 
     }
+
 }

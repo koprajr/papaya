@@ -56,7 +56,6 @@
 	
 	<hr />
 
-
     <br>
 
     <div class="page-header">
