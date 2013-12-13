@@ -26,4 +26,5 @@ public class ManualDataBean {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
+
 }

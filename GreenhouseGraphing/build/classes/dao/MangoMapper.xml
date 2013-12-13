@@ -136,6 +136,10 @@
     <select id="selectManualDataTypes" resultType="String">
         select name from manualdatapoints
     </select>
+
+    <select id="selectManualDataTypesByName" parameterType="String" resultType="ManualDataPoint">
+        select * from manualdatapoints where name=#{name}
+    </select>
 	
 	<select id="selectSensors" resultType="Sensor">
 		select * from datapoints
@@ -190,7 +194,6 @@
       select id, name from reportTemplateManualDataPointAssoc join manualDataPoints on manualDataPoints.id=reportTemplateManualDataPointAssoc.manualDataPointId
       where reporttemplateid=#{id}
     </select>
-
 
 	<select id="getManualDataPointValues" parameterType="java.lang.Integer" resultType="ManualDataPointValue">
 		select * from manualdatapointvalues where manualdatapointid=#{id}

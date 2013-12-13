@@ -23,16 +23,17 @@
                 <div class="col-md-4 col-md-offset-4">
                     <form role="form" action="addCategory" method="post">
                         <!--ONE OF THESE FOR EACH MANUAL DATAPOINT-->
+                        <span style="font-size: 11px;">Fields marked with an * are required</span><br><br>
                         <div class="form-group">
 
-                            <label for="name">Item Name <br><small>(ex "GALLONS OF WATER TO ROOM 1")</small></label>
-                            <input type="text" name="bean.item" class="form-control" id="name" placeholder="">
+                            <label for="name">Item Name *<br><small>(ex "GALLONS OF WATER TO ROOM 1" or "GH overall electricity")</small></label>
+                            <input type="text" name="bean.item" class="form-control" id="name" placeholder="" required="">
 
-                            <br><label>Type of Data</label><br>
+                            <br><label>Type of Data *</label><br>
                             <input type="radio" checked="checked" name="bean.type" value="M">Manually Entered Data<br>
                             <input type="radio" name="bean.type" value="T">Report Template
 
-                            <br><br><label for="select">Category: </label>
+                            <br><br><label for="select">Category: *</label>
                             <s:select list="categories"
                                       name="bean.category"
                                       id="select"

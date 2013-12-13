@@ -7,7 +7,12 @@ import models.ManualData;
 import models.ManualDataBean;
 import models.ManualDataType;
 import models.User;
+import org.apache.derby.client.am.DateTime;
+import utils.TimeUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -20,6 +25,7 @@ import java.util.Map;
 public class InsertManualDataAction extends ActionSupport {
     private ManualDataBean bean;
     private MangoDAO mangoDAO;
+    private String start;
 
     public InsertManualDataAction() {
         mangoDAO = new MangoDAO();
@@ -44,7 +50,9 @@ public class InsertManualDataAction extends ActionSupport {
 
             manualData.setUserId(tableUser.getId());
             manualData.setValue(value);
-            manualData.setTimeStamp(System.currentTimeMillis());
+
+            //manualData.setTimeStamp(System.currentTimeMillis());
+            manualData.setTimeStamp(TimeUtils .timeStampToEpochTime(start));
             manualData.setTypeId(tableManualDataType.getId());
 
             mangoDAO.insertManualData(manualData);
@@ -71,5 +79,13 @@ public class InsertManualDataAction extends ActionSupport {
 
     public ManualDataBean getBean() {
         return bean;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
     }
 }

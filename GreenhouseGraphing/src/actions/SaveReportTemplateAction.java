@@ -3,6 +3,7 @@ package actions;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MangoDAO;
 import models.ChartConfiguration;
+import models.ManualDataPoint;
 import models.ReportTemplate;
 import models.Sensor;
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class SaveReportTemplateAction extends ActionSupport {
     private ReportTemplate template;
     private List<Integer> sensorIds;
+    private List<String> manualIds;
     private List<String> configurationNames;
     private List<String> configurationTypes;
     private List<String> configurationXLabels;
@@ -33,25 +35,35 @@ public class SaveReportTemplateAction extends ActionSupport {
         }
         template.setSensors(individualSensors);
 
+        List<ManualDataPoint> manualData = new ArrayList<ManualDataPoint>();
+        if (manualIds != null) {
+            for (String name : manualIds) {
+                manualData.add(dao.selectManualDataTypesByName(name));
+            }
+        }
+        template.setManualData(manualData);
+
+
         // -- Compose the chart configurations.
         List<ChartConfiguration> chartConfigurations = new ArrayList<ChartConfiguration>();
-        for (int i = 0; i < configurationNames.size(); i++) {
-            ChartConfiguration cc = new ChartConfiguration();
-            cc.setName(configurationNames.get(i));
-            cc.setChartType(configurationTypes.get(i));
-            cc.setxLabel(configurationXLabels.get(i));
-            cc.setyLabel(configurationYLabels.get(i));
-            // -- Associate the selected sensors with the associated chart configuration.
-            List<Sensor> chartSensors = new ArrayList<Sensor>();
-            if (chartSensorIds != null) {
-                for (String id : chartSensorIds.get(i)) {
-                    chartSensors.add(dao.getSensor(Integer.parseInt(id)));
+        if (configurationNames != null) {
+            for (int i = 0; i < configurationNames.size(); i++) {
+                ChartConfiguration cc = new ChartConfiguration();
+                cc.setName(configurationNames.get(i));
+                cc.setChartType(configurationTypes.get(i));
+                cc.setxLabel(configurationXLabels.get(i));
+                cc.setyLabel(configurationYLabels.get(i));
+                // -- Associate the selected sensors with the associated chart configuration.
+                List<Sensor> chartSensors = new ArrayList<Sensor>();
+                if (chartSensorIds != null) {
+                    for (String id : chartSensorIds.get(i)) {
+                        chartSensors.add(dao.getSensor(Integer.parseInt(id)));
+                    }
                 }
+                cc.setSensors(chartSensors);
+                chartConfigurations.add(cc);
             }
-            cc.setSensors(chartSensors);
-            chartConfigurations.add(cc);
         }
-
         // - Associate chart configurations with the template.
         template.setChartConfigurations(chartConfigurations);
 
@@ -113,5 +125,13 @@ public class SaveReportTemplateAction extends ActionSupport {
 
     public void setChartSensorIds(List<List<String>> chartSensorIds) {
         this.chartSensorIds = chartSensorIds;
+    }
+
+    public List<String> getManualIds() {
+        return manualIds;
+    }
+
+    public void setManualIds(List<String> manualIds) {
+        this.manualIds = manualIds;
     }
 }

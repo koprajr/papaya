@@ -32,8 +32,8 @@
                         <form role="form" action="saveReportTemplate" class="reportTempCreation2Form" method="post">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <h4 class="borderBottom" style="margin-top:0px !important;">Report Template Name</h4>
-                                    <input class="form-control" type="text" name="template.name">
+                                    <h4 class="borderBottom" style="margin-top:0px !important;">Report Template Name *</h4>
+                                    <input class="form-control" type="text" name="template.name" required="">
                                     <h4 class="borderBottom">Report Template Description</h4>
                                     <textarea class="form-control" name="template.description"></textarea>
                                     <h4 class="borderBottom">Individual Graphs</h4>
@@ -63,13 +63,18 @@
                                         <%--</div>--%>
                                     <%--</s:iterator>--%>
                                     <h4 class="borderBottom">Manual Data</h4>
-                                    <s:iterator value="manualData" var="md">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="manualIds" value="${md}"> ${md}
-                                            </label>
-                                        </div>
-                                    </s:iterator>
+                                    <s:if test="%{manualData.isEmpty()}">
+                                        <h5>There are no manual data types included in this report template!</h5>
+                                    </s:if>
+                                    <s:else>
+                                        <s:iterator value="manualData" var="md">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="manualIds" value="${md}"> ${md}
+                                                </label>
+                                            </div>
+                                        </s:iterator>
+                                    </s:else>
                                 </div>
 
                                 <div id="chart-configuration-area" class="col-sm-8">
@@ -85,6 +90,7 @@
 
                             <div class="row">
                                 <div class="col-sm-4 col-sm-offset-4">
+                                    <br><br><span style="font-size: 11px; text-align: center; display:block;">Fields marked with an * are required</span>
                                     <br><button type="submit" class="btn btn-block btn-primaryGreen">Save Report Template
                                         <span class="glyphicon glyphicon-arrow-right"></span></button><br>
                                 </div>
@@ -138,6 +144,8 @@
                 </div>'
             );
             generatedChartCount += 1;
+
         }));
     </script>
+
 </body>

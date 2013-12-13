@@ -54,6 +54,11 @@
             <result name="invalid">/pages/generic.jsp</result>
         </action>
 
+        <action name="goTo_newUsers" class="actions.IndexAction" method="execute">
+            <result name="success">/pages/users.jsp</result>
+            <result name="invalid">/pages/generic.jsp</result>
+        </action>
+
         <action name="goTo_researcherPrivileges" class="actions.IndexAction" method="execute">
             <result name="success">/pages/researcherPrivileges.jsp</result>
             <result name="invalid">/pages/generic.jsp</result>
@@ -142,20 +147,24 @@
         </action>
 
         <action name="saveReportTemplate" class="actions.SaveReportTemplateAction" method="execute">
-            <!-- TODO: Redirect to a proper view or action. -->
             <result name="success">/pages/success.jsp</result>
+            <result name="invalid">/pages/error.jsp</result>
         </action>
 
         <action name="editReportTemplate" class="actions.EditReportTemplateAction" method="execute">
             <result name="success">/pages/editReportTemplate.jsp</result>
         </action>
 
-        <action name="updateReportTemplate" class="actions.UpdateReportTemplateAction" method="execute">
-            <!-- TODO: Redirect to a proper view or action. -->
-            <result name="success">/pages/success.jsp</result>
+        <action name="editReportTemplateSelectPoints" class="actions.EditReportTemplateSelectSensorsAction" method="execute">
+            <result name="success">/pages/editReportTemplateSelectPoints.jsp</result>
         </action>
 
-		<action name="runReport" class="actions.RunReportAction">
+        <action name="updateReportTemplate" class="actions.UpdateReportTemplateAction" method="execute">
+            <result name="success">/pages/success.jsp</result>
+            <result name="invalid">/pages/error.jsp</result>
+        </action>
+
+		<action name="runReport" class="actions.RunReportAction" method="execute">
 			<result name="success">/pages/runReport.jsp</result>
 		</action>
 

@@ -19,7 +19,7 @@
         <ol class="breadcrumb "> <!--add class "hide" to get rid of breadcrumbs-->
             <s:url action="index" var="homeUrl"/>
             <li><a href="${homeUrl}">Home</a></li>
-            <li class="active">Create Report Template</li>
+            <li class="active">Edit Report Template</li>
         </ol>
     </div>
     <!-- /.container-->
@@ -34,7 +34,7 @@
 
 <div class="col-sm-8">
 <div class="page-header reportTempCreation">
-    <h2>Create New Report Template</h2>
+    <h2>Edit Report Template</h2>
 </div>
 <!-- /.page-header-->
 
@@ -592,6 +592,9 @@
                 <span onclick="uncheck('${md}', '${md}_input');" class="glyphicon glyphicon-remove"></span>
             </div>
         </s:iterator>
+        <s:iterator value="manualDataTypesSelected" var="ms">
+            <span>${ms.name}</span>
+        </s:iterator>
     </div>
 
     <br>
@@ -606,6 +609,16 @@
 <!--/.container .container-main-->
 
 <script type="text/javascript">
+    $(document).ready(function(){
+        <s:iterator value="manualDataTypesSelected" var="mds">
+            check('${mds.name}', '${mds.name}_input');
+        </s:iterator>
+
+        <s:iterator value="sensorsSelected" var="ss">
+            check('${ss.id}', '${ss.id}_input');
+        </s:iterator>
+    })
+
     function showHideDiv(div_id, showOrHide) {
         if (showOrHide == 0) {
             //document.getElementById( div_id ).style.visibility="visible";
